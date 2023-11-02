@@ -1,165 +1,84 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.apps')
 
-@section('styles')
-
-@endsection
+@push('styles')
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Blogs Details</title>
+    <!-- CustomCss Links -->
+    <link href="{{ asset('zameen/assets/css/style.css') }}" rel="stylesheet">
+    <!-- bootstrapCss Links -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
+      integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
+    <!-- Google Fonts   -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,500;0,700;1,200;1,500;1,700&family=Poppins:wght@100&display=swap"
+      rel="stylesheet">
+    <!-- fontawesome -->
+    <!-- <script src="https://kit.fontawesome.com/de615a762d.js" crossorigin="anonymous"></script> -->
+  </head>
+@endpush
 
 @section('content')
-
-    <section class="section">
-        <div class="container">
-            <div class="row">
-
-                <div class="col s12 m8">
-
-                    <div class="card">
-                        <div class="card-image">
-                            @if(Storage::disk('public')->exists('posts/'.$post->image))
-                                <img src="{{Storage::url('posts/'.$post->image)}}" alt="{{$post->title}}">
-                            @endif
-                        </div>
-                        <div class="card-content">
-                            <span class="card-title" title="{{$post->title}}">{{ $post->title }}</span>
-                            {!! $post->body !!}
-                        </div>
-                        <div class="card-action blog-action">
-                            <a href="{{ route('blog.author',$post->user->username) }}" class="btn-flat">
-                                <i class="material-icons">person</i>
-                                <span>{{$post->user->name}}</span>
-                            </a>
-                            <a href="#" class="btn-flat disabled">
-                                <i class="material-icons">watch_later</i>
-                                <span>{{$post->created_at->diffForHumans()}}</span>
-                            </a>
-                            @foreach($post->categories as $key => $category)
-                                <a href="{{ route('blog.categories',$category->slug) }}" class="btn-flat">
-                                    <i class="material-icons">folder</i>
-                                    <span>{{$category->name}}</span>
-                                </a>
-                            @endforeach
-                            @foreach($post->tags as $key => $tag)
-                                <a href="{{ route('blog.tags',$tag->slug) }}" class="btn-flat">
-                                    <i class="material-icons">label</i>
-                                    <span>{{$tag->name}}</span>
-                                </a>
-                            @endforeach
-
-                            <a href="#" class="btn-flat disabled">
-                                <i class="material-icons">visibility</i>
-                                <span>{{$post->view_count}}</span>
-                            </a>
-                        </div>
-
-                    </div>
-
-                    <div class="card" id="comments">
-                        <div class="p-15 grey lighten-4">
-                            <h5 class="m-0">{{ $post->comments_count }} Comments</h5>
-                        </div>
-                        <div class="single-narebay p-15">
-
-                            @foreach($post->comments as $comment)
-
-                                @if($comment->parent_id == null)
-                                    <div class="comment">
-                                        <div class="author-image">
-                                            <span style="background-image:url({{ Storage::url('users/'.$comment->users->image) }});"></span>
-                                        </div>
-                                        <div class="content">
-                                            <div class="author-name">
-                                                <strong>{{ $comment->users->name }}</strong>
-                                                <span class="time">{{ $comment->created_at->diffForHumans() }}</span>
-
-                                                @auth
-                                                    <span class="right replay" data-commentid="{{ $comment->id }}">Replay</span>
-                                                @endauth
-
-                                            </div>
-                                            <div class="author-comment">
-                                                {{ $comment->body }}
-                                            </div>
-                                        </div>
-                                        <div id="comment-{{$comment->id}}"></div>
-                                    </div>
-                                @endif
-
-                                @if($comment->children->count() > 0)
-                                    @foreach($comment->children as $comment)
-                                        <div class="comment children">
-                                            <div class="author-image">
-                                                <span style="background-image:url({{ Storage::url('users/'.$comment->users->image) }});"></span>
-                                            </div>
-                                            <div class="content">
-                                                <div class="author-name">
-                                                    <strong>{{ $comment->users->name }}</strong>
-                                                    <span class="time">{{ $comment->created_at->diffForHumans() }}</span>
-                                                </div>
-                                                <div class="author-comment">
-                                                    {{ $comment->body }}
-                                                </div>
-                                            </div>
-                                        </div>
-                                    @endforeach
-                                @endif
-
-                            @endforeach
-
-                            @auth
-                                <div class="comment-box">
-                                    <h6>Leave a comment</h6>
-                                    <form action="{{ route('blog.comment',$post->id) }}" method="POST">
-                                        @csrf
-                                        <input type="hidden" name="parent" value="0">
-
-                                        <textarea name="body" class="box"></textarea>
-                                        <input type="submit" class="btn indigo" value="Comment">
-                                    </form>
-                                </div>
-                            @endauth
-
-                            @guest 
-                                <div class="comment-login">
-                                    <h6>Please Login to comment</h6>
-                                    <a href="{{ route('login') }}" class="btn indigo">Login</a>
-                                </div>
-                            @endguest
-                            
-                        </div>
-                    </div>
-                    
-                </div>
-
-                <div class="col s12 m4">
-
-                    @include('pages.blog.sidebar')
-                    
-                </div>
-
+<section>
+    <div class="blog-detail-bg d-flex justify-content-center align-items-center flex-column text-center">
+      <div class="text-section text-center banner-text">
+        <h1>Buying a Home</h1>
+        <span class="text-white d-inline-block">always on to guide you home</span>
+      </div>
+    </div>
+  </section>
+  <!-- blogs-cards -->
+  <section class="all-p mt-5 mb-5">
+    <div class="container-fluid px-4">
+      <div class="row">
+        <div class="col-lg-8 order-lg-0 order-1">
+          <div class="d-flex flex-column gap-5">
+          <div class="d-flex flex-column gap-3">
+            <p class="blog-detail-head d-lg-inline-block d-block  pb-1">
+                {{ $post->title }}
+            </p>
+         
+         
+            <div class="blog-detail-img">
+              <img src="{{Storage::url('posts/'.$post->image)}}">
             </div>
+            <p class="blog-paragraph">
+                {!! $post->body !!}
+            </p>
+          </div>
+         
         </div>
-    </section>
+        </div>
+        <div class="col-lg-4 order-lg-1 order-0 mb-3">
+          <!-- Most-popular-blgs -->
+          <div class="popular-blogs-wrapper px-3 py-3">
+            <div class="">
+              <h4 class="poplore-heading pb-2 mb-4">Most Popular</h4>
+            </div>
+            <ul class="d-flex flex-column gap-3 list-unstyled popuplar-list">
+              <li>
+                <div class="d-flex flex-column flex-md-row gap-3 align-items-center ">
+                  <div class="popular-blogs-img"><img src="{{Storage::url('posts/'.$post->image)}}"></div>
+                  <div class="popular-detail text-md-start text-center">
+                    {{ $post->title }}
+                  </div>
+                </div>
+              </li>
+             
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+ <!-- Related Post -->
 
+   
 @endsection
 
-@section('scripts')
-<script>
-    $(document).on('click','span.right.replay',function(e){
-        e.preventDefault();
-        
-        var commentid = $(this).data('commentid');
+@push('scripts')
 
-        $('#comment-'+commentid).empty().append(
-            `<div class="comment-box">
-                <form action="{{ route('blog.comment',$post->id) }}" method="POST">
-                    @csrf
-                    <input type="hidden" name="parent" value="1">
-                    <input type="hidden" name="parent_id" value="`+commentid+`">
-                    
-                    <textarea name="body" class="box" placeholder="Leave a comment"></textarea>
-                    <input type="submit" class="btn indigo" value="Comment">
-                </form>
-            </div>`
-        );
-    });
-</script>
-@endsection
+@endpush

@@ -31,7 +31,7 @@ class CategoryController extends Controller
     {
         $request->validate([
             'name'  => 'required|unique:categories|max:255',
-            'image' => 'required|mimes:jpeg,jpg,png'
+            
         ]);
 
         $image = $request->file('image');
@@ -50,7 +50,7 @@ class CategoryController extends Controller
             if(!Storage::disk('public')->exists('category/thumb')){
                 Storage::disk('public')->makeDirectory('category/thumb');
             }
-            $thumb = Image::make($image)->resize(500, 330)->save();
+            $thumb = Image::make($image)->resize(500, 330)->stream();
             Storage::disk('public')->put('category/thumb/'.$imagename, $thumb);
         }else{
             $imagename = 'default.png';

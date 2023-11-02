@@ -197,10 +197,10 @@ class PagesController extends Controller
 
     public function messageContact(Request $request)
     {
+        // dd($request->all());
         $request->validate([
             'name'      => 'required',
             'email'     => 'required',
-            'phone'     => 'required',
             'message'   => 'required'
         ]);
 
@@ -215,14 +215,8 @@ class PagesController extends Controller
             'message'   => $message
         ]);
             
-        $adminname  = User::find(1)->name;
-        $mailto     = $request->mailto;
+        return redirect()->back()->with('success',' Successfully Send !');
 
-        Mail::to($mailto)->send(new Contact($message,$adminname,$mailfrom));
-
-        if($request->ajax()){
-            return response()->json(['message' => 'Message send successfully.']);
-        }
 
     }
 

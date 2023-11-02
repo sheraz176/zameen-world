@@ -174,7 +174,7 @@
                       </div>
                       <div class="card-text-warrper">
                         <div class="tag-img">
-                          <img src=" {{ asset('zameen/assets/images/popular.png') }}">
+                          <img src=" {{ asset('zameen/assets/images/superhott.jpeg') }}">
                         </div>
                         <div class="heart-sec d-flex flex-row justify-content-between mt-3 align-items-center">
                           <h3>PKR {{ $property->price }}</h3>
