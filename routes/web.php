@@ -1,5 +1,7 @@
 <?php
-
+use App\Http\Controllers\Admin\PropertyController;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Route;
 // FRONT-END ROUTES
 Route::get('/', 'FrontpageController@index')->name('home');
 Route::get('/slider', 'FrontpageController@slider')->name('slider.index');
@@ -69,6 +71,14 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
     Route::post('changepassword','DashboardController@changePasswordUpdate')->name('changepassword.update');
 
 });
+// Mycode Start
+Route::get('state_data',[PropertyController::class,'state_data_fun']);
+Route::get('/admin/properties/city_data/{id}',[PropertyController::class,'city_data_fun']);
+Route::get('/admin/properties/socity_data/{id}',[PropertyController::class,'socity_data_fun']);
+Route::get('/admin/properties/phase_data/{id}',[PropertyController::class,'phase_data_fun']);
+Route::get('/admin/properties/block_data/{id}',[PropertyController::class,'block_data_fun']);
+Route::get('/admin/properties/sub_block_data/{id}',[PropertyController::class,'sub_block_data_fun']);
+// Mycode End
 
 Route::group(['prefix'=>'agent','namespace'=>'Agent','middleware'=>['auth','agent'],'as'=>'agent.'], function(){
 
