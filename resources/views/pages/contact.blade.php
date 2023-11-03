@@ -5,24 +5,8 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Contact Us</title>
-    <!-- CustomCss Links -->
-    <link href="{{ asset('zameen/assets/css/style.css') }}" rel="stylesheet">
-      <!-- bootstrapCss Links -->
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
-  integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
-<!-- Google Fonts   -->
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link
-  href="https://fonts.googleapis.com/css2?family=Be+Vietnam+Pro:ital,wght@0,100;0,200;0,500;0,700;1,200;1,500;1,700&family=Poppins:wght@100&display=swap"
-  rel="stylesheet">
-<!-- fontawesome -->
-<script src="https://kit.fontawesome.com/de615a762d.js" crossorigin="anonymous"></script>
-<script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
-<!-- lightbox -->
-<link rel="stylesheet" href="{{ asset('zameen/assets/css/lightgallery-bundle.css ') }}" />
-<link rel="stylesheet" href=" {{ asset('zameen/assets/css/lg-autoplay.css') }}" />
-<link rel="stylesheet" href=" {{ asset('zameen/assets/css/lg-thumbnail.css') }}" />
+
+
   </head>
 @endpush
 
@@ -129,63 +113,13 @@
       </div>
     </div>
   </section>
-  <!-- our office -->
-  <section>
-    <div class="container-fluid px-3 px-md-5">
-      <div class="row">
-        <div class="col-md-12">
-            <div class="text-center d-flex flex-column gap-2">
-              <p class="intro-headig py-2">Our Office</p>
-              <p class="agent-plan-text">Amet minim mollit non deserunt ullamco est sit aliqua dolor do amet sint. Velit
-                officia consequat <br class="d-md-block d-none">  duis enim velit mollit. Exercitation veniam consequat sunt nostrud amet.</p>
-            </div>
-        </div>
-      </div>
-    </div>
-  </section>
-    <!-- office cards -->
-  
+
+    {{-- <button class="btn btn-primary" id="toast-success"> Click Me </button> --}}
 
 @endsection
 
 @push('scripts')
-    <script>
-        $('textarea#message').characterCounter();
 
-        $(function(){
-            $(document).on('submit','#contact-us',function(e){
-                e.preventDefault();
 
-                var data = $(this).serialize();
-                var url = "{{ route('contact.message') }}";
-                var btn = $('#msgsubmitbtn');
 
-                $.ajax({
-                    type: 'POST',
-                    url: url,
-                    data: data,
-                    beforeSend: function() {
-                        $(btn).addClass('disabled');
-                        $(btn).empty().append('<span>LOADING...</span><i class="material-icons right">rotate_right</i>');
-                    },
-                    success: function(data) {
-                        if (data.message) {
-                            M.toast({html: data.message, classes:'green darken-4'})
-                        }
-                    },
-                    error: function(xhr) {
-                        M.toast({html: 'ERROR: Failed to send message!', classes: 'red darken-4'})
-                    },
-                    complete: function() {
-                        $('form#contact-us')[0].reset();
-                        $(btn).removeClass('disabled');
-                        $(btn).empty().append('<span>SEND</span><i class="material-icons right">send</i>');
-                    },
-                    dataType: 'json'
-                });
-
-            })
-        })
-
-    </script>
 @endpush

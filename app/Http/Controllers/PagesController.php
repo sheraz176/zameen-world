@@ -215,7 +215,7 @@ class PagesController extends Controller
             'message'   => $message
         ]);
             
-        return redirect()->back()->with('success',' Successfully Send !');
+        return redirect()->back()->with('success','message Successfully Send !');
 
 
     }
