@@ -73,11 +73,11 @@ Route::group(['prefix'=>'admin','namespace'=>'Admin','middleware'=>['auth','admi
 });
 // Mycode Start
 Route::get('state_data',[PropertyController::class,'state_data_fun']);
-Route::get('/admin/properties/city_data/{id}',[PropertyController::class,'city_data_fun']);
-Route::get('/admin/properties/socity_data/{id}',[PropertyController::class,'socity_data_fun']);
-Route::get('/admin/properties/phase_data/{id}',[PropertyController::class,'phase_data_fun']);
-Route::get('/admin/properties/block_data/{id}',[PropertyController::class,'block_data_fun']);
-Route::get('/admin/properties/sub_block_data/{id}',[PropertyController::class,'sub_block_data_fun']);
+Route::get('city_data/{id}',[PropertyController::class,'city_data_fun']);
+Route::get('socity_data/{id}',[PropertyController::class,'socity_data_fun']);
+Route::get('phase_data/{id}',[PropertyController::class,'phase_data_fun']);
+Route::get('block_data/{id}',[PropertyController::class,'block_data_fun']);
+Route::get('sub_block_data/{id}',[PropertyController::class,'sub_block_data_fun']);
 // Mycode End
 
 Route::group(['prefix'=>'agent','namespace'=>'Agent','middleware'=>['auth','agent'],'as'=>'agent.'], function(){

@@ -3,8 +3,6 @@
 @section('title', 'Show Property')
 
 @push('styles')
-
-
 @endpush
 
 
@@ -23,9 +21,10 @@
 
                 <div class="header">
                     <h2>
-                        {{$property->title}}
+                        {{ $property->title }}
                         <br>
-                        <small>Posted By <strong>{{$property->user->name}}</strong> on {{$property->created_at->toFormattedDateString()}}</small>
+                        <small>Posted By <strong>{{ $property->user->name }}</strong> on
+                            {{ $property->created_at->toFormattedDateString() }}</small>
                     </h2>
                 </div>
 
@@ -33,33 +32,82 @@
                     <ul class="list-group">
                         <li class="list-group-item">
                             <strong>Price : </strong>
-                            <span class="right"> &dollar;{{$property->price}}</span>
+                            <span class="right"> &dollar;{{ $property->price }}</span>
                         </li>
                         <li class="list-group-item">
                             <strong>Bedroom : </strong>
-                            <span class="right">{{$property->bedroom}}</span>
+                            <span class="right">{{ $property->bedroom }}</span>
                         </li>
                         <li class="list-group-item">
                             <strong>Bathroom : </strong>
-                            <span class="right">{{$property->bathroom}}</span>
+                            <span class="right">{{ $property->bathroom }}</span>
                         </li>
                         <li class="list-group-item">
                             <strong>City : </strong>
-                            <span class="right">{{$property->city}}</span>
+                            <span class="right">{{ $property->city }}</span>
                         </li>
                         <li class="list-group-item">
                             <strong>Address : </strong>
-                            <span class="left">{{$property->address}}</span>
+                            <span class="left">{{ $property->address }}</span>
                         </li>
                     </ul>
                 </div>
 
                 <div class="body">
-                    <h5>Description</h5>
-                    {!!$property->description!!}
+                    <h5>Descriptions</h5>
+                    {!! $property->description !!}
                 </div>
 
-            </div> 
+            </div>
+            <div class="card">
+
+                <div class="header bg-indigo">
+                    <h2>COUNTRY</h2>
+                </div>
+
+                <div class="header">
+                    <ul class="list-group">
+                        @isset($state->state_name)
+                            <li class="list-group-item">
+                                <strong>State : </strong>
+                                <span class="right">{{ $state->state_name }}</span>
+                            </li>
+                        @endisset
+                        @isset($city->city_name)
+                            <li class="list-group-item">
+                                <strong>City : </strong>
+                                <span class="right">{{ $city->city_name }}</span>
+                            </li>
+                        @endisset
+                        @isset($socity->socity_name)
+                            <li class="list-group-item">
+                                <strong>Socity : </strong>
+                                <span class="right">{{ $socity->socity_name }}</span>
+                            </li>
+                        @endisset
+                        @isset($phase->phase_name)
+                            <li class="list-group-item">
+                                <strong>Phase : </strong>
+                                <span class="right">{{ $phase->phase_name }}</span>
+                            </li>
+                        @endisset
+                        @isset($block->block_name)
+                            <li class="list-group-item">
+                                <strong>BLock : </strong>
+                                <span class="right">{{ $block->block_name }}</span>
+                            </li>
+                        @endisset
+
+                        @isset($sub_block->sub_block_name)
+                            <li class="list-group-item">
+                                <strong>Sub_block : </strong>
+                                <span class="right">{{ $sub_block->sub_block_name }}</span>
+                            </li>
+                        @endisset
+                    </ul>
+                </div>
+
+            </div>
             <div class="card">
                 <div class="header">
                     <h2>MAP</h2>
@@ -69,45 +117,48 @@
                 </div>
             </div>
 
-            @if($property->floor_plan)
-            <div class="card">
-                <div class="header">
-                    <h2>FLOOR PLAN</h2>
-                </div>
-                @if($property->floor_plan && $property->floor_plan != 'default.png')
-                <div class="body">
-                    <img class="img-responsive" src="{{Storage::url('property/'.$property->floor_plan)}}" alt="{{$property->title}}">
-                </div>
-                @endif
-            </div>
-            @endif
-
-            @if($videoembed)
-            <div class="card">
-                <div class="header">
-                    <h2>PROPERTY VIDEO</h2>
-                </div>
-                <div class="body text-center">
-                    {!! $videoembed !!}
-                </div>
-            </div>
-            @endif
-
-            @if(!$property->gallery->isEmpty())
-            <div class="card">
-                <div class="header bg-red">
-                    <h2>GALLERY IMAGE</h2>
-                </div>
-                <div class="body">
-                    <div class="gallery-box">
-                        @foreach($property->gallery as $gallery)
-                        <div class="gallery-image">
-                            <img class="img-responsive" src="{{Storage::url('property/gallery/'.$gallery->name)}}" alt="{{$property->title}}">
+            @if ($property->floor_plan)
+                <div class="card">
+                    <div class="header">
+                        <h2>FLOOR PLAN</h2>
+                    </div>
+                    @if ($property->floor_plan && $property->floor_plan != 'default.png')
+                        <div class="body">
+                            <img class="img-responsive" src="{{ Storage::url('property/' . $property->floor_plan) }}"
+                                alt="{{ $property->title }}">
                         </div>
-                        @endforeach
+                    @endif
+                </div>
+            @endif
+
+            @if ($videoembed)
+                <div class="card">
+                    <div class="header">
+                        <h2>PROPERTY VIDEO</h2>
+                    </div>
+                    <div class="body text-center">
+                        {!! $videoembed !!}
                     </div>
                 </div>
-            </div>
+            @endif
+
+            @if (!$property->gallery->isEmpty())
+                <div class="card">
+                    <div class="header bg-red">
+                        <h2>GALLERY IMAGE</h2>
+                    </div>
+                    <div class="body">
+                        <div class="gallery-box">
+                            @foreach ($property->gallery as $gallery)
+                                <div class="gallery-image">
+                                    <img class="img-responsive"
+                                        src="{{ Storage::url('property/gallery/' . $gallery->name) }}"
+                                        alt="{{ $property->title }}">
+                                </div>
+                            @endforeach
+                        </div>
+                    </div>
+                </div>
             @endif
 
             {{-- COMMENTS --}}
@@ -117,12 +168,12 @@
                 </div>
                 <div class="body">
 
-                    @foreach($property->comments as $comment)
-                    
-                        @if($comment->parent_id == NULL)
+                    @foreach ($property->comments as $comment)
+                        @if ($comment->parent_id == null)
                             <div class="comment">
                                 <div class="author-image">
-                                    <span style="background-image:url({{ Storage::url('users/'.$comment->users->image) }});"></span>
+                                    <span
+                                        style="background-image:url({{ Storage::url('users/' . $comment->users->image) }});"></span>
                                 </div>
                                 <div class="content">
                                     <div class="author-name">
@@ -136,10 +187,11 @@
                             </div>
                         @endif
 
-                        @foreach($comment->children as $comment)
+                        @foreach ($comment->children as $comment)
                             <div class="comment children">
                                 <div class="author-image">
-                                    <span style="background-image:url({{ Storage::url('users/'.$comment->users->image) }});"></span>
+                                    <span
+                                        style="background-image:url({{ Storage::url('users/' . $comment->users->image) }});"></span>
                                 </div>
                                 <div class="content">
                                     <div class="author-name">
@@ -152,9 +204,8 @@
                                 </div>
                             </div>
                         @endforeach
-
                     @endforeach
-                    
+
                 </div>
             </div>
 
@@ -165,7 +216,8 @@
                     <h2>TYPE</h2>
                 </div>
                 <div class="body">
-                    <strong class="label bg-red">{{$property->type}}</strong> for <strong class="label bg-blue">{{$property->purpose}}</strong>
+                    <strong class="label bg-red">{{ $property->type }}</strong> for <strong
+                        class="label bg-blue">{{ $property->purpose }}</strong>
                 </div>
             </div>
             <div class="card">
@@ -173,8 +225,8 @@
                     <h2>FEATURES</h2>
                 </div>
                 <div class="body">
-                    @foreach($property->features as $feature)
-                        <span class="label bg-green">{{$feature->name}}</span>
+                    @foreach ($property->features as $feature)
+                        <span class="label bg-green">{{ $feature->name }}</span>
                     @endforeach
                 </div>
             </div>
@@ -185,13 +237,15 @@
                 </div>
                 <div class="body">
 
-                    <img class="img-responsive thumbnail" src="{{Storage::url('property/'.$property->image)}}" alt="{{$property->title}}">
-                    
-                    <a href="{{route('admin.properties.index')}}" class="btn btn-danger btn-lg waves-effect">
+                    <img class="img-responsive thumbnail" src="{{ Storage::url('property/' . $property->image) }}"
+                        alt="{{ $property->title }}">
+
+                    <a href="{{ route('admin.properties.index') }}" class="btn btn-danger btn-lg waves-effect">
                         <i class="material-icons left">arrow_back</i>
                         <span>BACK</span>
                     </a>
-                    <a href="{{route('admin.properties.edit',$property->slug)}}" class="btn btn-info btn-lg waves-effect">
+                    <a href="{{ route('admin.properties.edit', $property->slug) }}"
+                        class="btn btn-info btn-lg waves-effect">
                         <i class="material-icons">edit</i>
                         <span>EDIT</span>
                     </a>
@@ -207,7 +261,6 @@
 
 
 @push('scripts')
-
     <script src="https://maps.google.com/maps/api/js?v=3&sensor=false"></script>
     <script src="{{ asset('backend/plugins/gmaps/gmaps.js') }}"></script>
     <script>
@@ -222,8 +275,5 @@
             lng: '<?php echo $property->location_longitude; ?>',
             title: '<?php echo $property->title; ?>',
         });
-        
     </script>
-
-
 @endpush

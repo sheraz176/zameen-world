@@ -50,8 +50,8 @@ class PropertyController extends Controller
             'city'      => 'required',
             'address'   => 'required',
             'area'      => 'required',
-            // 'image'     => 'required|image|mimes:jpeg,jpg,png',
-            // 'floor_plan' => 'image|mimes:jpeg,jpg,png',
+            'image'     => 'required|image|mimes:jpeg,jpg,png',
+            'floor_plan' => 'image|mimes:jpeg,jpg,png',
             'description'        => 'required',
             'location_latitude'  => 'required',
             'location_longitude' => 'required',
@@ -91,7 +91,7 @@ class PropertyController extends Controller
         $property->price    = $request->price;
         $property->purpose  = $request->purpose;
         $property->type     = $request->type;
-        // $property->image    = $imagename;
+        $property->image    = $imagename;
         $property->bedroom  = $request->bedroom;
         $property->bathroom = $request->bathroom;
         $property->city     = $request->city;
@@ -102,9 +102,9 @@ class PropertyController extends Controller
         if (isset($request->featured)) {
             $property->featured = true;
         }
-        
+
         $property->agent_id = Auth::id();
-        $property->description          = $request->description ;
+        $property->description          = $request->description;
         $property->video                = $request->video;
         $property->floor_plan           = $imagefloorplan;
         $property->location_latitude    = $request->location_latitude;
@@ -150,22 +150,70 @@ class PropertyController extends Controller
 
     public function show(Property $property)
     {
+        $state = null;
+        $city = null;
+        $socity = null;
+        $phase = null;
+        $block = null;
+        $sub_block = null;
         $property = Property::withCount('comments')->find($property->id);
+        if (isset($property->state_id)) {
+            $state = DB::table('state')->where('id', $property->state_id)->first();
+        }
+        if (isset($state->id)) {
+            $city = DB::table('city')->where('id', $property->city_id)->first();
+        }
+        if (isset($city->id)) {
+            $socity = DB::table('socity')->where('id', $property->socity_id)->first();
+        }
 
+        if (isset($socity)) {
+            $phase = DB::table('phase')->where('id', $property->phase_id)->first();
+        }
+        if (isset($phase)) {
+            $block = DB::table('block')->where('id', $property->block_id)->first();
+        }
+        if (isset($block)) {
+            $sub_block = DB::table('sub_block')->where('id', $property->sub_block_id)->first();
+        }
         $videoembed = $this->convertYoutube($property->video, 560, 315);
 
-        return view('admin.properties.show', compact('property', 'videoembed'));
+        return view('admin.properties.show', compact('property', 'videoembed', 'state', 'city', 'socity', 'phase', 'block', 'sub_block'));
     }
 
 
     public function edit(Property $property)
     {
+        $state = null;
+        $city = null;
+        $socity = null;
+        $phase = null;
+        $block = null;
+        $sub_block = null;
         $features = Feature::all();
         $property = Property::find($property->id);
+        if (isset($property->state_id)) {
+            $state = DB::table('state')->where('id', $property->state_id)->first();
+        }
+        if (isset($state->id)) {
+            $city = DB::table('city')->where('id', $property->city_id)->first();
+        }
+        if (isset($city->id)) {
+            $socity = DB::table('socity')->where('id', $property->socity_id)->first();
+        }
 
+        if (isset($socity)) {
+            $phase = DB::table('phase')->where('id', $property->phase_id)->first();
+        }
+        if (isset($phase)) {
+            $block = DB::table('block')->where('id', $property->block_id)->first();
+        }
+        if (isset($block)) {
+            $sub_block = DB::table('sub_block')->where('id', $property->sub_block_id)->first();
+        }
         $videoembed = $this->convertYoutube($property->video);
 
-        return view('admin.properties.edit', compact('property', 'features', 'videoembed'));
+        return view('admin.properties.edit', compact('property', 'features', 'videoembed', 'state','city','socity','phase','block','sub_block'));
     }
 
 
@@ -276,6 +324,16 @@ class PropertyController extends Controller
                 }
             }
         }
+        DB::table('properties')
+            ->where('id', $property->id)
+            ->update([
+                'state_id' => $request->state,
+                'city_id' => $request->city_id,
+                'socity_id' => $request->socity,
+                'phase_id' => $request->phase,
+                'block_id' => $request->block,
+                'sub_block_id' => $request->sub_block,
+            ]);
 
         Toastr::success('message', 'Property updated successfully.');
         return redirect()->route('admin.properties.index');

@@ -300,7 +300,7 @@
                 var id = $('#state').val();
                 $.ajax({
                     type: "GET",
-                    url: "city_data/" + id,
+                    url: "{{asset('city_data')}}" + '/'+id,
                     success: function(response) {
                         $('#socity').empty();
                         $('#socity').append('<option value="">-- Please select --</option>');
@@ -335,7 +335,7 @@
                 var id = $('#city').val();
                 $.ajax({
                     type: "GET",
-                    url: "socity_data/" + id,
+                    url: "{{asset('socity_data')}}" +'/'+id,
                     success: function(response) {
                         $('#phase').empty();
                         $('#phase').append('<option value="">-- Please select --</option>');
@@ -370,7 +370,7 @@
                 var id = $('#socity').val();
                 $.ajax({
                     type: "GET",
-                    url: "phase_data/" + id,
+                    url: "{{asset('phase_data')}}" +'/'+id,
                     success: function(response) {
                         $('#block').empty();
                         $('#block').append('<option value="">-- Please select --</option>');
@@ -404,7 +404,7 @@
                 var id = $('#phase').val();
                 $.ajax({
                     type: "GET",
-                    url: "block_data/" + id,
+                    url: "{{asset('block_data')}}" + '/'+id,
                     success: function(response) {
                         $('#block').empty();
 
@@ -434,7 +434,7 @@
                 var id = $('#block').val();
                 $.ajax({
                     type: "GET",
-                    url: 'sub_block_data/' + id,
+                    url: "{{asset('sub_block_data')}}" +'/'+id,
                     success: function(response) {
                         $('#sub_block').empty();
                         $('#sub_block').append('<option value="">-- Please select --</option>');
