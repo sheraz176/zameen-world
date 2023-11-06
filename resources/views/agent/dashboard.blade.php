@@ -1,89 +1,158 @@
-@extends('frontend.layouts.app')
+@extends('agent.layout.app')
 
-@section('styles')
-@endsection
+@push('styles')
+@endpush
 
 @section('content')
 
-    <section class="section">
-        <div class="container">
-            <div class="row">
 
-                <div class="col s12 m3">
-                    <div class="agent-sidebar">
-                        @include('agent.sidebar')
-                    </div>
-                </div>
+    <!-- Body Content Wrapper -->
+    <div class="ms-content-wrapper">
+        <div class="row">
+            <!-- Notifications Widgets -->
 
-                <div class="col s12 m9">
-
-                    <h4 class="agent-title">DASHBOARD</h4>
-                    
-                    <div class="agent-content">
-
-                        <div class="row">
-                            <div class="col s6">
-                                <div class="box indigo white-text p-30">
-                                    <i class="material-icons left">location_city</i>
-                                    <span class="truncate uppercase bold font-18">Properties</span>
-                                    <h4 class="m-t-10 m-b-0">{{ $propertytotal }}</h4>
-                                </div>
-                            </div>
-                            <div class="col s6">
-                                <div class="box indigo white-text p-30">
-                                    <i class="material-icons left">mail</i>
-                                    <span class="truncate uppercase bold font-18">Messages</span>
-                                    <h4 class="m-t-10 m-b-0">{{ $messagetotal }}</h4>
-                                </div>
+            <div class="col-xl-3 col-md-6 col-sm-6">
+                <a href="#">
+                    <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+                        <div class="ms-card-body media">
+                            <div class="media-body">
+                                <h6>Properties</h6>
+                                <p class="ms-card-change">{{ $propertytotal }}</p>
                             </div>
                         </div>
-
-                        <div class="row">
-                            <div class="col s6">
-                                <div class="box indigo white-text p-20">
-                                    <i class="material-icons left font-18">location_city</i>
-                                    <span class="truncate uppercase bold">Recent Properties</span>
-                                </div>
-                                <div class="box-content">
-                                    @foreach($properties as $key => $property)
-                                    <div class="grey lighten-4">
-                                        <a href="{{route('property.show',$property->slug)}}" target="_blank" class="border-bottom display-block p-15  grey-text-d-2">
-                                            {{ ++$key }}. {{ str_limit($property->title, 28) }}
-                                            <span class="right">&dollar;{{ $property->price }}</span>
-                                        </a>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        
-                            <div class="col s6">
-                                <div class="box indigo white-text p-20">
-                                    <i class="material-icons left font-18">mail</i>
-                                    <span class="truncate uppercase bold">Recent Mails</span>
-                                </div>
-                                <div class="box-content">
-                                    @foreach($messages as $message)
-                                    <div class="grey lighten-4">
-                                        <a href="" class="border-bottom display-block p-15 grey-text-d-2">
-                                            <strong>{{ strtok($message->name, " ") }}:</strong>
-                                            <span class="p-l-5">{{ str_limit($message->message, 25) }}</span>
-                                        </a>
-                                    </div>
-                                    @endforeach
-                                </div>
-                            </div>
-                        </div>
-
+                        <i class="fas fa-stethoscope ms-icon-mr"></i>
                     </div>
-        
-                </div>
-
+                </a>
             </div>
+            <div class="col-xl-3 col-md-6 col-sm-6">
+                <a href="#">
+                    <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+                        <div class="ms-card-body media">
+                            <div class="media-body">
+                                <h6>Messages</h6>
+                                <p class="ms-card-change"> {{ $messagetotal }}</p>
+                            </div>
+                        </div>
+                        <i class="fas fa-user-plus ms-icon-mr"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xl-3 col-md-6 col-sm-6">
+                <a href="#">
+                    <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+                        <div class="ms-card-body media">
+                            <div class="media-body">
+                                <h6 class="bold">Recent Properties</h6>
+                             
+                                @foreach($properties as $key => $property)
+                              
+                                    <a href="{{route('property.show',$property->slug)}}" target="_blank" class="border-bottom display-block p-15  grey-text-d-2">
+                                     
+                                        <p class="ms-card-change">PKR {{ $property->price }}</p>
+                                    </a>
+                              
+                                @endforeach
+                            </div>
+                        </div>
+                        <i class="fa fa-wheelchair ms-icon-mr"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xl-3 col-md-6 col-sm-6">
+                <a href="#">
+                    <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+                        <div class="ms-card-body media">
+                            <div class="media-body">
+                                <h6 class="bold">Recent Mails</h6>
+                              
+                        
+                                    
+                                       
+                                        <p class="ms-card-change">25</p>
+                             
+                            </div>
+                        </div>
+                        <i class="fas fa-briefcase-medical ms-icon-mr"></i>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-md-6 col-sm-6">
+                <a href="#">
+                    <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+                        <div class="ms-card-body media">
+                            <div class="media-body">
+                                <h6 class="bold">Super Hot Properties</h6>    
+                                       
+                                        <p class="ms-card-change">0</p>     
+                            </div>
+                        </div>
+                        <i class="fas fa-briefcase-medical ms-icon-mr"></i>
+                    </div>
+                </a>
+            </div>
+           
+            <div class="col-xl-3 col-md-6 col-sm-6">
+                <a href="#">
+                    <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+                        <div class="ms-card-body media">
+                            <div class="media-body">
+                                <h6 class="bold">Hot Properties</h6>    
+                                       
+                                        <p class="ms-card-change">0</p>     
+                            </div>
+                        </div>
+                        <i class="fas fa-briefcase-medical ms-icon-mr"></i>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-md-6 col-sm-6">
+                <a href="#">
+                    <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+                        <div class="ms-card-body media">
+                            <div class="media-body">
+                                <h6 class="bold">Featured Properties</h6>    
+                                       
+                                        <p class="ms-card-change">0</p>     
+                            </div>
+                        </div>
+                        <i class="fas fa-briefcase-medical ms-icon-mr"></i>
+                    </div>
+                </a>
+            </div>
+
+            <div class="col-xl-3 col-md-6 col-sm-6">
+                <a href="#">
+                    <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+                        <div class="ms-card-body media">
+                            <div class="media-body">
+                                <h6 class="bold">Normal Lisiting</h6>    
+                                       
+                                        <p class="ms-card-change">0</p>     
+                            </div>
+                        </div>
+                        <i class="fas fa-briefcase-medical ms-icon-mr"></i>
+                    </div>
+                </a>
+            </div>
+
+           
+
+          
+
+        
+
+
+
+
+          
         </div>
-    </section>
+    </div>
+
 
 @endsection
 
-@section('scripts')
+@push('scripts')
 
-@endsection
+@endpush
