@@ -1,21 +1,20 @@
 @extends('agent.layout.app')
 
 @push('styles')
- <!-- jQuery UI -->
- <link href="assets/css/jquery-ui.min.css" rel="stylesheet">
+    <!-- jQuery UI -->
+    <link href="assets/css/jquery-ui.min.css" rel="stylesheet">
 
- <!-- medjestic styles -->
- <link href="assets/css/style.css" rel="stylesheet">
- <!-- Favicon -->
- <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
- <!-- Lightbox -->
- <link rel="stylesheet" href="assets/css/lightbox.min.css">
-   <!-- tags input -->
-   <link href="assets/css/bootstrap-tagsinput.css" rel="stylesheet">
+    <!-- medjestic styles -->
+    <link href="assets/css/style.css" rel="stylesheet">
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="32x32" href="favicon.ico">
+    <!-- Lightbox -->
+    <link rel="stylesheet" href="assets/css/lightbox.min.css">
+    <!-- tags input -->
+    <link href="assets/css/bootstrap-tagsinput.css" rel="stylesheet">
 @endpush
 
 @section('content')
-
     <!-- Body Content Wrapper -->
     <div class="ms-content-wrapper">
         <div class="row">
@@ -31,191 +30,326 @@
             <div class="col-xl-12 col-md-12">
                 <div class="ms-panel">
                     <div class="ms-panel-header ms-panel-custome">
-                        <h6>Add Propertiess</h6>
+                        <h6>Add Properties</h6>
                         <a href="Properties-list.html" class="ms-text-primary">Propertiess List</a>
                     </div>
                     <div class="ms-panel-body">
-                        <form class="needs-validation" novalidate="">
+                        <form class="needs-validation" action="{{ route('agent.properties.store') }}" method="POST"
+                            enctype="multipart/form-data">
+                            @csrf
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom0001">First Name</label>
+                                    <label for="validationCustom0001">Title</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="validationCustom0001"
-                                            placeholder="Enter First Name" required="">
+                                        <input type="text" class="form-control @error('title')is-invalid @enderror"
+                                            id="title" name="title" placeholder="Enter Title">
                                     </div>
-                                    <div class="error-msg">
+                                    {{-- <div class="error-msg">
                                         <span class="d-flex gap-5 align-items-center"><svg width="12" height="11"
-                                                viewBox="0 0 12 11" fill="none"
-                                                xmlns="http://www.w3.org/2000/svg">
+                                                viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                                     d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
                                                     fill="#CE2121" />
                                             </svg>
                                             Please type valid Department Name</span>
-                                    </div>
+                                    </div> --}}
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom0002">Last name</label>
+                                    <label for="price">Price</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="validationCustom0002"
-                                            placeholder="Enter Last Name" required="">
+                                        <input type="number" class="form-control" id="price" placeholder="Enter Price"
+                                            name="price" required>
 
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom0003">Email Address</label>
+                                    <label for="area">Floor Area</label>
                                     <div class="input-group">
-                                        <input type="email" class="form-control" id="validationCustom0003"
-                                            placeholder="Enter Email" required="">
+                                        <input type="number" class="form-control" name="area" id="area"
+                                            placeholder="Enter Area" required>
 
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-2">
-                                    <label for="validationCustom0004">Create Password</label>
+                                    <label for="validationCustom0004">Create Bedroom</label>
                                     <div class="input-group">
-                                        <input type="password" class="form-control" id="validationCustom0004"
-                                            placeholder="Enter Password" required="">
+                                        <input id="bedroom" name="bedroom" type="number" class="form-control validate"
+                                            placeholder="Enter Bedroom" required>
 
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom0005">Designation</label>
+                                    <label for="validationCustom0005">Bathroom</label>
                                     <div class="input-group">
-                                        <input type="text" class="form-control" id="validationCustom0005"
-                                            placeholder="Enter Designation" required="">
+                                        <input id="bathroom" name="bathroom" type="number" class="form-control vaidate"
+                                            placeholder="Enter Bathroom" required="">
 
                                     </div>
                                 </div>
-                                <div class="col-md-6 mb-2">
-                                    <label for="validationCustom6">Department</label>
+                                <div class="col-md-6 mb-3">
+                                    <label for="city">City</label>
                                     <div class="input-group">
-                                        <select class="form-control" id="validationCustom6" required="">
-                                            <option value="">Neurology</option>
-                                            <option value="">Gynaecology</option>
-                                            <option value="">Microbiology</option>
-                                            <option value="">Pharmacy</option>
-                                            <option value="">Neonatal</option>
+                                        <input name="city" type="text" class="form-control validate"
+                                            placeholder="Enter City" required="">
+
+                                    </div>
+                                </div>
+
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group form-float ">
+                                        <div class="form-line">
+                                            <label>Select State</label>
+                                            <select name="state" id="state"
+                                                class="form-control show-tick {{ $errors->has('state') ? 'focused error' : '' }}">
+                                                <option value="">-- Please select --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group form-float "id="hide_city">
+                                        <div class="form-line">
+                                            <label>Select City</label>
+                                            <select name="city_id" id="city"
+                                                class="form-control show-tick {{ $errors->has('city') ? 'focused error' : '' }}">
+                                                <option value="">-- Please select --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group form-float"id="hide_socity">
+                                        <div class="form-line">
+                                            <label>Select Socity</label>
+                                            <select name="socity" id="socity"
+                                                class="form-control validate show-tick {{ $errors->has('socity') ? 'focused error' : '' }}">
+                                                <option value="">-- Please select --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group form-float "id="hide_phase">
+                                        <div class="form-line">
+                                            <label>Select Phase</label>
+                                            <select name="phase" id="phase"
+                                                class="form-control show-tick {{ $errors->has('phase') ? 'focused error' : '' }}">
+                                                <option value="">-- Please select --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group form-float" id="hide_block">
+                                        <div class="form-line">
+                                            <label>Select Block</label>
+                                            <select name="block" id="block"
+                                                class="form-control show-tick {{ $errors->has('block') ? 'focused error' : '' }}">
+                                                <option value="">-- Please select --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group form-float" id="hide_sub_block">
+                                        <div class="form-line">
+                                            <label>Select Sub-Block</label>
+                                            <select name="sub_block" id="sub_block"
+                                                class="form-control show-tick {{ $errors->has('sub_block') ? 'focused error' : '' }}">
+                                                <option value="">-- Please select --</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-2">
+                                    <label for="address">Address</label>
+                                    <div class="input-group">
+                                        <textarea id="address" name="address" class="form-control validate" required></textarea>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label for="featured">Featured</label>
+                                            <div class="input-group">
+                                                <input type="checkbox" name="featured" id="featured" class="filled-in"
+                                                    checked="checked">
+                                                <span>Featured</span>
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="hot">Hot</label>
+                                            <div class="input-group">
+                                                <input type="checkbox" name="hot" id="hot" class="filled-in">
+                                                {{-- <span>Hot</span> --}}
+                                            </div>
+                                        </div>
+                                        <div class="col-4">
+                                            <label for="super_hot">Super Hot</label>
+                                            <div class="input-group">
+                                                <input type="checkbox" name="super_hot" id="super_hot"
+                                                    class="filled-in">
+                                                {{-- <span>Super Hot</span> --}}
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-2">
+                                    <label for="description">Description</label>
+                                    <div class="input-group">
+                                        <textarea id="description" name="description" class="form-control validate materialize-textarea" required></textarea>
+
+                                    </div>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="label-custom" for="type">Property Type</label>
+                                    <p>
+                                        <label>
+                                            <input class="with-gap" name="type" value="house" type="radio" />
+                                            <span>Sale</span>
+                                        </label>
+                                    <p>
+                                    </p>
+                                    <label>
+                                        <input class="with-gap" name="type" value="apartment" type="radio" />
+                                        <span>Rent</span>
+                                    </label>
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-2">
+                                    <label class="label-custom" for="purpose">Property Purpose</label>
+                                    <p>
+                                        <label>
+                                            <input class="with-gap" name="purpose" value="sale" type="radio" />
+                                            <span>House</span>
+                                        </label>
+                                    <p>
+                                    </p>
+                                    <label>
+                                        <input class="with-gap" name="purpose" value="rent" type="radio" />
+                                        <span>Apartment</span>
+                                    </label>
+                                    </p>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="form-group">
+                                        <select class="form-control" nultiple name="features[]">
+                                            <option value="" disabled selected>Choose Features</option>
+                                            @foreach ($features as $feature)
+                                                <option value="{{ $feature->id }}">{{ $feature->name }}</option>
+                                            @endforeach
                                         </select>
-
+                                        <label class="label-custom">Select Features</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
-                                <div class="col-md-6 mb-2">
-                                    <label for="validationCustom007">Address</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="validationCustom007"
-                                            placeholder="Address" required="">
 
+                                <div class="col-md-6 mb-3">
+                                    <div class="btn indigo">
+                                        <span>Featured Image</span>
+                                        <label for="image">Drop image here</label>
+                                        <input type="file" id="image" name="image">
                                     </div>
+                                    {{-- <div class="file-path-wrapper">
+                                        <input class="form-control file-path validate" type="text">
+                                    </div> --}}
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom008">Specialist</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="validationCustom008"
-                                            placeholder="Specialist" required="">
+                                    <div class="input-field col s6">
+                                        <div class="row">
+                                            <div class="col-6">
+                                                <label for="location_latitude">Latitude</label>
+                                                <input id="location_latitude" name="location_latitude" type="text"
+                                                    class="form-control validate" required>
+                                            </div>
+                                            <div class="col-6">
+                                                <label for="location_longitude">Longitude</label>
+                                                <input id="location_longitude" name="location_longitude" type="text"
+                                                    class="form-control validate" required>
+                                            </div>
+                                        </div>
 
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6 mb-2">
-                                    <label for="validationCustom009">Mobile</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="validationCustom009"
-                                            placeholder="Mobile" required="">
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-12 mb-2">
-                                    <label>Short Biography</label>
-                                    <div class="input-group">
-                                        <textarea class="form-control" id="exampleTextarea" rows="3"></textarea>
 
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label>Date of Birth</label>
-                                    <div class="input-group">
-                                        <input type="text" class="form-control" id="validationCustom102"
-                                            placeholder="Date of Birth" required="">
-
-                                    </div>
+                                    <label for="video">Youtube Link</label>
+                                    <input id="video" name="video" type="text" class="form-control validate">
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom202">Blood Group</label>
-                                    <div class="input-group">
-                                        <select class="form-control" id="validationCustom202" required="">
-                                            <option value="">A+</option>
-                                            <option value="">A-</option>
-                                            <option value="">B+</option>
-                                            <option value="">B-</option>
-                                            <option value="">AB+</option>
-                                            <option value="">AB-</option>
-                                            <option value="">O+</option>
-                                            <option value="">O-</option>
-                                        </select>
-
+                                    <div class="btn indigo">
+                                        <span>Floor Plan</span>
+                                        <input type="file" name="floor_plan">
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="form-control file-path validate" type="text">
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label>Sex</label>
-                                    <ul class="ms-list d-flex">
-                                        <li class="ms-list-item pl-0">
-                                            <label class="ms-checkbox-wrap">
-                                                <input type="radio" name="radioExample" value="">
-                                                <i class="ms-checkbox-check"></i>
-                                            </label>
-                                            <span> Male </span>
-                                        </li>
-                                        <li class="ms-list-item">
-                                            <label class="ms-checkbox-wrap">
-                                                <input type="radio" name="radioExample" value="" checked="">
-                                                <i class="ms-checkbox-check"></i>
-                                            </label>
-                                            <span> Female </span>
-                                        </li>
-                                    </ul>
+                                    <label for="nearby">Nearby</label>
+                                    <textarea id="nearby" name="nearby" class="form-control materialize-textarea"></textarea>
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <div class="btn indigo">
+                                        <span>Upload Gallery Images</span>
+                                        <input type="file" name="gallaryimage[]" multiple>
+                                    </div>
+                                    <div class="file-path-wrapper">
+                                        <input class="form-control file-path validate" type="text"
+                                            placeholder="Upload one or more images">
+                                    </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-12 mb-3">
                                     <div class="form-validation-cutstom">
-                                    <div class="dropzone-button">
-                                        <label for="file-input" style="display: block;margin-bottom: 0px;">
-                                            <div class="dropzone" id="dropzone">
-                                                <div class="dropzone-label">
-                                                    <i class="fas fa-cloud-upload-alt"></i>
-                                                    <span>Drop files here or click to upload.</span>
+                                        <div class="dropzone-button">
+                                            <label for="file-input" style="display: block;margin-bottom: 0px;">
+                                                <div class="dropzone" id="dropzone">
+                                                    <div class="dropzone-label">
+                                                        <i class="fas fa-cloud-upload-alt"></i>
+                                                        <span>Drop files here or click to upload.</span>
+                                                    </div>
+                                                    <input type="file" id="file-input" onchange="handleFileUpload()"
+                                                        accept="image/*">
                                                 </div>
-                                                <input type="file" id="file-input" onchange="handleFileUpload()"
-                                                    accept="image/*">
-                                            </div>
-                                        </label>
+                                            </label>
+                                        </div>
                                     </div>
-                                </div>
                                     <div id="preview-container"></div>
                                 </div>
                             </div>
-                          
+
 
                             <div class="modal-body p-0 text-left">
                                 <div class="col-xl-12 col-md-12">
                                     <div class="ms-panel ms-panel-bshadow-none">
-            
+
                                         <div class="ms-panel-body">
                                             <div class="d-flex flex-column gap-3">
                                                 <div id="groupdropzone">
@@ -234,7 +368,7 @@
                                                 </div>
                                             </div>
                                         </div>
-            
+
                                     </div>
                                 </div>
                             </div>
@@ -248,55 +382,52 @@
             </div>
         </div>
     </div>
-
 @endsection
 
 @push('scripts')
-<script>
-    function handleFileUpload() {
-        const input = document.getElementById('file-input');
-        const files = input.files;
-        if (files.length > 0) {
-            const reader = new FileReader();
-            reader.readAsDataURL(files[0]);
-            reader.onload = function () {
-                const imageUrl = URL.createObjectURL(files[0]);
-                const previewContainer = document.getElementById('preview-container');
-                previewContainer.innerHTML = '';
-                const previewImage = document.createElement('img');
-                previewImage.classList.add('preview-image');
-                previewImage.src = reader.result;
-                console.log('Image URL:', imageUrl);
-                previewContainer.appendChild(previewImage);
-                const deleteButton = document.createElement('button');
-                deleteButton.classList.add('delete-button');
-                deleteButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                deleteButton.onclick = function () {
-                    input.value = '';
+    <script>
+        function handleFileUpload() {
+            const input = document.getElementById('file-input');
+            const files = input.files;
+            if (files.length > 0) {
+                const reader = new FileReader();
+                reader.readAsDataURL(files[0]);
+                reader.onload = function() {
+                    const imageUrl = URL.createObjectURL(files[0]);
+                    const previewContainer = document.getElementById('preview-container');
                     previewContainer.innerHTML = '';
+                    const previewImage = document.createElement('img');
+                    previewImage.classList.add('preview-image');
+                    previewImage.src = reader.result;
+                    console.log('Image URL:', imageUrl);
+                    previewContainer.appendChild(previewImage);
+                    const deleteButton = document.createElement('button');
+                    deleteButton.classList.add('delete-button');
+                    deleteButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                    deleteButton.onclick = function() {
+                        input.value = '';
+                        previewContainer.innerHTML = '';
+                    };
+                    previewContainer.appendChild(deleteButton);
                 };
-                previewContainer.appendChild(deleteButton);
-            };
+            } else {
+                $(".form-validation-cutstom").addClass("add-error");
+            }
         }
-        else{
-            $(".form-validation-cutstom").addClass("add-error");
-        }
-    }
-
-</script>
-<!-- tags-input -->
-<script>
-   
-    console.log( $(".tag-input").val());
-</script> 
+    </script>
+    <!-- tags-input -->
+    <script>
+        console.log($(".tag-input").val());
+    </script>
 
     <!-- Page Specific Scripts Start -->
-    <script src="assets/js/jquery.webticker.min.js"> </script>
+    <script src="assets/js/jquery.webticker.min.js"></script>
     <!-- Page Specific Scripts Finish -->
 
     <!-- medjestic core JavaScript -->
     <script src="assets/js/framework.js"></script>
     <!-- Settings -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
     <script src="assets/js/settings.js"></script>
     <script>
         const dropzone = document.getElementById("groupdropzone");
@@ -335,7 +466,7 @@
             files.forEach((file) => {
                 const reader = new FileReader();
                 reader.readAsDataURL(file);
-                reader.onload = function () {
+                reader.onload = function() {
                     const preview = document.createElement("div");
                     preview.classList.add("preview");
 
@@ -380,12 +511,13 @@
         fileInput.addEventListener("change", (event) => {
             handleFiles(event.target.files);
         });
-
     </script>
     <!-- // auto complete -->
     <script>
         // Define the array of suggestions
-        var suggestions = ["Apple", "Banana", "Cherry", "Durian", "Elderberry", "Fig", "Apple", "Banana", "Cherry", "Durian", "Elderberry", "Fig"];
+        var suggestions = ["Apple", "Banana", "Cherry", "Durian", "Elderberry", "Fig", "Apple", "Banana", "Cherry",
+            "Durian", "Elderberry", "Fig"
+        ];
 
         // Get the input element and the suggestions list
         var input = document.getElementById("autocomplete-input");
@@ -393,42 +525,229 @@
 
 
         // Add an event listener to the input element
-        input.addEventListener("input", function () {
+        input.addEventListener("input", function() {
             var val = this.value;
             list.innerHTML = "";
             if (val.length > 0) {
-                var matches = suggestions.filter((suggestion)=> {
+                var matches = suggestions.filter((suggestion) => {
                     return suggestion.toLowerCase().indexOf(val.toLowerCase()) != -1;
                 });
                 if (matches.length > 0) {
-                    matches.forEach((match)=> {
+                    matches.forEach((match) => {
                         var suggestionElem = document.createElement("li");
                         list.style.display = "block";
                         suggestionElem.innerText = match;
-                       
-                        suggestionElem.addEventListener("click", function () {
+
+                        suggestionElem.addEventListener("click", function() {
                             input.value = match;
                             list.innerHTML = "";
                             list.style.display = "none";
                         });
                         list.appendChild(suggestionElem);
                     });
-                }
-                else {
+                } else {
                     list.style.display = "none";
                 }
             }
         });
-        $('#autocomplete-input').keyup(function () {
+        $('#autocomplete-input').keyup(function() {
             var input_ = $('#autocomplete-input').val();
             console.log('input_.length', input_.length);
             if (input_.length == 0) {
                 list.style.display = "none";
             }
         });
-
-
     </script>
+    <script>
+        $(document).ready(function() {
+            $('input#title, textarea#nearby').characterCounter();
+            $('select').formSelect();
+        });
+    </script>
+    <script>
+        $(document).ready(function() {
+            state_data();
+            $('#hide_city').hide();
+            $('#hide_socity').hide();
+            $('#hide_phase').hide();
+            $('#hide_block').hide();
+            $('#hide_sub_block').hide();
+            // State Code Start
+            function state_data() {
+                $.ajax({
+                    type: "GET",
+                    url: '{{ asset('state_data') }}',
+                    success: function(response) {
+                        response.forEach(state => {
+                            $('#state').append('<option value=' + state.id + '>' + state
+                                .state_name + '</option>');
+                        });
+                    }
+                });
+            }
+            // State Code End
 
+            // City Code Start
+            $('#state').change(function(e) {
+                e.preventDefault();
+                var id = $('#state').val();
+                $.ajax({
+                    type: "GET",
+                    url: "{{ asset('city_data') }}" + '/' + id,
+                    success: function(response) {
+                        $('#socity').empty();
+                        $('#socity').append('<option value="">-- Please select --</option>');
+                        $('#phase').empty();
+                        $('#phase').append('<option value="">-- Please select --</option>');
+                        $('#block').empty();
+                        $('#block').append('<option value="">-- Please select --</option>');
+                        $('#sub_block').empty();
+                        $('#sub_block').append('<option value="">-- Please select --</option>');
 
+                        $('#hide_city').show();
+                        $('#city').empty();
+                        $('#city').append('<option value="">-- Please select --</option>');
+                        console.log(response);
+                        if (response != 'no data') {
+                            response.forEach(city => {
+                                $('#city').append('<option value=' + city.id + '>' +
+                                    city
+                                    .city_name + '</option>');
+                            });
+                        } else {
+                            $('#hide_city').hide();
+
+                        }
+                    }
+                });
+            });
+            // City Code End
+
+            // Socity Code Start
+            $('#city').change(function(e) {
+                e.preventDefault();
+                var id = $('#city').val();
+                $.ajax({
+                    type: "GET",
+                    url: "{{ asset('socity_data') }}" + '/' + id,
+                    success: function(response) {
+                        $('#phase').empty();
+                        $('#phase').append('<option value="">-- Please select --</option>');
+
+                        $('#block').empty();
+                        $('#block').append('<option value="">-- Please select --</option>');
+
+                        $('#sub_block').empty();
+                        $('#sub_block').append('<option value="">-- Please select --</option>');
+
+                        $('#hide_socity').show();
+                        $('#socity').empty();
+                        $('#socity').append('<option value="">-- Please select --</option>');
+                        if (response != 'no data') {
+                            response.forEach(socity => {
+                                $('#socity').append('<option value=' + socity.id + '>' +
+                                    socity
+                                    .socity_name + '</option>');
+                            });
+                        } else {
+                            $('#hide_socity').hide();
+
+                        }
+                    }
+                });
+            });
+            // Socity Code End
+
+            // phase Code Start
+            $('#socity').change(function(e) {
+                e.preventDefault();
+                var id = $('#socity').val();
+                $.ajax({
+                    type: "GET",
+                    url: "{{ asset('phase_data') }}" + '/' + id,
+                    success: function(response) {
+                        $('#block').empty();
+                        $('#block').append('<option value="">-- Please select --</option>');
+
+                        $('#sub_block').empty();
+                        $('#sub_block').append('<option value="">-- Please select --</option>');
+
+                        $('#hide_phase').show();
+                        $('#phase').empty();
+                        $('#phase').append('<option value="">-- Please select --</option>');
+                        if (response != 'no data') {
+                            response.forEach(phase => {
+                                $('#phase').append('<option value=' + phase.id + '>' +
+                                    phase
+                                    .phase_name + '</option>');
+                            });
+                        } else {
+                            $('#hide_phase').hide();
+                            $('#hide_block').hide();
+                            $('#hide_sub_block').hide();
+
+                        }
+                    }
+                });
+            });
+            // phase Code End
+
+            // Block Code Start
+            $('#phase').change(function(e) {
+                e.preventDefault();
+                var id = $('#phase').val();
+                $.ajax({
+                    type: "GET",
+                    url: "{{ asset('block_data') }}" + '/' + id,
+                    success: function(response) {
+                        $('#block').empty();
+
+                        $('#block').append('<option value="">-- Please select --</option>');
+                        $('#sub_block').empty();
+                        $('#sub_block').append('<option value="">-- Please select --</option>');
+                        if (response != 'no data') {
+
+                            $('#hide_block').show();
+                            response.forEach(block => {
+                                $('#block').append('<option value=' + block.id + '>' +
+                                    block
+                                    .block_name + '</option>');
+                            });
+                        } else {
+                            $('#hide_block').hide();
+                            $('#hide_sub_block').hide();
+                        }
+                    }
+                });
+            });
+            // Block Code End
+
+            // Sub-Block Code Start
+            $('#block').change(function(e) {
+                e.preventDefault();
+                var id = $('#block').val();
+                $.ajax({
+                    type: "GET",
+                    url: "{{ asset('sub_block_data') }}" + '/' + id,
+                    success: function(response) {
+                        $('#sub_block').empty();
+                        $('#sub_block').append('<option value="">-- Please select --</option>');
+                        if (response != 'no data') {
+                            $('#hide_sub_block').show();
+                            $('#hide_sub_sub_block').show();
+                            response.forEach(sub_block => {
+                                $('#sub_block').append('<option value=' + sub_block.id +
+                                    '>' +
+                                    sub_block
+                                    .sub_block_name + '</option>');
+                            });
+                        } else {
+                            $('#hide_sub_block').hide();
+                        }
+                    }
+                });
+            });
+            // Sub-Block Code End
+        });
+    </script>
 @endpush

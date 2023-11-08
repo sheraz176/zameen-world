@@ -10,8 +10,12 @@ use App\Property;
 use App\Feature;
 use App\PropertyImageGallery;
 use Carbon\Carbon;
-use Toastr;
-use Auth;
+use Illuminate\Support\Facades\Auth;
+use Brian2694\Toastr\Facades\Toastr;
+use Illuminate\Support\Facades\DB;
+
+// use Toastr;
+// use Auth;
 use File;
 
 class PropertyController extends Controller
@@ -36,6 +40,10 @@ class PropertyController extends Controller
 
     public function store(Request $request)
     { 
+        $hot=false;
+        $super_hot=false;
+        
+        
         $request->validate([
             'title'     => 'required|unique:properties|max:255',
             'price'     => 'required',
@@ -46,13 +54,12 @@ class PropertyController extends Controller
             'city'      => 'required',
             'address'   => 'required',
             'area'      => 'required',
-            'image'     => 'required|image|mimes:jpeg,jpg,png',
-            'floor_plan'=> 'image|mimes:jpeg,jpg,png',
+            // 'image'     => 'required|image|mimes:jpeg,jpg,png',
+            // 'floor_plan'=> 'image|mimes:jpeg,jpg,png',
             'description'        => 'required',
             'location_latitude'  => 'required',
             'location_longitude' => 'required',
         ]);
-
         $image = $request->file('image');
         $slug  = str_slug($request->title);
 
@@ -108,7 +115,24 @@ class PropertyController extends Controller
         $property->location_longitude = $request->location_longitude;
         $property->nearby             = $request->nearby;
         $property->save();
-
+        if (isset($request->hot)){
+            $hot=true;
+        }
+        if (isset($request->super_hot)){
+            $super_hot=true;
+        }
+        DB::table('properties')
+        ->where('id', $property->id)
+        ->update([
+            'state_id' => $request->state,
+            'city_id' => $request->city_id,
+            'socity_id' => $request->socity,
+            'phase_id' => $request->phase,
+            'block_id' => $request->block,
+            'sub_block_id' => $request->sub_block,
+            'hot'=>$hot,
+            'super_hot'=>$super_hot,
+        ]);
         $property->features()->attach($request->features);
 
 

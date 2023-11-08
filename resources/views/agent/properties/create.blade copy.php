@@ -130,7 +130,7 @@
                                         <input type="file" name="image">
                                     </div>
                                     <div class="file-path-wrapper">
-                                        <input class="file-path validate" type="text">
+                                        <input class="form-control file-path validate" type="text">
                                     </div>
                                 </div>
                             </div>
