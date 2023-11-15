@@ -1,9 +1,17 @@
 <?php
 
 use App\Http\Controllers\Admin\PropertyController;
+use App\Http\Controllers\SocialiteAuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 // FRONT-END ROUTES
+
+
+Route::get('google', [SocialiteAuthController::class, 'googleRedirect'])->name('auth/google');
+Route::get('/auth/google-callback', [SocialiteAuthController::class, 'loginWithGoogle']);
+
+
+
 Route::get('/', 'FrontpageController@index')->name('home');
 Route::get('/slider', 'FrontpageController@slider')->name('slider.index');
 
@@ -31,6 +39,8 @@ Route::get('/blog/author/{username}', 'PagesController@blogAuthor')->name('blog.
 
 Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::post('/contact', 'PagesController@messageContact')->name('contact.message');
+
+
 
 
 Auth::routes();

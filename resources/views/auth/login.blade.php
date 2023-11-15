@@ -71,6 +71,9 @@
               </div>
                   <span class="d-block text-center no-account">Don’t have an account?<a href="{{ route('register') }}">Sign Up</a></span> 
                 </div>
+                <a href="{{ route('auth/google') }}" class="btn btn-danger">
+                  {{ __('Login with Google') }}
+              </a>
               </div>
             </div>
           </div>
