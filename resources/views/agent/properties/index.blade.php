@@ -29,6 +29,57 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="col-xl-12 col-md-12">
+                <div class="ms-card">
+                    <div class="ms-card-body">
+
+                        <table  class="display" style="width:100%">
+                            <thead>
+                                <tr>
+                                    
+                                    <th>Package Name</th>
+                                    <th>Total Super Hot</th>
+                                    <th>Total Hot</th>
+                                    <th>Total Featured</th>
+                                    <th>Total Refesh</th>
+                                    <th>Total Active Days</th>
+                                    <th>Total price</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                               
+                                    <tr style="background:rgb(7, 0, 0); color:aliceblue">
+                                       
+                                        <td>{{ $packages->name }}</td>
+                                        <td>
+                                            {{ $packages->superhot }}
+                                        </td>
+                                        <td>
+                                            {{ $packages->hot }}
+                                        </td>
+                                        <td>
+                                            {{ $packages->featured }}
+                                        </td>
+                                        <td>
+                                            {{ $packages->refresh }}
+                                        </td>
+                                        <td>
+                                            {{ $packages->limit }}
+                                        </td>
+                                        <td>
+                                            {{ $packages->price }}
+                                        </td>
+
+        
+                                    </tr>
+                            
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
             <div class="col-xl-12 col-md-12">
                 <div class="ms-card">
                     <div class="ms-card-body">
@@ -71,6 +122,93 @@
                                             <a href="{{route('agent.properties.edit',$property->slug)}}" class="btn btn-small orange waves-effect">
                                                 <i class="material-icons">edit</i>
                                             </a> --}}
+                                            <form action="{{ route('agent.property.update.feature') }}"
+                                                method="post"  enctype="multipart/form-data">
+                                                @csrf
+                                                @if ($property->featured == '0')
+                                                <input type="hidden" name="featured" value="1">
+                                                <input type="hidden" name="property_id" value="{{$property->id}}">
+                                                <input type="hidden" name="package_id" value="{{$packages->id}}">
+                                                <input type="hidden" name="totalfeatured" value="{{$packages->featured}}">
+                                                <button type="submit" class="btn-all mr-2">
+                                                 not featured
+                                                </button>
+                                                @endif
+                                                @if ($property->featured == '1')
+                                                <input type="hidden" name="featured" value="0">
+                                                <input type="hidden" name="property_id" value="{{$property->id}}">
+                                                <button type="submit" class="btn-all mr-2">
+                                                   featured
+                                                </button> 
+                                                @endif
+                                            </form>
+                                            <form action="{{ route('agent.property.update.hot') }}"
+                                            method="post"  enctype="multipart/form-data">
+                                            @csrf
+                                                @if ($property->hot == '0')
+                                                <input type="hidden" name="hot" value="1">
+                                                <input type="hidden" name="property_id" value="{{$property->id}}">
+                                                <input type="hidden" name="package_id" value="{{$packages->id}}">
+                                                <input type="hidden" name="totalhot" value="{{$packages->hot}}">
+                                                <button type="submit" class="btn-all mr-2">
+                                                 not hot
+                                                </button>
+                                                @endif
+                                                @if ($property->hot == '1')
+                                                <input type="hidden" name="hot" value="0">
+                                                <input type="hidden" name="property_id" value="{{$property->id}}">
+                                                <button type="submit" class="btn-all mr-2">
+                                                   hot
+                                                </button> 
+                                                @endif
+                                            </form>
+
+                                            <form action="{{ route('agent.property.update.refresh') }}"
+                                            method="post"  enctype="multipart/form-data">
+                                            @csrf
+                                                @if ($property->refresh == '0')
+                                                <input type="hidden" name="refresh" value="1">
+                                                <input type="hidden" name="property_id" value="{{$property->id}}">
+                                                <input type="hidden" name="package_id" value="{{$packages->id}}">
+                                                <input type="hidden" name="totalrefresh" value="{{$packages->refresh}}">
+                                                <button type="submit" class="btn-all mr-2">
+                                                 not refresh
+                                                </button>
+                                                @endif
+                                                @if ($property->refresh == '1')
+                                                <input type="hidden" name="refresh" value="0">
+                                                <input type="hidden" name="property_id" value="{{$property->id}}">
+                                                <button type="submit" class="btn-all mr-2">
+                                                    refresh
+                                                </button> 
+                                                @endif
+                                            </form>
+
+                                            <form action="{{ route('agent.property.update.superhot') }}"
+                                            method="post"  enctype="multipart/form-data">
+                                            @csrf
+                                                @if ($property->superhot == '0')
+                                                <input type="hidden" name="superhot" value="1">
+                                                <input type="hidden" name="property_id" value="{{$property->id}}">
+                                                <input type="hidden" name="package_id" value="{{$packages->id}}">
+                                                <input type="hidden" name="totalsuperhot" value="{{$packages->superhot}}">
+                                                <button type="submit" class="btn-all mr-2">
+                                                 not superhot
+                                                </button>
+                                                @endif
+                                                @if ($property->superhot == '1')
+                                                <input type="hidden" name="superhot" value="0">
+                                                <input type="hidden" name="property_id" value="{{$property->id}}">
+                                                <button type="submit" class="btn-all mr-2">
+                                                    superhot
+                                                </button> 
+                                                @endif
+                                            </form>
+
+
+                                               
+                                            
+
                                             <button class="btn-all mr-2"><svg width="18" height="18"
                                                     viewBox="0 0 24 24" fill="none"
                                                     xmlns="http://www.w3.org/2000/svg"onclick="deleteProperty({{ $property->id }})">

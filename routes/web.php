@@ -4,6 +4,7 @@ use App\Http\Controllers\Admin\PropertyController;
 use App\Http\Controllers\SocialiteAuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Agent\packageController;
 // FRONT-END ROUTES
 
 
@@ -88,9 +89,17 @@ Route::get('socity_data/{id}', [PropertyController::class, 'socity_data_fun']);
 Route::get('phase_data/{id}', [PropertyController::class, 'phase_data_fun']);
 Route::get('block_data/{id}', [PropertyController::class, 'block_data_fun']);
 Route::get(' sub_block_data/{id}', [PropertyController::class, 'sub_block_data_fun']);
+
+
+Route::post('properties/update/feature', [packageController::class, 'feature'])->name('agent.property.update.feature');
+Route::post('properties/update/hot', [packageController::class, 'hot'])->name('agent.property.update.hot');
+Route::post('properties/update/superhot', [packageController::class, 'superhot'])->name('agent.property.update.superhot');
+Route::post('properties/update/refresh', [packageController::class, 'refresh'])->name('agent.property.update.refresh');
+
 // Mycode End
 
 Route::group(['prefix' => 'agent', 'namespace' => 'Agent', 'middleware' => ['auth', 'agent'], 'as' => 'agent.'], function () {
+         
 
     Route::get('dashboard', 'DashboardController@index')->name('dashboard');
     Route::get('profile', 'DashboardController@profile')->name('profile');
@@ -107,6 +116,9 @@ Route::group(['prefix' => 'agent', 'namespace' => 'Agent', 'middleware' => ['aut
     Route::post('message/readunread', 'DashboardController@messageReadUnread')->name('message.readunread');
     Route::delete('message/delete/{id}', 'DashboardController@messageDelete')->name('messages.destroy');
     Route::post('message/mail', 'DashboardController@contactMail')->name('message.mail');
+    
+
+
 });
 
 Route::group(['prefix' => 'user', 'namespace' => 'User', 'middleware' => ['auth', 'user'], 'as' => 'user.'], function () {

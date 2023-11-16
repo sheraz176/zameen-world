@@ -8,11 +8,13 @@ use Illuminate\Support\Facades\Storage;
 use Intervention\Image\Facades\Image;
 use App\Property;
 use App\Feature;
+use App\Packages;
 use App\PropertyImageGallery;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\Auth;
 use Brian2694\Toastr\Facades\Toastr;
 use Illuminate\Support\Facades\DB;
+use App\Filters\ThreadFilters;
 
 // use Toastr;
 // use Auth;
@@ -26,8 +28,8 @@ class PropertyController extends Controller
                               ->withCount('comments')
                               ->where('agent_id', Auth::id())
                               ->paginate(10);
-        
-        return view('agent.properties.index',compact('properties'));
+        $packages   =  Packages::first();
+        return view('agent.properties.index',compact('properties','packages'));
     }
 
     public function create()
@@ -331,4 +333,8 @@ class PropertyController extends Controller
             return response()->json(['msg' => true]);
         }
     }
+
+    
+
+    
 }
