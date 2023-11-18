@@ -39,88 +39,172 @@
                             @csrf
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom0001">Title</label>
+                                    <label for="validationCustom0001">Property Title<span style="color: red;">*</span></label>
                                     <div class="input-group">
                                         <input type="text" class="form-control @error('title')is-invalid @enderror"
-                                            id="title" name="title" placeholder="Enter Title">
+                                            id="title" name="title" placeholder="Enter Title " required/>
                                     </div>
-                                    {{-- <div class="error-msg">
-                                        <span class="d-flex gap-5 align-items-center"><svg width="12" height="11"
-                                                viewBox="0 0 12 11" fill="none" xmlns="http://www.w3.org/2000/svg">
+                                    <div class="col-md-12">
+                                        @if ($errors->has('title'))
+                                            <div class="alert-error mt-1 mb-3">
+                                                <svg width="12"
+                                                height="11" viewBox="0 0 12 11" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
                                                 <path fill-rule="evenodd" clip-rule="evenodd"
                                                     d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
                                                     fill="#CE2121" />
-                                            </svg>
-                                            Please type valid Department Name</span>
-                                    </div> --}}
+                                            </svg>  {{ $errors->first('title') }}
+                                            </div>
+                                        @endif
+                                    </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="price">Price</label>
+                                    <label for="price">Property Price <span style="color: red;">*</span> </label>
                                     <div class="input-group">
-                                        <input type="number" class="form-control" id="price" placeholder="Enter Price"
-                                            name="price" required>
+                                        <input type="number" class="form-control @error('price')is-invalid @enderror" id="price" placeholder="Enter Property Price(PKR)"
+                                            name="price" required/>
 
+                                    </div>
+                                    <div class="col-md-12">
+                                        @if ($errors->has('price'))
+                                            <div class="alert-error mt-1 mb-3">
+                                                <svg width="12"
+                                                height="11" viewBox="0 0 12 11" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
+                                                    fill="#CE2121" />
+                                            </svg>  {{ $errors->first('price') }}
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="area">Floor Area</label>
+                                    <label for="area">Floor Area <span style="color: red;">*</span></label>
                                     <div class="input-group">
-                                        <input type="number" class="form-control" name="area" id="area"
-                                            placeholder="Enter Area" required>
-
+                                        <input type="number" class="form-control @error('area')is-invalid @enderror" name="area" id="area"
+                                            placeholder="Enter Area" required/>
+                                    </div>
+                                    <div class="col-md-12">
+                                        @if ($errors->has('area'))
+                                            <div class="alert-error mt-1 mb-3">
+                                                <svg width="12"
+                                                height="11" viewBox="0 0 12 11" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
+                                                    fill="#CE2121" />
+                                            </svg>  {{ $errors->first('area') }}
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-2">
-                                    <label for="validationCustom0004">Create Bedroom</label>
+                                    <label for="validationCustom0004">Bedroom <span style="color: red;">*</span></label>
                                     <div class="input-group">
-                                        <input id="bedroom" name="bedroom" type="number" class="form-control validate"
-                                            placeholder="Enter Bedroom" required>
+                                        <input id="bedroom" name="bedroom" type="number" class="form-control @error('title')is-invalid @enderror"
+                                            placeholder="Enter Bedroom" required/>
 
+                                    </div>
+                                    <div class="col-md-12">
+                                        @if ($errors->has('bedroom'))
+                                            <div class="alert-error mt-1 mb-3">
+                                                <svg width="12"
+                                                height="11" viewBox="0 0 12 11" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
+                                                    fill="#CE2121" />
+                                            </svg>  {{ $errors->first('bedroom') }}
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="validationCustom0005">Bathroom</label>
+                                    <label for="validationCustom0005">Bathroom <span style="color: red;">*</span></label>
                                     <div class="input-group">
-                                        <input id="bathroom" name="bathroom" type="number" class="form-control vaidate"
-                                            placeholder="Enter Bathroom" required="">
+                                        <input id="bathroom" name="bathroom" type="number" class="form-control @error('title')is-invalid @enderror"
+                                            placeholder="Enter Bathroom" required/>
 
+                                    </div>
+                                    <div class="col-md-12">
+                                        @if ($errors->has('bathroom'))
+                                            <div class="alert-error mt-1 mb-3">
+                                                <svg width="12"
+                                                height="11" viewBox="0 0 12 11" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
+                                                    fill="#CE2121" />
+                                            </svg>  {{ $errors->first('bathroom') }}
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label for="city">City</label>
-                                    <div class="input-group">
-                                        <input name="city" type="text" class="form-control validate"
-                                            placeholder="Enter City" required="">
-
+                                    <div class="form-group">
+                                        <label class="label-custom">Select Property Features</label>
+                                        <select class="form-control" nultiple name="features[]">
+                                            <option value="" disabled selected>Choose Features</option>
+                                            @foreach ($features as $feature)
+                                                <option value="{{ $feature->id }}">{{ $feature->name }}</option>
+                                            @endforeach
+                                        </select>
+                                        
                                     </div>
                                 </div>
-
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <div class="form-group form-float ">
                                         <div class="form-line">
-                                            <label>Select State</label>
+                                            <label>Select State <span style="color: red;">*</span></label>
                                             <select name="state" id="state"
-                                                class="form-control show-tick {{ $errors->has('state') ? 'focused error' : '' }}">
+                                                class="form-control show-tick {{ $errors->has('state') ? 'focused error' : '' }}" required />
                                                 <option value="">-- Please select --</option>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        @if ($errors->has('state'))
+                                            <div class="alert-error mt-1 mb-3">
+                                                <svg width="12"
+                                                height="11" viewBox="0 0 12 11" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
+                                                    fill="#CE2121" />
+                                            </svg>  {{ $errors->first('state') }}
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="form-group form-float "id="hide_city">
                                         <div class="form-line">
-                                            <label>Select City</label>
+                                            <label>Select City <span style="color: red;">*</span></label>
                                             <select name="city_id" id="city"
-                                                class="form-control show-tick {{ $errors->has('city') ? 'focused error' : '' }}">
+                                                class="form-control show-tick {{ $errors->has('city') ? 'focused error' : '' }}" required />
                                                 <option value="">-- Please select --</option>
                                             </select>
                                         </div>
+                                    </div>
+                                    <div class="col-md-12">
+                                        @if ($errors->has('city_id'))
+                                            <div class="alert-error mt-1 mb-3">
+                                                <svg width="12"
+                                                height="11" viewBox="0 0 12 11" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
+                                                    fill="#CE2121" />
+                                            </svg>  {{ $errors->first('city_id') }}
+                                            </div>
+                                        @endif
                                     </div>
                                 </div>
                             </div>
@@ -147,7 +231,6 @@
                                             </select>
                                         </div>
                                     </div>
-
                                 </div>
                             </div>
                             <div class="form-row">
@@ -161,7 +244,6 @@
                                             </select>
                                         </div>
                                     </div>
-
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="form-group form-float" id="hide_sub_block">
@@ -177,103 +259,23 @@
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-2">
-                                    <label for="address">Address</label>
+                                    <label for="address">Address Area <span style="color: red;">*</span></label>
                                     <div class="input-group">
-                                        <textarea id="address" name="address" class="form-control validate" required></textarea>
-
+                                        <input id="address" name="address" class="form-control @error('address')is-invalid @enderror" required/>
                                     </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="row">
-                                        <div class="col-4">
-                                            <label for="featured">Featured</label>
-                                            <div class="input-group">
-                                                <input type="checkbox" name="featured" id="featured" class="filled-in"
-                                                    checked="checked">
-                                                <span>Featured</span>
+                                    <div class="col-md-12">
+                                        @if ($errors->has('address'))
+                                            <div class="alert-error mt-1 mb-3">
+                                                <svg width="12"
+                                                height="11" viewBox="0 0 12 11" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
+                                                    fill="#CE2121" />
+                                            </svg>  {{ $errors->first('address') }}
                                             </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <label for="hot">Hot</label>
-                                            <div class="input-group">
-                                                <input type="checkbox" name="hot" id="hot" class="filled-in">
-                                                {{-- <span>Hot</span> --}}
-                                            </div>
-                                        </div>
-                                        <div class="col-4">
-                                            <label for="super_hot">Super Hot</label>
-                                            <div class="input-group">
-                                                <input type="checkbox" name="super_hot" id="super_hot"
-                                                    class="filled-in">
-                                                {{-- <span>Super Hot</span> --}}
-                                            </div>
-                                        </div>
+                                        @endif
                                     </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6 mb-2">
-                                    <label for="description">Description</label>
-                                    <div class="input-group">
-                                        <textarea id="description" name="description" class="form-control validate materialize-textarea" required></textarea>
-
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <label class="label-custom" for="type">Property Type</label>
-                                    <p>
-                                        <label>
-                                            <input class="with-gap" name="type" value="house" type="radio" />
-                                            <span>Sale</span>
-                                        </label>
-                                    <p>
-                                    </p>
-                                    <label>
-                                        <input class="with-gap" name="type" value="apartment" type="radio" />
-                                        <span>Rent</span>
-                                    </label>
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-md-6 mb-2">
-                                    <label class="label-custom" for="purpose">Property Purpose</label>
-                                    <p>
-                                        <label>
-                                            <input class="with-gap" name="purpose" value="sale" type="radio" />
-                                            <span>House</span>
-                                        </label>
-                                    <p>
-                                    </p>
-                                    <label>
-                                        <input class="with-gap" name="purpose" value="rent" type="radio" />
-                                        <span>Apartment</span>
-                                    </label>
-                                    </p>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="form-group">
-                                        <select class="form-control" nultiple name="features[]">
-                                            <option value="" disabled selected>Choose Features</option>
-                                            @foreach ($features as $feature)
-                                                <option value="{{ $feature->id }}">{{ $feature->name }}</option>
-                                            @endforeach
-                                        </select>
-                                        <label class="label-custom">Select Features</label>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-
-                                <div class="col-md-6 mb-3">
-                                    <div class="btn indigo">
-                                        <span>Featured Image</span>
-                                        <label for="image">Drop image here</label>
-                                        <input type="file" id="image" name="image">
-                                    </div>
-                                    {{-- <div class="file-path-wrapper">
-                                        <input class="form-control file-path validate" type="text">
-                                    </div> --}}
                                 </div>
                                 <div class="col-md-6 mb-3">
                                     <div class="input-field col s6">
@@ -293,63 +295,151 @@
 
                                     </div>
                                 </div>
+                                
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-12 mb-2">
+                                    <label for="description">Description</label>
+                                    <div class="input-group">
+                                        <textarea style="width: 100%;"  id="description"  name="description" class="form-control"></textarea>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="form-row">
+                                <div class="col-md-6 mb-2">
+                                    <label class="label-custom" for="purpose">Property Purpose <span style="color: red;">*</span></label>
+                                    <div class="d-flex flex-row mt-2">
+                                        <div class="position-relative form-check mr-3"><label
+                                                class="form-check-label"><input name="purpose"  type="radio"
+                                                    value="House" class="form-check-input @error('purpose')is-invalid @enderror"> House</label>
+                                        </div>
+                                        <div class="position-relative form-check mr-3"><label
+                                                class="form-check-label"><input name="purpose" type="radio"
+                                                    value="Apartment" class="form-check-input ">
+                                                    Apartment</label>
+                                        </div>
+                                        <div class="position-relative form-check "><label class="form-check-label"><input
+                                                    name="purpose" type="radio" value="other"
+                                                    class="form-check-input">
+                                                Other</label>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="col-md-12">
+                                        @if ($errors->has('purpose'))
+                                            <div class="alert-error mt-1 mb-3">
+                                                <svg width="12"
+                                                height="11" viewBox="0 0 12 11" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
+                                                    fill="#CE2121" />
+                                            </svg>  {{ $errors->first('purpose') }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                  
+                                </div>
+                                <div class="col-md-6 mb-3">
+                                    <label class="label-custom" for="type">Property Type <span style="color: red;">*</span></label>
+                                    <div class="d-flex flex-row mt-2">
+                                        <div class="position-relative form-check mr-3"><label
+                                                class="form-check-label"><input name="type" type="radio"
+                                                    value="Sale" class="form-check-input @error('type')is-invalid @enderror">Sale</label>
+                                        </div>
+                                        <div class="position-relative form-check mr-3"><label
+                                                class="form-check-label"><input name="type" type="radio"
+                                                    value="Rent" class="form-check-input">
+                                                    Rent</label>
+                                        </div>
+                                       
+
+                                    </div>
+                                    <div class="col-md-12">
+                                        @if ($errors->has('type'))
+                                            <div class="alert-error mt-1 mb-3">
+                                                <svg width="12"
+                                                height="11" viewBox="0 0 12 11" fill="none"
+                                                xmlns="http://www.w3.org/2000/svg">
+                                                <path fill-rule="evenodd" clip-rule="evenodd"
+                                                    d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
+                                                    fill="#CE2121" />
+                                            </svg>  {{ $errors->first('type') }}
+                                            </div>
+                                        @endif
+                                    </div>
+                                   
+                                </div>
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
                                     <label for="video">Youtube Link</label>
-                                    <input id="video" name="video" type="text" class="form-control validate">
+                                    <input id="video" name="video" type="text" class="form-control ">
                                 </div>
+
                                 <div class="col-md-6 mb-3">
-                                    <div class="btn indigo">
-                                        <span>Floor Plan</span>
-                                        <input type="file" name="floor_plan">
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="form-control file-path validate" type="text">
-                                    </div>
+                                    <label for="nearby">Nearby Locations</label>
+                                    <input id="nearby" name="nearby" class="form-control ">
                                 </div>
+                               
+                                
                             </div>
                             <div class="form-row">
                                 <div class="col-md-6 mb-3">
-                                    <label for="nearby">Nearby</label>
-                                    <textarea id="nearby" name="nearby" class="form-control materialize-textarea"></textarea>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="btn indigo">
-                                        <span>Upload Gallery Images</span>
-                                        <input type="file" name="gallaryimage[]" multiple>
-                                    </div>
-                                    <div class="file-path-wrapper">
-                                        <input class="form-control file-path validate" type="text"
-                                            placeholder="Upload one or more images">
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="col-12 mb-3">
-                                    <div class="form-validation-cutstom">
+                                        <label for="nearby">Featured Property Image <span style="color: red;">*</span></label>
+                                      
                                         <div class="dropzone-button">
-                                            <label for="file-input" style="display: block;margin-bottom: 0px;">
+                                            <label for="thumbnail-input" style="display: block;">
                                                 <div class="dropzone" id="dropzone">
                                                     <div class="dropzone-label">
                                                         <i class="fas fa-cloud-upload-alt"></i>
                                                         <span>Drop files here or click to upload.</span>
                                                     </div>
-                                                    <input type="file" id="file-input" onchange="handleFileUpload()"
-                                                        accept="image/*">
+                                                    <input type="file" name="image" id="thumbnail-input"
+                                                        onchange="handleFileUpload()" accept="image/*" />
                                                 </div>
                                             </label>
                                         </div>
+                                        <div id="preview-container"></div>
+
+                                        <div class="col-md-12">
+                                            @if ($errors->has('image'))
+                                                <div class="alert-error mt-1 mb-3">
+                                                    <svg width="12"
+                                                    height="11" viewBox="0 0 12 11" fill="none"
+                                                    xmlns="http://www.w3.org/2000/svg">
+                                                    <path fill-rule="evenodd" clip-rule="evenodd"
+                                                        d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
+                                                        fill="#CE2121" />
+                                                </svg>  {{ $errors->first('image') }}
+                                                </div>
+                                            @endif
+                                        </div>
+                                </div>
+                             
+                                <div class="col-md-6 mb-3">
+                                    <label for="nearby">Floor Plan Image(Optional)</label>
+                                    <div class="dropzone-button">
+                                        <label for="floorinputs" style="display: block;">
+                                            <div class="dropzone" id="dropzone">
+                                                <div class="dropzone-label">
+                                                    <i class="fas fa-cloud-upload-alt"></i>
+                                                    <span>Drop files here or click to upload.</span>
+                                                </div>
+                                                <input type="file" name="floor_plan" id="floorinputs"
+                                                    onchange="floorUploads()" accept="image/*" />
+                                            </div>
+                                        </label>
                                     </div>
-                                    <div id="preview-container"></div>
+                                    <div id="preview-floor"></div>
+
                                 </div>
                             </div>
-
-
-                            <div class="modal-body p-0 text-left">
-                                <div class="col-xl-12 col-md-12">
+                         
+                            <div class="form-row">
+                                <div class="col-12 mb-3">
+                                    <label for="nearby">Property Image Gallery</label>
                                     <div class="ms-panel ms-panel-bshadow-none">
-
                                         <div class="ms-panel-body">
                                             <div class="d-flex flex-column gap-3">
                                                 <div id="groupdropzone">
@@ -368,10 +458,11 @@
                                                 </div>
                                             </div>
                                         </div>
-
                                     </div>
                                 </div>
                             </div>
+
+
 
 
                             <button class="btn btn-warning mt-4 d-inline w-20" type="submit">Reset</button>
@@ -385,36 +476,74 @@
 @endsection
 
 @push('scripts')
-    <script>
-        function handleFileUpload() {
-            const input = document.getElementById('file-input');
-            const files = input.files;
-            if (files.length > 0) {
-                const reader = new FileReader();
-                reader.readAsDataURL(files[0]);
-                reader.onload = function() {
-                    const imageUrl = URL.createObjectURL(files[0]);
-                    const previewContainer = document.getElementById('preview-container');
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+<script src="https://cdn.tiny.cloud/1/8zl4u1orwro7ldm44ng2aw4rh5vvme2inplk6r05irnqy2dp/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+
+<script>
+    tinymce.init({
+        selector: 'textarea#description',
+        menubar: false
+    });
+</script>
+<script>
+    function handleFileUpload() {
+        const input = document.getElementById('thumbnail-input');
+        const files = input.files;
+        if (files.length > 0) {
+            const reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = function() {
+                const imageUrl = URL.createObjectURL(files[0]);
+                const previewContainer = document.getElementById('preview-container');
+                previewContainer.innerHTML = '';
+                const previewImage = document.createElement('img');
+                previewImage.classList.add('preview-image');
+                previewImage.src = reader.result;
+                console.log('Image URL:', imageUrl);
+                previewContainer.appendChild(previewImage);
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('delete-button');
+                deleteButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                deleteButton.onclick = function() {
+                    input.value = '';
                     previewContainer.innerHTML = '';
-                    const previewImage = document.createElement('img');
-                    previewImage.classList.add('preview-image');
-                    previewImage.src = reader.result;
-                    console.log('Image URL:', imageUrl);
-                    previewContainer.appendChild(previewImage);
-                    const deleteButton = document.createElement('button');
-                    deleteButton.classList.add('delete-button');
-                    deleteButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
-                    deleteButton.onclick = function() {
-                        input.value = '';
-                        previewContainer.innerHTML = '';
-                    };
-                    previewContainer.appendChild(deleteButton);
                 };
-            } else {
-                $(".form-validation-cutstom").addClass("add-error");
-            }
+                previewContainer.appendChild(deleteButton);
+            };
         }
-    </script>
+    }
+</script>
+
+<script>
+    function floorUploads() {
+        
+        const input = document.getElementById('floorinputs');
+        const files = input.files;
+        if (files.length > 0) {
+            const reader = new FileReader();
+            reader.readAsDataURL(files[0]);
+            reader.onload = function() {
+                const imageUrl = URL.createObjectURL(files[0]);
+                const previewContainer = document.getElementById('preview-floor');
+                previewContainer.innerHTML = '';
+                const previewImage = document.createElement('img');
+                previewImage.classList.add('preview-image');
+                previewImage.src = reader.result;
+                console.log('Image URL:', imageUrl);
+                previewContainer.appendChild(previewImage);
+                const deleteButton = document.createElement('button');
+                deleteButton.classList.add('delete-button');
+                deleteButton.innerHTML = '<i class="fa-solid fa-xmark"></i>';
+                deleteButton.onclick = function() {
+                    input.value = '';
+                    previewContainer.innerHTML = '';
+                };
+                previewContainer.appendChild(deleteButton);
+            };
+        }
+    }
+</script>
     <!-- tags-input -->
     <script>
         console.log($(".tag-input").val());

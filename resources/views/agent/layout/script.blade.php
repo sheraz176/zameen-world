@@ -1,29 +1,58 @@
- <!-- SCRIPTS -->
+  
+  <!-- SCRIPTS -->
     <!-- Global Required Scripts Start -->
-    <script src="{{ asset('user_side/assets/js/jquery-3.3.1.min.js ') }}"></script>
-    <script src="{{ asset('user_side/assets/js/popper.min.js ') }}"></script>
-    <script src="{{ asset('user_side/assets/js/bootstrap.min.js ') }}"></script>
-    <script src="{{ asset('user_side/assets/js/perfect-scrollbar.js ') }}"> </script>
-    <script src="{{ asset('user_side/assets/js/jquery-ui.min.js ') }}"> </script>
+    <script src="{{asset('user_side/assets/js/jquery-3.3.1.min.js')}}"></script>
+    <script src="{{asset('user_side/assets/js/popper.min.js')}}"></script>
+    <script src="{{asset('user_side/assets/js/bootstrap.min.js')}}"></script>
+    <script src="{{asset('user_side/assets/js/perfect-scrollbar.js')}}"> </script>
+    <script src="{{asset('user_side/assets/js/jquery-ui.min.js')}}"> </script>
 
     <!-- Global Required Scripts End -->
-    <script src="{{ asset('user_side/assets/js/d3.v3.min.js ') }}"> </script>
-    <script src="{{ asset('user_side/assets/js/topojson.v1.min.js ') }}"> </script>
-    <script src="{{ asset('user_side/assets/js/datamaps.all.min.js ') }}"> </script>
+    <script src="{{asset('user_side/assets/js/d3.v3.min.js')}}"> </script>
+    <script src="{{asset('user_side/assets/js/topojson.v1.min.js')}}"> </script>
+    <script src="{{asset('user_side/assets/js/datamaps.all.min.js')}}"> </script>
 
 
-    <!-- Page Specific Scripts Start -->
-    <script src="{{ asset('user_side/assets/js/slick.min.js ') }}"> </script>
-    <script src="{{ asset('user_side/assets/js/moment.js ') }}"> </script>
-    <script src="{{ asset('user_side/assets/js/jquery.webticker.min.js ') }}"> </script>
-    <script src="{{ asset('user_side/assets/js/Chart.bundle.min.js ') }}"> </script>
-    <script src="{{ asset('user_side/assets/js/index-chart.js ') }}"> </script>
 
-    <!-- Page Specific Scripts Finish -->
-    <script src="{{ asset('user_side/assets/js/calendar.js') }}"></script>
+
+
     <!-- medjestic core JavaScript -->
-    <script src="{{ asset('user_side/assets/js/framework.js ') }}"></script>
+    <script src="{{asset('user_side/assets/js/framework.js')}}"></script>
     <!-- Settings -->
-    <script src="{{ asset('user_side/assets/js/settings.js ') }}"></script>
+    <script src="{{asset('user_side/assets/js/settings.js')}}"></script>
 
-    @stack('scripts')
+
+    <script src="{{asset('user_side/assets/js/toastr.min.js')}}"> </script>
+    <script src="{{asset('user_side/assets/js/toast.js')}}"> </script>
+    <script src="https://cdn.jsdelivr.net/gh/gitbrent/bootstrap4-toggle@3.6.1/js/bootstrap4-toggle.min.js"></script>
+
+
+    <script>
+        $(document).ready(function() {
+            var success_message = "{{ Session::get('success') }}";
+            if (success_message) {
+                toastSuccess(success_message);
+            }
+
+            var error_message = "{{ Session::get('error') }}";
+            if (error_message) {
+                toastdanger(error_message);
+            }
+
+        });
+        function toastSuccess(success_message) {
+            toastr.remove();
+            toastr.options.positionClass = "toast-top-right";
+            toastr.success(success_message);
+        }
+
+        function toastdanger(error_message) {
+            toastr.remove();
+            toastr.options.positionClass = "toast-top-right";
+            toastr.error(error_message);
+        }
+    </script>
+
+
+
+@stack('scripts')

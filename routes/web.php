@@ -90,6 +90,8 @@ Route::get('phase_data/{id}', [PropertyController::class, 'phase_data_fun']);
 Route::get('block_data/{id}', [PropertyController::class, 'block_data_fun']);
 Route::get(' sub_block_data/{id}', [PropertyController::class, 'sub_block_data_fun']);
 
+Route::get('membership', [packageController::class, 'membership'])->name('agent.membership');
+Route::post('properties/update/pakg/update', [packageController::class, 'mypackage'])->name('agent.property.update.membership');
 
 Route::post('properties/update/feature', [packageController::class, 'feature'])->name('agent.property.update.feature');
 Route::post('properties/update/hot', [packageController::class, 'hot'])->name('agent.property.update.hot');

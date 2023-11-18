@@ -28,9 +28,16 @@
        
         <li class="menu-item {{ Request::is('agent/properties') ? 'active' : '' }} {{ Request::is('agent/properties/create') ? 'active' : '' }}">
             <a href="{{ route('agent.properties.index') }}">
-            <span><i class="fa-solid fa-c"></i>Add Properties</span>
+            <span><i class="fa fa-cloud"></i>Add Properties</span>
             </a>
         </li>
+        <li class="menu-item {{ Request::is('membership') ? 'active' : '' }} ">
+            <a href="{{ route('agent.membership') }}">
+            <span><i class="fa fa-cloud"></i>Membership Plan</span>
+            </a>
+        </li>
+
+        
        
     </ul>
 </aside>

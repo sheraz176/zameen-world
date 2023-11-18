@@ -28,7 +28,7 @@ class PropertyController extends Controller
                               ->withCount('comments')
                               ->where('agent_id', Auth::id())
                               ->paginate(10);
-        $packages   =  Packages::first();
+        $packages   =  Packages::where('user_id',Auth::id())->latest()->first();
         return view('agent.properties.index',compact('properties','packages'));
     }
 
@@ -42,10 +42,7 @@ class PropertyController extends Controller
 
     public function store(Request $request)
     { 
-        $hot=false;
-        $super_hot=false;
-        
-        
+    //    dd($request->all());
         $request->validate([
             'title'     => 'required|unique:properties|max:255',
             'price'     => 'required',
@@ -53,14 +50,14 @@ class PropertyController extends Controller
             'type'      => 'required',
             'bedroom'   => 'required',
             'bathroom'  => 'required',
-            'city'      => 'required',
             'address'   => 'required',
             'area'      => 'required',
-            // 'image'     => 'required|image|mimes:jpeg,jpg,png',
+             'image'     => 'required',
+             'state'     => 'required',
+             'city_id'     => 'required',
             // 'floor_plan'=> 'image|mimes:jpeg,jpg,png',
-            'description'        => 'required',
-            'location_latitude'  => 'required',
-            'location_longitude' => 'required',
+            // 'location_latitude'  => 'required',
+            // 'location_longitude' => 'required',
         ]);
         $image = $request->file('image');
         $slug  = str_slug($request->title);
@@ -101,14 +98,8 @@ class PropertyController extends Controller
         $property->image    = $imagename;
         $property->bedroom  = $request->bedroom;
         $property->bathroom = $request->bathroom;
-        $property->city     = $request->city;
-        $property->city_slug= str_slug($request->city);
         $property->address  = $request->address;
         $property->area     = $request->area;
-
-        if(isset($request->featured)){
-            $property->featured = true;
-        }
         $property->agent_id           = Auth::id();
         $property->video              = $request->video;
         $property->floor_plan         = $imagefloorplan;
@@ -116,26 +107,16 @@ class PropertyController extends Controller
         $property->location_latitude  = $request->location_latitude;
         $property->location_longitude = $request->location_longitude;
         $property->nearby             = $request->nearby;
+     
+        $property->state_id            =  $request->state;
+        $property->socity_id           =  $request->socity;
+        $property->phase_id            =  $request->phase;
+        $property->block_id           =  $request->block;
+        $property->sub_block_id           =  $request->sub_block;
         $property->save();
-        if (isset($request->hot)){
-            $hot=true;
-        }
-        if (isset($request->super_hot)){
-            $super_hot=true;
-        }
-        DB::table('properties')
-        ->where('id', $property->id)
-        ->update([
-            'state_id' => $request->state,
-            'city_id' => $request->city_id,
-            'socity_id' => $request->socity,
-            'phase_id' => $request->phase,
-            'block_id' => $request->block,
-            'sub_block_id' => $request->sub_block,
-            'hot'=>$hot,
-            'super_hot'=>$super_hot,
-        ]);
-        $property->features()->attach($request->features);
+
+       
+        // $property->features()->attach($request->features);
 
 
         $gallary = $request->file('gallaryimage');
@@ -182,7 +163,6 @@ class PropertyController extends Controller
             'type'      => 'required',
             'bedroom'   => 'required',
             'bathroom'  => 'required',
-            'city'      => 'required',
             'address'   => 'required',
             'area'      => 'required',
             'image'     => 'image|mimes:jpeg,jpg,png',
