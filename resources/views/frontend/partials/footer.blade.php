@@ -60,8 +60,8 @@
                  <span class="copy-right">© Copyright - 2023 All Rights Reserved.</span>
              </div>
              <div class="d-flex flex-row gap-2">
-                 <div> <a href="#"><img src="assets/images/facebook.png"></a></div>
-                 <div> <a href="#"><img src="assets/images/linkdin.png"></a></div>
+                 <div> <a href="#"><img src="{{asset('zameen/assets/images/facebook.png')}}"></a></div>
+                 <div> <a href="#"><img src="{{asset('zameen/assets/images/linkdin.png')}}"></a></div>
              </div>
          </div>
      </footer>

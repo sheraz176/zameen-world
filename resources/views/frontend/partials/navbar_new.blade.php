@@ -1,49 +1,48 @@
 <header class="extend-header">
     <nav class="navbar navbar-expand-lg home-nav extend-navbar " id="navbar">
         <div class="container-fluid">
-            <a class="navbar-brand" href="/"><img src="{{asset('zameen/assets/images/abcd.png')}}"></a>
+            <a class="navbar-brand" href="{{route('home')}}"><img src="{{asset('zameen/assets/images/abcd.png')}}"></a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
                 <i class="fa-solid fa-bars text-white"></i>
             </button>
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                <ul class="navbar-nav mx-auto mb-2 mb-lg-0">
+                <ul class="navbar-nav mx-auto mb-2 mb-lg-0 ">
+         
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="#">Buy</a>
+                      <a  class="nav-link active" aria-current="page"  href="{{route('search')}}">Browse</a>
+                    </li>
+                     <li class="nav-item">
+                      <a class="nav-link" href="{{route('blog')}}">News</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#">Sell</a>
+                      <a class="nav-link" href="{{route('agents')}}">Agents</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{route('about')}}">About Us</a>
+                    </li>
+                    <li class="nav-item">
+                      <a class="nav-link" href="{{route('contact')}}">Contact Us</a>
+                    </li>
+                    
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Agents
-                        </a>
-                        <ul class="dropdown-menu ">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
+                      <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
+                        aria-expanded="false">
+                        Properties
+                      </a>
+                      <ul class="dropdown-menu">
+                        <li><a class="dropdown-item" href="#">Super Hot</a></li>
+                        <li><a class="dropdown-item" href="#">Hot</a></li>
+                        <li><a class="dropdown-item" href="#">Featured</a></li>
+                        <li>
+                          <hr class="dropdown-divider">
+                        </li>
+                        <li><a class="dropdown-item" href="{{route('search')}}">All Properties</a></li>
+                      </ul>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown"
-                            aria-expanded="false">
-                            Resources
-                        </a>
-                        <ul class="dropdown-menu">
-                            <li><a class="dropdown-item" href="#">Action</a></li>
-                            <li><a class="dropdown-item" href="#">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="#">Something else here</a></li>
-                        </ul>
-                    </li>
-                </ul>
+                    
+                  </ul>
                 <form class="d-flex gap-3 " role="search">
                     @guest
                         <button class="btn-outlined"><a href="{{ route('login') }}" style="color: black">Login</a></button>

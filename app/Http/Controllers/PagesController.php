@@ -165,7 +165,11 @@ class PagesController extends Controller
         return view('pages.blog.index', compact('posts'));
     }
 
-
+    public function about()
+    {
+    
+        return view('pages.about');
+    }
 
     // MESSAGE TO AGENT (SINGLE AGENT PAGE)
     public function messageAgent(Request $request)

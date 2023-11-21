@@ -1,4 +1,4 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.apps')
 
 @section('styles')
 
@@ -6,34 +6,48 @@
 
 @section('content')
 
-    <section class="section">
-        <div class="container">
-            <div class="row">
-                <h4 class="section-heading">Agent List</h4>
+<section class="all-p my-5">
+    <div class="container-fluid px-1">
+      <div class="row">
+        
+        @foreach($agents as $agent)
+        <div class="col-xl-4">
+            <a href="{{ route('agents.show',$agent->id) }}">
+          <div class="showing-cards position-relative">
+            <div class="img-wraper position-relative">
+              <img src="{{ asset('zameen/55929607.png ') }}">
+              
             </div>
-            <div class="row">
-
-                @foreach($agents as $agent)
-                    <div class="col s12 m4">
-                        <div class="card-panel center card-agent">
-                            <span class="card-image-bg" style="background-image:url({{Storage::url('users/'.$agent->image)}});"></span>
-                            <h5 class="m-b-0">
-                                <a href="{{ route('agents.show',$agent->id) }}" class="truncate">{{ $agent->name }}</a>
-                            </h5>
-                            <h6 class="email">{{ $agent->email }}</h6>
-                            <p class="about">{{ str_limit($agent->about,50) }}</p>
-                        </div>
+            <div class="card-text-warrper">
+                <div class="d-flex flex-row justify-content-between mb-3">
+                    <span class="showing-time"></span>
+                    <span class="showing-time">{{ $agent->created_at }}</span>
+                  </div>
+              <div class="plan-text-sec d-flex flex-column gap-1">
+                <h3>{{ $agent->name }}</h3>
+                <p>{{ str_limit($agent->about,50) }}</p>
+              </div>
+              <hr>
+          
+              <div>
+                <ul class="p-0 list-unstyled d-flex flex-column gap-3 show-card-list pt-3">
+                  <li>
+                    <div class="d-flex flex-row justify-content-between">
+                      <span class="show-muted">Email</span>
+                      <span class="feature-child">{{ $agent->email }}</span>
                     </div>
-                @endforeach
-
+                  </li>
+                  
+                </ul>
+              </div>
             </div>
-
-            <div class="m-t-30 m-b-60 center">
-                {{ $agents->links() }}
-            </div>
-
+          </div>
+            </a>
         </div>
-    </section>
+        @endforeach
+      </div>
+    </div>
+  </section>
 
 @endsection
 

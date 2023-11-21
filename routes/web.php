@@ -38,6 +38,8 @@ Route::get('/blog/categories/{slug}', 'PagesController@blogCategories')->name('b
 Route::get('/blog/tags/{slug}', 'PagesController@blogTags')->name('blog.tags');
 Route::get('/blog/author/{username}', 'PagesController@blogAuthor')->name('blog.author');
 
+Route::get('/about', 'PagesController@about')->name('about');
+
 Route::get('/contact', 'PagesController@contact')->name('contact');
 Route::post('/contact', 'PagesController@messageContact')->name('contact.message');
 

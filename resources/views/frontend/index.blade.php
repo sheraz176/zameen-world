@@ -1,17 +1,17 @@
-@extends('frontend.layouts.app')
+@extends('frontend.layouts.apps')
 
 
 @push('styles')
-<head>
-   
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Zameen world || index</title>
-    <!-- Link Swiper's CSS -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
-  
-  </head>
 
+    <head>
+
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <title>Zameen world || index</title>
+        <!-- Link Swiper's CSS -->
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
+    </head>
 @endpush
 
 @section('content')
@@ -28,12 +28,13 @@
                 </div>
                 <div class="search-container d-flex align-items-center flex-row position-relative">
                     <!-- <input type="text" class="form-control" list="programmingLanguages"
-                    placeholder="City, Neighborhood, Address, School, ZIP, Agent, MLS #" > -->
+                            placeholder="City, Neighborhood, Address, School, ZIP, Agent, MLS #" > -->
                     <input type="text" id="searchtxt" class="form-control" list="programmingLanguages"
                         placeholder="City, Neighborhood, Address, School, ZIP, Agent, MLS #">
                     <button type="button" class="mx-2 btn-contain-normal mt-md-0 mt-2">Search</button>
                     <ul class="list-dropdown">
-                        <li class="location-header"><img src="assets/images/loc-header.png"><span>11 Locations</span></li>
+                        <li class="location-header"><img src="{{ asset('zameen/assets/images/loc-header.png') }}"><span>11
+                                Locations</span></li>
                     </ul>
                 </div>
             </div>
@@ -45,12 +46,12 @@
                 <div class="row">
                     <div class="col-md-12 col-lg-6 position-relative">
                         <div class="bg-img">
-                            <img src="assets/images/agent-bg.png">
+                            <img src="{{ asset('zameen/assets/images/agent-bg.png') }}">
                             <div class="card agent-card">
                                 <div class="px-2">
                                     <div class="row my-3">
                                         <div class="col-3 d-flex justify-content-center">
-                                            <img src="assets/images/agent.png" alt=""
+                                            <img src="{{ asset('zameen/assets/images/agent.png') }}" alt=""
                                                 style="height: 64px !important;width:64px !important;">
                                         </div>
                                         <div class="align-items-center col-9 d-flex">
@@ -73,7 +74,8 @@
                                                 anytime</p>
                                         </div>
                                         <div class="col-12">
-                                            <img src="assets/images/deal.png" alt="" class="deal-img">
+                                            <img src="{{ asset('zameen/assets/images/deal.png') }}" alt=""
+                                                class="deal-img">
                                         </div>
                                     </div>
                                 </div>
@@ -108,7 +110,7 @@
                                     <a type="button"
                                         class="btn-contain-normal d-flex flex-row gap-2 align-items-center a-btn mx-lg-0 mx-auto">See
                                         more
-                                        <img src="assets/images/vector-r.png"></a>
+                                        <img src="{{ asset('zameen/assets/images/vector-r.png') }}"></a>
                                 </div>
                                 <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
                                     <p class="intro-headig my-4">Learn how we Buy <br>propertise faster for higher<br>
@@ -119,7 +121,7 @@
                                     <a type="button"
                                         class="btn-contain-normal d-flex flex-row gap-2 align-items-center a-btn mx-lg-0 mx-auto">See
                                         more
-                                        <img src="assets/images/vector-r.png"></a>
+                                        <img src="{{ asset('zameen/assets/images/vector-r.png') }}"></a>
                                 </div>
                             </div>
                         </div>
@@ -129,87 +131,251 @@
         </div>
         <!-- propertioes-tolove -->
     </section>
+
+
     <section class="custom-padding">
         <div class="wrapper">
-          <div class="inner-text custom-margin">
-            <div class="container-fluid">
-              <div class="row">
-                <div class="col-xl-8 text-lg-start text-center">
-                  <p class="intro-headig properties">Properties to Love</p>
-                  <p class="prop-desc">Some of our picked properties near you location.</p>
-                </div>
-                <div
-                  class="col-xl-4 text-center d-flex justify-content-center justify-content-lg-evenly align-items-center">
-                  <button type="button" class="btn-contain-normal btn-lg">Browse more properties</button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <!-- cards-slider-section -->
-          <div class="container ">
-            <div class="swpier-slider-custom mt-4">
-              <!-- Swiper -->
-              <div class="swiper mySwiperhome">
-                <div class="swiper-wrapper">
-
-                    @foreach($properties as $property)
-                  
-                  <div class="swiper-slide">
-                    <div class="single-cards-slider">
-                      <div class="img-wraper">
-                        <img src="{{Storage::url('property/'.$property->image)}}">
-                      </div>
-                      <div class="card-text-warrper">
-                        <div class="tag-img">
-                          <img src=" {{ asset('zameen/assets/images/superhott.jpeg') }}">
+            <div class="inner-text custom-margin">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-xl-8 text-lg-start text-center">
+                            <p class="intro-headig properties">Properties to Love</p>
+                            <p class="prop-desc">Some of our picked properties near you location.</p>
                         </div>
-                        <div class="heart-sec d-flex flex-row justify-content-between mt-3 align-items-center">
-                          <h3>PKR {{ $property->price }}</h3>
-                          <img src=" {{ asset('zameen/assets/images/favorited.png') }}">
+                        <div
+                            class="col-xl-4 text-center d-flex justify-content-center justify-content-lg-evenly align-items-center">
+                            <button type="button" class="btn-contain-normal btn-lg">Browse more properties</button>
                         </div>
-                        <a href="{{ route('property.show',$property->slug) }}">
-                        <div class="plan-text-sec d-flex flex-column gap-1 fixed-text">
-                          <h3>  {{ $property->title}}  </h3>
-                          <p>{{ ucfirst($property->city) }}</p>
-                        </div>
-                         </a>
-                        <hr />
-                        <div class="icons-section">
-                          <div class="d-flex flex-row justify-content-between my-2">
-                            <div class="d-flex flex-row gap-1 align-items-center">
-                              <div>
-                                <img src=" {{ asset('zameen/assets/images/bed.png') }}" />
-                              </div>
-                              <p>{{ $property->bedroom}} Beds</p>
-                            </div>
-                            <div class="d-flex flex-row gap-1 align-items-center">
-                              <div>
-                                <img src=" {{ asset('zameen/assets/images/bath.png') }}" />
-                              </div>
-                              <p>{{ $property->bathroom}} Bathrooms</p>
-                            </div>
-                            <div class="d-flex flex-row gap-1 align-items-center">
-                              <div>
-                                <img src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
-                              </div>
-                              <p>{{ $property->area}} marla</p>
-                            </div>
-                          </div>
-                        </div>
-                      </div>
                     </div>
-                  </div>
-                    
-                     @endforeach
                 </div>
-                <div class="swiper-pagination"></div>
-              </div>
-              <div class="swiper-button-next"><img src=" {{ asset('zameen/assets/images/next.png') }}" height="40px"></div>
-              <div class="swiper-button-prev"><img src=" {{ asset('zameen/assets/images/pre.png') }}" height="40px"></div>
             </div>
-          </div>
+          <!-- propety Super Hot -->
+            <section class="all-p">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 position-relative rewslider">
+                            <div class="swiper mySwiperreviewsuperhot mt-3">
+                                <div class="swiper-wrapper">
+                                    @foreach ($superhot as $property)
+                                        <div class="swiper-slide">
+                                            <div class="single-cards-slider">
+                                                <div class="img-wraper">
+                                                    @if (!empty($property->image))
+                                                    <img src="{{ Storage::url('property/' . $property->image) }}">
+                                                    @else
+                                                    <img src="{{ asset('zameen/house.png') }}">
+                                                    @endif
+                                                </div>
+                                                <div class="card-text-warrper">
+                                                    <div class="tag-img">
+                                                        <img src=" {{ asset('zameen/assets/images/superhott.jpeg') }}">
+                                                    </div>
+                                                    <div
+                                                        class="heart-sec d-flex flex-row justify-content-between mt-3 align-items-center">
+                                                        <h3>PKR {{ $property->price }}</h3>
+                                                        <img src=" {{ asset('zameen/assets/images/favorited.png') }}">
+                                                    </div>
+                                                    <a href="{{ route('property.show', $property->slug) }}">
+                                                        <div class="plan-text-sec d-flex flex-column gap-1 fixed-text">
+                                                            <h3> {{ $property->title }} </h3>
+                                                            <p>{{ ucfirst($property->city) }}</p>
+                                                        </div>
+                                                    </a>
+                                                    <hr />
+                                                    <div class="icons-section">
+                                                        <div class="d-flex flex-row justify-content-between my-2">
+                                                            <div class="d-flex flex-row gap-1 align-items-center">
+                                                                <div>
+                                                                    <img
+                                                                        src=" {{ asset('zameen/assets/images/bed.png') }}" />
+                                                                </div>
+                                                                <p>{{ $property->bedroom }} Beds</p>
+                                                            </div>
+                                                            <div class="d-flex flex-row gap-1 align-items-center">
+                                                                <div>
+                                                                    <img
+                                                                        src=" {{ asset('zameen/assets/images/bath.png') }}" />
+                                                                </div>
+                                                                <p>{{ $property->bathroom }} Bathrooms</p>
+                                                            </div>
+                                                            <div class="d-flex flex-row gap-1 align-items-center">
+                                                                <div>
+                                                                    <img
+                                                                        src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
+                                                                </div>
+                                                                <p>{{ $property->area }} marla</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+
+                            </div>
+                            {{-- <div class="swiper-button-next"><img src=" {{ asset('zameen/assets/images/next.png') }}"
+                                    height="40px"></div>
+                            <div class="swiper-button-prev"><img src=" {{ asset('zameen/assets/images/pre.png') }}"
+                                    height="40px"></div> --}}
+                        </div>
+                    </div>
+                </div>
+            </section>
+           <!-- propertioes-Hot -->
+            <section class="all-p">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 position-relative rewslider">
+                            <div class="swiper mySwiperreviewhot mt-3">
+                                <div class="swiper-wrapper">
+                                    @foreach ($hot as $property)
+                                        <div class="swiper-slide">
+                                            <div class="single-cards-slider">
+                                                <div class="img-wraper">
+                                                    @if (!empty($property->image))
+                                                    <img src="{{ Storage::url('property/' . $property->image) }}">
+                                                    @else
+                                                    <img src="{{ asset('zameen/house.png') }}">
+                                                    @endif
+                                                </div>
+                                                <div class="card-text-warrper">
+                                                    <div class="tag-img">
+                                                        <img src=" {{ asset('zameen/assets/images/hot.jpeg') }}">
+                                                    </div>
+                                                    <div
+                                                        class="heart-sec d-flex flex-row justify-content-between mt-3 align-items-center">
+                                                        <h3>PKR {{ $property->price }}</h3>
+                                                        <img src=" {{ asset('zameen/assets/images/favorited.png') }}">
+                                                    </div>
+                                                    <a href="{{ route('property.show', $property->slug) }}">
+                                                        <div class="plan-text-sec d-flex flex-column gap-1 fixed-text">
+                                                            <h3> {{ $property->title }} </h3>
+                                                            <p>{{ ucfirst($property->city) }}</p>
+                                                        </div>
+                                                    </a>
+                                                    <hr />
+                                                    <div class="icons-section">
+                                                        <div class="d-flex flex-row justify-content-between my-2">
+                                                            <div class="d-flex flex-row gap-1 align-items-center">
+                                                                <div>
+                                                                    <img
+                                                                        src=" {{ asset('zameen/assets/images/bed.png') }}" />
+                                                                </div>
+                                                                <p>{{ $property->bedroom }} Beds</p>
+                                                            </div>
+                                                            <div class="d-flex flex-row gap-1 align-items-center">
+                                                                <div>
+                                                                    <img
+                                                                        src=" {{ asset('zameen/assets/images/bath.png') }}" />
+                                                                </div>
+                                                                <p>{{ $property->bathroom }} Bathrooms</p>
+                                                            </div>
+                                                            <div class="d-flex flex-row gap-1 align-items-center">
+                                                                <div>
+                                                                    <img
+                                                                        src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
+                                                                </div>
+                                                                <p>{{ $property->area }} marla</p>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    @endforeach
+
+                                </div>
+
+                            </div>
+
+                            {{-- <div class="swiper-button-next"><img src=" {{ asset('zameen/assets/images/next.png') }}"
+                                    height="40px"></div>
+                            <div class="swiper-button-prev"><img src=" {{ asset('zameen/assets/images/pre.png') }}"
+                                    height="40px"></div> --}}
+                        </div>
+                    </div>
+                </div>
+            </section>
+           <!-- propertioes-Featured -->
+           <section class="all-p">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 position-relative rewslider">
+                        <div class="swiper mySwiperreviewfeatured mt-3">
+                            <div class="swiper-wrapper">
+                                @foreach ($featured as $property)
+                                    <div class="swiper-slide">
+                                        <div class="single-cards-slider">
+                                            <div class="img-wraper">
+                                                @if (!empty($property->image))
+                                                <img src="{{ Storage::url('property/' . $property->image) }}">
+                                                @else
+                                                <img src="{{ asset('zameen/house.png') }}">
+                                                @endif
+                                            </div>
+                                            <div class="card-text-warrper">
+                                                <div class="tag-img">
+                                                    <img src=" {{ asset('zameen/assets/images/featured.jpeg') }}">
+                                                </div>
+                                                <div
+                                                    class="heart-sec d-flex flex-row justify-content-between mt-3 align-items-center">
+                                                    <h3>PKR {{ $property->price }}</h3>
+                                                    <img src=" {{ asset('zameen/assets/images/favorited.png') }}">
+                                                </div>
+                                                <a href="{{ route('property.show', $property->slug) }}">
+                                                    <div class="plan-text-sec d-flex flex-column gap-1 fixed-text">
+                                                        <h3> {{ $property->title }} </h3>
+                                                        <p>{{ ucfirst($property->city) }}</p>
+                                                    </div>
+                                                </a>
+                                                <hr />
+                                                <div class="icons-section">
+                                                    <div class="d-flex flex-row justify-content-between my-2">
+                                                        <div class="d-flex flex-row gap-1 align-items-center">
+                                                            <div>
+                                                                <img
+                                                                    src=" {{ asset('zameen/assets/images/bed.png') }}" />
+                                                            </div>
+                                                            <p>{{ $property->bedroom }} Beds</p>
+                                                        </div>
+                                                        <div class="d-flex flex-row gap-1 align-items-center">
+                                                            <div>
+                                                                <img
+                                                                    src=" {{ asset('zameen/assets/images/bath.png') }}" />
+                                                            </div>
+                                                            <p>{{ $property->bathroom }} Bathrooms</p>
+                                                        </div>
+                                                        <div class="d-flex flex-row gap-1 align-items-center">
+                                                            <div>
+                                                                <img
+                                                                    src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
+                                                            </div>
+                                                            <p>{{ $property->area }} marla</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                @endforeach
+
+                            </div>
+
+                        </div>
+
+                        {{-- <div class="swiper-button-next"><img src=" {{ asset('zameen/assets/images/next.png') }}"
+                                height="40px"></div>
+                        <div class="swiper-button-prev"><img src=" {{ asset('zameen/assets/images/pre.png') }}"
+                                height="40px"></div> --}}
+                    </div>
+                </div>
+            </div>
+        </section>
         </div>
-      </section>
+
+    </section>
     <!-- Mobile wrapper -->
     <section class="custom-padding ">
         <div class="mobile-wrapper">
@@ -224,15 +390,15 @@
                                 your transactions</p>
                         </div>
                         <div class="d-flex flex-column flex-md-row gap-1 gap-md-5 text-md-start text-center">
-                            <div><img src="assets/images/playstore.svg"></div>
-                            <div><img src="assets/images/appstore.svg"></div>
+                            <div><img src="{{ asset('zameen/assets/images/playstore.svg') }}"></div>
+                            <div><img src="{{ asset('zameen/assets/images/appstore.svg') }}"></div>
                         </div>
                     </div>
-                    <div class="col-md-4 position-relative">
+                    {{-- <div class="col-md-4 position-relative">
                         <div class="mobile-3d">
                             <img src="assets/images/">
                         </div>
-                    </div>
+                    </div> --}}
                 </div>
             </div>
         </div>
@@ -442,120 +608,102 @@
 
 
 @push('scripts')
-<!-- Swiper JS -->
-<script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
-<script src="https://code.jquery.com/jquery-3.6.1.min.js"
-integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
-<script>
-// Slider Code
-var swiper = new Swiper(".mySwiperhome", {
-  grid: {
-    rows: 2,
-  },
-  spaceBetween: 30,
-  pagination: {
-    el: ".swiper-pagination",
-    clickable: true,
-  },
-  navigation: {
-    nextEl: ".swiper-button-next",
-    prevEl: ".swiper-button-prev",
-  },
-  breakpoints: {
-    640: {
-      slidesPerView: 1,
-      spaceBetween: 10,
-    },
-    768: {
-      slidesPerView: 2,
-      spaceBetween: 10,
-    },
-    1024: {
-      slidesPerView: 3,
-      spaceBetween: 10,
-    },
-  },
-});
-
-// When the user scrolls down 80px from the top of the document, resize the navbar's padding and the logo's font size
-window.onscroll = function () { scrollFunction() };
-function scrollFunction() {
-  if (document.body.scrollTop > 80 || document.documentElement.scrollTop > 80) {
-    document.getElementById("navbar").style.top = "-80px";
-  } else {
-    document.getElementById("navbar").style.top = "0px";
-  }
-}
+    <!-- Swiper JS -->
+    <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+        integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+  
+    <script>
+        var swiper = new Swiper(".mySwiperreviewsuperhot", {
+            spaceBetween: 10,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                type: "fraction",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next",
+                prevEl: ".swiper-button-prev",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 15,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+        });
+    </script>
 
 
-// MTS JAVA
-let names = [
-  "Ayla",
-  "Jake",
-  "Sean",
-  "Henry",
-  "Brad",
-  "Stephen",
-  "Taylor",
-  "Timmy",
-  "Cathy",
-  "John",
-  "Amanda",
-  "Amara",
-  "Sam",
-  "Sandy",
-  "Danny",
-  "Ellen",
-  "Camille",
-  "Chloe",
-  "Emily",
-  "Nadia",
-  "Mitchell",
-  "Harvey",
-  "Lucy",
-  "Amy",
-  "Glen",
-  "Peter",
-];
-let sortedNames = names.sort();
+    <script>
+        var swiper = new Swiper(".mySwiperreviewhot", {
+            spaceBetween: 10,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                type: "fraction",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next-a",
+                prevEl: ".swiper-button-prev-b",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 15,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+        });
+    </script>
+      
+      <script>
+        var swiper = new Swiper(".mySwiperreviewfeatured", {
+            spaceBetween: 10,
+            loop: true,
+            pagination: {
+                el: ".swiper-pagination",
+                type: "fraction",
+                clickable: true,
+            },
+            navigation: {
+                nextEl: ".swiper-button-next-a",
+                prevEl: ".swiper-button-prev-b",
+            },
+            breakpoints: {
+                640: {
+                    slidesPerView: 1,
+                    spaceBetween: 10,
+                },
+                768: {
+                    slidesPerView: 2,
+                    spaceBetween: 15,
+                },
+                1024: {
+                    slidesPerView: 3,
+                    spaceBetween: 30,
+                },
+            },
+        });
+    </script>
 
-//reference
-let input = document.getElementById("searchtxt");
-
-input.addEventListener("keyup", (e) => {
-  removeElements();
-  for (let i of sortedNames) {
-    if (i.toLowerCase().startsWith(input.value.toLowerCase()) && input.value != "") {
-      let listItem = document.createElement("li");
-      listItem.classList.add("list-items-dropdown");
-      listItem.style.cursor = "pointer";
-      listItem.setAttribute("onclick", "displayNames('" + i + "')");
-      let word = "<b>" + i.substr(0, input.value.length) + "</b>";
-      word += i.substr(input.value.length);
-      listItem.innerHTML = "<img src='assets/images/location.png'/>" + word;
-      document.querySelector(".list-dropdown").appendChild(listItem);
-      document.querySelector(".list-dropdown").style.display = "block";
-    }
-  }
-});
-function displayNames(value) {
-  input.value = value;
-  removeElements();
-}
-function removeElements() {
-  let items = document.querySelectorAll(".list-items-dropdown");
-  document.querySelector(".list-dropdown").style.display = "none";
-  items.forEach((item) => {
-    item.remove();
-  });
-}
-// MTS JAVA
-function openNav() {
-  document.getElementById("mySidenav").style.left = "0px";
-}
-function closeNav() {
-  document.getElementById("mySidenav").style.left = "-300px";
-}
-</script>
 
 @endpush
