@@ -15,8 +15,12 @@
             <a href="{{ route('agents.show',$agent->id) }}">
           <div class="showing-cards position-relative">
             <div class="img-wraper position-relative">
+              @if (!empty($agent->image))
+              <img src="{{Storage::url('users/'.$agent->image)}}" >
+              @else
               <img src="{{ asset('zameen/55929607.png ') }}">
-              
+              @endif
+                  
             </div>
             <div class="card-text-warrper">
                 <div class="d-flex flex-row justify-content-between mb-3">

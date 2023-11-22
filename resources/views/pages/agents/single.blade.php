@@ -18,7 +18,11 @@
         <div class="row">
           <div class="col-md-4">
             <div class="agent-profile-figure">
+              @if (!empty($agent->image))
+              <img src="{{Storage::url('users/'.$agent->image)}}" >
+              @else
               <img src="{{ asset('zameen/55929607.png ') }}">
+              @endif
             </div>
           </div>
           <div class="col-md-8">

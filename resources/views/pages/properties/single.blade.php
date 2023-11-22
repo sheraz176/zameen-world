@@ -9,26 +9,56 @@
   <!-- lightbox -->
 
    <link href="{{ asset('zameen/assets/css/stylepopup.css ') }}" rel="stylesheet">
+   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.css" />
+
  
   </head>
 
 @endpush
 
 @section('content')
+
+
  <!-- Banner-section -->
  <section class="px-2 px-lg-5 pt-5 pb-4">
     <div class="container-fluid">
       <div class="Property-Banner">
         <div class="row">
           <div class="col-md-12 col-lg-7">
+
+            @if(!$property->gallery->isEmpty())
+            <div id="carouselExampleControls" class="carousel slide pointer-event transaction-slider" data-bs-ride="carousel">
+              <div class="carousel-inner">
+            @foreach($property->gallery as $gallery)
+                <div class="carousel-item active">
+                  <img  src="{{Storage::url('property/gallery/'.$gallery->name)}}" />
+                </div>
+                @endforeach
+              </div>
+              <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="prev">
+                <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Previous</span>
+              </button>
+              <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
+                data-bs-slide="next">
+                <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                <span class="visually-hidden">Next</span>
+              </button>
+            </div>
+            @else
             <div class="lg-img">
               <img src="{{Storage::url('property/'.$property->image)}}">
             </div>
+             @endif
+          
+                    
           </div>
+
           <div class="col-md col-lg-5">
             <div class="d-flex flex-column gap-2">
               <div class="sm-img position-relative">
-                <img src=" {{ asset('zameen/assets/images/proper-sm.png') }}">
+                <img src="{{Storage::url('property/'.$property->image)}}">
                 <div class="stree-view-btn d-flex flex-row flex-lg-column flex-xl-row gap-2">
                   <button id="streetviewget">
                     <svg width="22" height="22" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -61,20 +91,18 @@
               </div> -->
               <div class="sm-img p-0 m-0 lightgallery position-relative">
                 <ul id="lightgallery" class="list-unstyled row p-0 m-0">
-                  @foreach($property->gallery as $gallery)
-                  <li class="w-100 p-0 m-0 set-opacity" data-responsive="assets/images/proper-sm.png"
-                    data-src="assets/images/proper-sm.png" data-sub-html="Image Description"
+                  <li class="w-100 p-0 m-0 set-opacity" data-responsive="{{Storage::url('property/'.$property->image)}}"
+                    data-src="{{Storage::url('property/'.$property->image)}}" data-sub-html="Image Description"
                     data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
                     <a href="">
-                      <img class="img-responsive" src=" {{ asset('zameen/assets/images/proper-sm.png') }}">
+                      <img class="img-responsive" src="{{Storage::url('property/'.$property->image)}}">
                     </a>
                   </li>
-                  @endforeach
-                  <li class="w-100 p-0 m-0 d-none" data-responsive="assets/images/proper-sm.png"
-                    data-src="assets/images/proper-sm.png" data-sub-html="Image Description"
+                  <li class="w-100 p-0 m-0 d-none" data-responsive="{{Storage::url('property/'.$property->image)}}"
+                    data-src="{{Storage::url('property/'.$property->image)}}" data-sub-html="Image Description"
                     data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
                     <a href="">
-                      <img class="img-responsive" src=" {{ asset('zameen/assets/images/proper-sm.png') }}">
+                      <img class="img-responsive" src="{{Storage::url('property/'.$property->image)}}">
                     </a>
                   </li>
                 
@@ -100,6 +128,7 @@
       </div>
     </div>
   </section>
+
   <!-- Grand-famlily-section -->
   <section class="px-2 px-lg-5">
     <div class="container-fluid">
@@ -191,7 +220,7 @@
                 </div>
                 <div class="min-cards-body">
                   <p class="min-text">
-                    Elementary School
+                    {!! $property->nearby !!}
                   </p>
                 </div>
               </div>
@@ -201,7 +230,7 @@
                 </div>
                 <div class="min-cards-body">
                   <p class="min-text">
-                    Middle School
+                    Playground
                   </p>
                 </div>
               </div>
@@ -211,7 +240,7 @@
                 </div>
                 <div class="min-cards-body">
                   <p class="min-text">
-                    High School
+                    Mosque
                   </p>
                 </div>
               </div>
@@ -226,50 +255,7 @@
               <p class="dis-text pt-2 pb-1">
                 {!! $property->description !!}
               </p>
-              <div class="collapse" id="collapseExample">
-                <div class="row">
-                  <div class="col-12 col-lg-6 border-end ">
-                    <div class="d-flex flex-row justify-content-evenly justify-content-lg-between pe-2">
-                      <ul class="d-flex flex-column p-0 m-0 f-list-head list-unstyled gap-4">
-                        <li>Status</li>
-                        <li>Beds</li>
-                        <li>Square Footage</li>
-                        <li>Property Type</li>
-                        <li>MLS Type</li>
-                        <li>County</li>
-                      </ul>
-                      <ul class="d-flex flex-column p-0 m-0 f-list-head list-unstyled gap-4">
-                        <li>Active</li>
-                        <li>3</li>
-                        <li>3,230 Sq. Ft </li>
-                        <li>Single Family Residence</li>
-                        <li>Beds</li>
-                        <li>Suffolk</li>
-                      </ul>
-                    </div>
-                  </div>
-                  <div class="col-12 col-lg-6 border-end mt-lg-0 mt-3">
-                    <div class="d-flex flex-row justify-content-evenly justify-content-lg-between ps-lg-2">
-                      <ul class="d-flex flex-column p-0 m-0 f-list-head list-unstyled gap-4 ">
-                        <li>Days on Market</li>
-                        <li>Taxes</li>
-                        <li>HOA Fees</li>
-                        <li>Condo/Co-op Fees</li>
-                        <li>Year Built</li>
-                        <li>Lot Size </li>
-                      </ul>
-                      <ul class="d-flex flex-column p-0 m-0 f-list-head list-unstyled gap-4">
-                        <li>-</li>
-                        <li>9246</li>
-                        <li>3,230 Sq. Ft </li>
-                        <li>-</li>
-                        <li>1985</li>
-                        <li>1.20</li>
-                      </ul>
-                    </div>
-                  </div>
-                </div>
-              </div>
+            
               <p class="d-flex flex-row align-items-center gap-2 mt-3 mb-2">
                 <button class="see-more-btn " type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample"
                   aria-expanded="false" aria-controls="collapseExample">
@@ -304,7 +290,7 @@
                       <img src=" {{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">Beds: &nbsp;&nbsp; <span class="feature-child">2</span></p>
+                      <p class="dis-text mb-0">Beds: &nbsp;&nbsp; <span class="feature-child">{{ $property->bedroom}}</span></p>
                     </div>
                   </div>
                   <div class="d-flex flex-row gap-2 align-items-baseline">
@@ -312,7 +298,7 @@
                       <img src=" {{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">Baths:&nbsp;&nbsp; <span class="feature-child">2</span></p>
+                      <p class="dis-text mb-0">Baths:&nbsp;&nbsp; <span class="feature-child">{{ $property->bathroom}}</span></p>
                     </div>
                   </div>
                   <div class="d-flex flex-row gap-2 align-items-baseline">
@@ -320,7 +306,7 @@
                       <img src=" {{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">Square Footage:&nbsp;&nbsp; <span class="feature-child">0 Sq. Ft</span>
+                      <p class="dis-text mb-0">Area:&nbsp;&nbsp; <span class="feature-child">{{ $property->area}}</span>
                       </p>
                     </div>
                   </div>
@@ -333,7 +319,7 @@
                       <img src="{{ asset('zameen/assets/images/check.png ') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">HOA Fee:&nbsp;&nbsp; <span class="feature-child">-</span></p>
+                      <p class="dis-text mb-0">Property Purpose:&nbsp;&nbsp; <span class="feature-child">{{ $property->purpose}}</span></p>
                     </div>
                   </div>
                   <div class="d-flex flex-row gap-2 align-items-baseline">
@@ -341,7 +327,7 @@
                       <img src=" {{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">Property Type:&nbsp;&nbsp; <span class="feature-child">Residential</span>
+                      <p class="dis-text mb-0">Property Type:&nbsp;&nbsp; <span class="feature-child">{{ $property->type}}</span>
                       </p>
                     </div>
                   </div>
@@ -350,7 +336,7 @@
                       <img src="{{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">MLS Type:&nbsp;&nbsp; <span class="feature-child">3446677</span></p>
+                      <p class="dis-text mb-0">State:&nbsp;&nbsp; <span class="feature-child">{{ $property->state_id}}</span></p>
                     </div>
                   </div>
                   <div class="d-flex flex-row gap-2 align-items-baseline">
@@ -358,7 +344,7 @@
                       <img src="{{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">Days on Market:&nbsp;&nbsp; <span class="feature-child">6 Days</span></p>
+                      <p class="dis-text mb-0">City:&nbsp;&nbsp; <span class="feature-child">{{ $property->city_id}}</span></p>
                     </div>
                   </div>
                 </div>
@@ -370,7 +356,9 @@
                       <img src="{{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">Year Built:&nbsp;&nbsp; <span class="feature-child">2005</span></p>
+                      <p class="dis-text mb-0">Socity:&nbsp;&nbsp; <span class="feature-child">
+                        {{ $property->socity_id}}
+                      </span></p>
                     </div>
                   </div>
                   <div class="d-flex flex-row gap-2 align-items-baseline">
@@ -378,7 +366,7 @@
                       <img src="{{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">Lot Size:&nbsp;&nbsp; <span class="feature-child">-</span></p>
+                      <p class="dis-text mb-0">Phase:&nbsp;&nbsp; <span class="feature-child">{{ $property->phase_id}}</span></p>
                     </div>
                   </div>
                   <div class="d-flex flex-row gap-2 align-items-baseline">
@@ -386,7 +374,7 @@
                       <img src="{{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">Country:&nbsp;&nbsp; <span class="feature-child">Queen</span></p>
+                      <p class="dis-text mb-0">Country:&nbsp;&nbsp; <span class="feature-child">Pakistan</span></p>
                     </div>
                   </div>
                   <div class="d-flex flex-row gap-2 align-items-baseline">
@@ -394,12 +382,32 @@
                       <img src="{{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">Taxes:&nbsp;&nbsp; <span class="feature-child">-</span></p>
+                      <p class="dis-text mb-0">Selected Feature:&nbsp;&nbsp; <span class="feature-child">-</span></p>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
+            @if($property->features)
+            <div class="row">
+              <div class="col-12 col-md-6 col-lg-4 mb-3">
+                <div class="d-flex flex-column gap-3">
+                  @foreach($property->features as $feature)
+                  <div class="d-flex flex-row gap-2 align-items-baseline">
+                    <div>
+                      <img src=" {{ asset('zameen/assets/images/check.png') }}">
+                    </div>
+                    <div>
+                      <p class="dis-text mb-0">{{$feature->name}} </p>
+                    </div>
+                  </div>
+                  @endforeach
+                </div>
+              </div>
+             
+             
+            </div>
+            @endif
             <hr />
           </div>
           <!-- Video Section -->
@@ -493,7 +501,11 @@
           @if($property->user)
           <div class="price-right-section px-3 pt-3 pb-2">
             <div class="img-place-holder">
-              <img src=" {{ asset('zameen/assets/images/placeholder.png') }}" height="306px" width="100%">
+              @if (!empty($property->user->image))
+              <img src="{{Storage::url('users/'.$property->user->image)}}" height="306px" width="100%">
+              @else
+              <img src=" {{ asset('zameen/55929607.png') }}" height="306px" width="100%">
+              @endif
               <span class="user-placeholder text-center d-block py-2">{{ $property->user->name }}</span>
             </div>
             <div class="user-form py-4">
@@ -578,348 +590,82 @@
           </div>
         </div>
       </div>
-      <!-- Cards Section -->
-      <ul class="nav nav-pills mb-3 similar-property " id="pills-tab" role="tablist">
-        <li class="nav-item" role="presentation">
-          <button class="nav-link active" id="pills-home-tab" data-bs-toggle="pill" data-bs-target="#pills-home"
-            type="button" role="tab" aria-controls="pills-home" aria-selected="true">Price</button>
-        </li>
-        <li class="nav-item" role="presentation">
-          <button class="nav-link" id="pills-profile-tab" data-bs-toggle="pill" data-bs-target="#pills-profile"
-            type="button" role="tab" aria-controls="pills-profile" aria-selected="false">Location</button>
-        </li>
-      </ul>
-      <div class="tab-content" id="pills-tabContent">
-        <div class="tab-pane fade show active" id="pills-home" role="tabpanel" aria-labelledby="pills-home-tab">
-          <div class="row mt-4">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="single-cards-slider buy-page-card">
-                <div class="img-wraper">
-                  <img src="assets/images/sampeHome.png {{ asset('zameen/assets/css/style.css') }}">
-                </div>
-                <div class="card-text-warrper">
-                  <div class="heart-sec d-flex flex-row justify-content-between mt-2 align-items-center">
-                    <h3>Pkr 250,000</h3>
-                    <img src="assets/images/favorited.png">
-                  </div>
-                  <div class="plan-text-sec d-flex flex-column gap-1">
-                    <h3 class="line-clamp-one">Grand Family House Grand Family House </h3>
-                    <p>2699 Green Valley, Highland Lake, FL</p>
-                  </div>
-                  <hr />
-                  <div class="icons-section">
-                    <div class="d-flex flex-row justify-content-between my-2">
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bed.png" />
-                        </div>
-                        <p>3 Beds</p>
+      <!-- Cards Section -->    
+        <section class="all-p">
+          <div class="container-fluid">
+              <div class="row">
+                  <div class="col-md-12 position-relative rewslider">
+                      <div class="swiper mySwiperreviewsim mt-3">
+                          <div class="swiper-wrapper">
+                            @foreach($relatedproperty as $property)
+                                  <div class="swiper-slide">
+                                      <div class="single-cards-slider">
+                                          <div class="img-wraper">
+                                              @if (!empty($property->image))
+                                              <img src="{{ Storage::url('property/' . $property->image) }}">
+                                              @else
+                                              <img src="{{ asset('zameen/house.png') }}">
+                                              @endif
+                                          </div>
+                                          <div class="card-text-warrper">
+                                              {{-- <div class="tag-img">
+                                                  <img src=" {{ asset('zameen/assets/images/featured.jpeg') }}">
+                                              </div> --}}
+                                              <div
+                                                  class="heart-sec d-flex flex-row justify-content-between mt-3 align-items-center">
+                                                  <h3>PKR {{ $property->price }}</h3>
+                                                  <img src=" {{ asset('zameen/assets/images/favorited.png') }}">
+                                              </div>
+                                              <a href="{{ route('property.show', $property->slug) }}">
+                                                  <div class="plan-text-sec d-flex flex-column gap-1 fixed-text">
+                                                      <h3> {{ $property->title }} </h3>
+                                                      <p>{{ ucfirst($property->address) }}</p>
+                                                  </div>
+                                              </a>
+                                              <hr />
+                                              <div class="icons-section">
+                                                  <div class="d-flex flex-row justify-content-between my-2">
+                                                      <div class="d-flex flex-row gap-1 align-items-center">
+                                                          <div>
+                                                              <img
+                                                                  src=" {{ asset('zameen/assets/images/bed.png') }}" />
+                                                          </div>
+                                                          <p>{{ $property->bedroom }} Beds</p>
+                                                      </div>
+                                                      <div class="d-flex flex-row gap-1 align-items-center">
+                                                          <div>
+                                                              <img
+                                                                  src=" {{ asset('zameen/assets/images/bath.png') }}" />
+                                                          </div>
+                                                          <p>{{ $property->bathroom }} Bathrooms</p>
+                                                      </div>
+                                                      <div class="d-flex flex-row gap-1 align-items-center">
+                                                          <div>
+                                                              <img
+                                                                  src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
+                                                          </div>
+                                                          <p>{{ $property->area }} marla</p>
+                                                      </div>
+                                                  </div>
+                                              </div>
+                                          </div>
+                                      </div>
+                                  </div>
+                              @endforeach
+
+                          </div>
+
                       </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bath.png" />
-                        </div>
-                        <p>2 Bathrooms</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/SquareMeters.png" />
-                        </div>
-                        <p>5x7 m²</p>
-                      </div>
-                    </div>
+
+                       <div class="swiper-button-next"><img src=" {{ asset('zameen/assets/images/next.png') }}"
+                              height="40px"></div>
+                      <div class="swiper-button-prev"><img src=" {{ asset('zameen/assets/images/pre.png') }}"
+                              height="40px"></div> 
                   </div>
-                </div>
               </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="single-cards-slider buy-page-card">
-                <div class="img-wraper">
-                  <img src="assets/images/sampeHome.png">
-                </div>
-                <div class="card-text-warrper">
-                  <div class="heart-sec d-flex flex-row justify-content-between mt-2 align-items-center">
-                    <h3>Pkr 250,000</h3>
-                    <img src="assets/images/favorited.png">
-                  </div>
-                  <div class="plan-text-sec d-flex flex-column gap-1">
-                    <h3 class="line-clamp-one">Grand Family House Grand Family House </h3>
-                    <p>2699 Green Valley, Highland Lake, FL</p>
-                  </div>
-                  <hr />
-                  <div class="icons-section">
-                    <div class="d-flex flex-row justify-content-between my-2">
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bed.png" />
-                        </div>
-                        <p>3 Beds</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bath.png" />
-                        </div>
-                        <p>2 Bathrooms</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/SquareMeters.png" />
-                        </div>
-                        <p>5x7 m²</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="single-cards-slider buy-page-card">
-                <div class="img-wraper">
-                  <img src="assets/images/sampeHome.png">
-                </div>
-                <div class="card-text-warrper">
-                  <div class="heart-sec d-flex flex-row justify-content-between mt-2 align-items-center">
-                    <h3>Pkr 250,000</h3>
-                    <img src="assets/images/favorited.png">
-                  </div>
-                  <div class="plan-text-sec d-flex flex-column gap-1">
-                    <h3 class="line-clamp-one">Grand Family House Grand Family House </h3>
-                    <p>2699 Green Valley, Highland Lake, FL</p>
-                  </div>
-                  <hr />
-                  <div class="icons-section">
-                    <div class="d-flex flex-row justify-content-between my-2">
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bed.png" />
-                        </div>
-                        <p>3 Beds</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bath.png" />
-                        </div>
-                        <p>2 Bathrooms</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/SquareMeters.png" />
-                        </div>
-                        <p>5x7 m²</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="single-cards-slider buy-page-card">
-                <div class="img-wraper">
-                  <img src="assets/images/sampeHome.png">
-                </div>
-                <div class="card-text-warrper">
-                  <div class="heart-sec d-flex flex-row justify-content-between mt-2 align-items-center">
-                    <h3>Pkr 250,000</h3>
-                    <img src="assets/images/favorited.png">
-                  </div>
-                  <div class="plan-text-sec d-flex flex-column gap-1">
-                    <h3 class="line-clamp-one">Grand Family House Grand Family House </h3>
-                    <p>2699 Green Valley, Highland Lake, FL</p>
-                  </div>
-                  <hr />
-                  <div class="icons-section">
-                    <div class="d-flex flex-row justify-content-between my-2">
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bed.png" />
-                        </div>
-                        <p>3 Beds</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bath.png" />
-                        </div>
-                        <p>2 Bathrooms</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/SquareMeters.png" />
-                        </div>
-                        <p>5x7 m²</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
           </div>
-        </div>
-        <div class="tab-pane fade" id="pills-profile" role="tabpanel" aria-labelledby="pills-profile-tab">
-          <div class="row mt-4">
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="single-cards-slider buy-page-card">
-                <div class="img-wraper">
-                  <img src="assets/images/sampeHome.png">
-                </div>
-                <div class="card-text-warrper">
-                  <div class="heart-sec d-flex flex-row justify-content-between mt-2 align-items-center">
-                    <h3>Pkr 250,000</h3>
-                    <img src="assets/images/favorited.png">
-                  </div>
-                  <div class="plan-text-sec d-flex flex-column gap-1">
-                    <h3 class="line-clamp-one">Grand Family House Grand Family House </h3>
-                    <p>2699 Green Valley, Highland Lake, FL</p>
-                  </div>
-                  <hr />
-                  <div class="icons-section">
-                    <div class="d-flex flex-row justify-content-between my-2">
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bed.png" />
-                        </div>
-                        <p>3 Beds</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bath.png" />
-                        </div>
-                        <p>2 Bathrooms</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/SquareMeters.png" />
-                        </div>
-                        <p>5x7 m²</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="single-cards-slider buy-page-card">
-                <div class="img-wraper">
-                  <img src="assets/images/sampeHome.png">
-                </div>
-                <div class="card-text-warrper">
-                  <div class="heart-sec d-flex flex-row justify-content-between mt-2 align-items-center">
-                    <h3>Pkr 250,000</h3>
-                    <img src="assets/images/favorited.png">
-                  </div>
-                  <div class="plan-text-sec d-flex flex-column gap-1">
-                    <h3 class="line-clamp-one">Grand Family House Grand Family House </h3>
-                    <p>2699 Green Valley, Highland Lake, FL</p>
-                  </div>
-                  <hr />
-                  <div class="icons-section">
-                    <div class="d-flex flex-row justify-content-between my-2">
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bed.png" />
-                        </div>
-                        <p>3 Beds</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bath.png" />
-                        </div>
-                        <p>2 Bathrooms</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/SquareMeters.png" />
-                        </div>
-                        <p>5x7 m²</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="single-cards-slider buy-page-card">
-                <div class="img-wraper">
-                  <img src="assets/images/sampeHome.png">
-                </div>
-                <div class="card-text-warrper">
-                  <div class="heart-sec d-flex flex-row justify-content-between mt-2 align-items-center">
-                    <h3>Pkr 250,000</h3>
-                    <img src="assets/images/favorited.png">
-                  </div>
-                  <div class="plan-text-sec d-flex flex-column gap-1">
-                    <h3 class="line-clamp-one">Grand Family House Grand Family House </h3>
-                    <p>2699 Green Valley, Highland Lake, FL</p>
-                  </div>
-                  <hr />
-                  <div class="icons-section">
-                    <div class="d-flex flex-row justify-content-between my-2">
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bed.png" />
-                        </div>
-                        <p>3 Beds</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bath.png" />
-                        </div>
-                        <p>2 Bathrooms</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/SquareMeters.png" />
-                        </div>
-                        <p>5x7 m²</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="col-12 col-sm-6 col-md-4 col-lg-3">
-              <div class="single-cards-slider buy-page-card">
-                <div class="img-wraper">
-                  <img src="assets/images/sampeHome.png">
-                </div>
-                <div class="card-text-warrper">
-                  <div class="heart-sec d-flex flex-row justify-content-between mt-2 align-items-center">
-                    <h3>Pkr 250,000</h3>
-                    <img src="assets/images/favorited.png">
-                  </div>
-                  <div class="plan-text-sec d-flex flex-column gap-1">
-                    <h3 class="line-clamp-one">Grand Family House Grand Family House </h3>
-                    <p>2699 Green Valley, Highland Lake, FL</p>
-                  </div>
-                  <hr />
-                  <div class="icons-section">
-                    <div class="d-flex flex-row justify-content-between my-2">
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bed.png" />
-                        </div>
-                        <p>3 Beds</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/bath.png" />
-                        </div>
-                        <p>2 Bathrooms</p>
-                      </div>
-                      <div class="d-flex flex-row gap-1 align-items-end">
-                        <div>
-                          <img src="assets/images/SquareMeters.png" />
-                        </div>
-                        <p>5x7 m²</p>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
+      </section>
+      
   </section>
   
   <div id="street-view-container">
@@ -942,6 +688,41 @@
 src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKv7-3C5AG1MYwJ-1iSHB2Mnxeyy1HfLE&callback=initialize&v=weekly"
 defer>
 </script>
+  <!-- Swiper JS -->
+  <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.6.1.min.js"
+      integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+  <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
+<script>
+  var swiper = new Swiper(".mySwiperreviewsim", {
+      spaceBetween: 10,
+      loop: true,
+      pagination: {
+          el: ".swiper-pagination",
+          type: "fraction",
+          clickable: true,
+      },
+      navigation: {
+          nextEl: ".swiper-button-next",
+          prevEl: ".swiper-button-prev",
+      },
+      breakpoints: {
+          640: {
+              slidesPerView: 1,
+              spaceBetween: 10,
+          },
+          768: {
+              slidesPerView: 2,
+              spaceBetween: 15,
+          },
+          1024: {
+              slidesPerView: 3,
+              spaceBetween: 30,
+          },
+      },
+  });
+</script>
+
 <!-- light box -->
 <script src="{{ asset('zameen/assets/js/lightgallery.umd.js') }}"></script>
 <script src="{{ asset('zameen/assets/js/lg-autoplay.umd.js') }}"></script>
@@ -1103,4 +884,8 @@ seediscription.addEventListener("click", () => {
         })
     })
 </script>
+
+
+
+
 @endpush

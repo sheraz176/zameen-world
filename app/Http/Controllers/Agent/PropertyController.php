@@ -109,6 +109,7 @@ class PropertyController extends Controller
         $property->nearby             = $request->nearby;
      
         $property->state_id            =  $request->state;
+        $property->city_id            =  $request->city_id;
         $property->socity_id           =  $request->socity;
         $property->phase_id            =  $request->phase;
         $property->block_id           =  $request->block;

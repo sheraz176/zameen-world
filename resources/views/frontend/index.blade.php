@@ -178,7 +178,7 @@
                                                     <a href="{{ route('property.show', $property->slug) }}">
                                                         <div class="plan-text-sec d-flex flex-column gap-1 fixed-text">
                                                             <h3> {{ $property->title }} </h3>
-                                                            <p>{{ ucfirst($property->city) }}</p>
+                                                            <p>{{ ucfirst($property->address) }}</p>
                                                         </div>
                                                     </a>
                                                     <hr />
@@ -252,7 +252,7 @@
                                                     <a href="{{ route('property.show', $property->slug) }}">
                                                         <div class="plan-text-sec d-flex flex-column gap-1 fixed-text">
                                                             <h3> {{ $property->title }} </h3>
-                                                            <p>{{ ucfirst($property->city) }}</p>
+                                                            <p>{{ ucfirst($property->address) }}</p>
                                                         </div>
                                                     </a>
                                                     <hr />
@@ -327,7 +327,7 @@
                                                 <a href="{{ route('property.show', $property->slug) }}">
                                                     <div class="plan-text-sec d-flex flex-column gap-1 fixed-text">
                                                         <h3> {{ $property->title }} </h3>
-                                                        <p>{{ ucfirst($property->city) }}</p>
+                                                        <p>{{ ucfirst($property->address) }}</p>
                                                     </div>
                                                 </a>
                                                 <hr />

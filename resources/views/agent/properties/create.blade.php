@@ -450,7 +450,7 @@
                                                         </div>
                                                         <span>Drop files here or click to upload.</span>
                                                     </div>
-                                                    <input type="file" id="file-input-group" multiple>
+                                                    <input type="file" name="gallaryimage[]" id="file-input-group" multiple>
                                                 </div>
                                                 <div id="preview-container-group"
                                                     class="d-flex flex-row gap-2 flex-wrap justify-content-center"></div>
