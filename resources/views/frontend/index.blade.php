@@ -28,7 +28,7 @@
                 </div>
                 <div class="search-container d-flex align-items-center flex-row position-relative">
                     <!-- <input type="text" class="form-control" list="programmingLanguages"
-                            placeholder="City, Neighborhood, Address, School, ZIP, Agent, MLS #" > -->
+                                placeholder="City, Neighborhood, Address, School, ZIP, Agent, MLS #" > -->
                     <input type="text" id="searchtxt" class="form-control" list="programmingLanguages"
                         placeholder="City, Neighborhood, Address, School, ZIP, Agent, MLS #">
                     <button type="button" class="mx-2 btn-contain-normal mt-md-0 mt-2">Search</button>
@@ -149,7 +149,7 @@
                     </div>
                 </div>
             </div>
-          <!-- propety Super Hot -->
+            <!-- propety Super Hot -->
             <section class="all-p">
                 <div class="container-fluid">
                     <div class="row">
@@ -161,9 +161,15 @@
                                             <div class="single-cards-slider">
                                                 <div class="img-wraper">
                                                     @if (!empty($property->image))
-                                                    <img src="{{ Storage::url('property/' . $property->image) }}">
+                                                        <img src="{{ Storage::url('property/' . $property->image) }}">
+                                                    @elseif(!empty( $property->location_latitude))
+                                                        <iframe width="100%" height="400" frameborder="0"
+                                                            scrolling="no" marginheight="0" marginwidth="0"
+                                                            loading="lazy"
+                                                            src="https://maps.google.com/maps?q={{ $property->address }},{{ $property->location_latitude }},{{ $property->location_longitude }}&z=15&output=embed">
+                                                        </iframe>
                                                     @else
-                                                    <img src="{{ asset('zameen/house.png') }}">
+                                                        <img src="{{ asset('zameen/house.png') }}">
                                                     @endif
                                                 </div>
                                                 <div class="card-text-warrper">
@@ -223,7 +229,7 @@
                     </div>
                 </div>
             </section>
-           <!-- propertioes-Hot -->
+            <!-- propertioes-Hot -->
             <section class="all-p">
                 <div class="container-fluid">
                     <div class="row">
@@ -235,9 +241,9 @@
                                             <div class="single-cards-slider">
                                                 <div class="img-wraper">
                                                     @if (!empty($property->image))
-                                                    <img src="{{ Storage::url('property/' . $property->image) }}">
+                                                        <img src="{{ Storage::url('property/' . $property->image) }}">
                                                     @else
-                                                    <img src="{{ asset('zameen/house.png') }}">
+                                                        <img src="{{ asset('zameen/house.png') }}">
                                                     @endif
                                                 </div>
                                                 <div class="card-text-warrper">
@@ -298,81 +304,81 @@
                     </div>
                 </div>
             </section>
-           <!-- propertioes-Featured -->
-           <section class="all-p">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 position-relative rewslider">
-                        <div class="swiper mySwiperreviewfeatured mt-3">
-                            <div class="swiper-wrapper">
-                                @foreach ($featured as $property)
-                                    <div class="swiper-slide">
-                                        <div class="single-cards-slider">
-                                            <div class="img-wraper">
-                                                @if (!empty($property->image))
-                                                <img src="{{ Storage::url('property/' . $property->image) }}">
-                                                @else
-                                                <img src="{{ asset('zameen/house.png') }}">
-                                                @endif
-                                            </div>
-                                            <div class="card-text-warrper">
-                                                <div class="tag-img">
-                                                    <img src=" {{ asset('zameen/assets/images/featured.jpeg') }}">
+            <!-- propertioes-Featured -->
+            <section class="all-p">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-md-12 position-relative rewslider">
+                            <div class="swiper mySwiperreviewfeatured mt-3">
+                                <div class="swiper-wrapper">
+                                    @foreach ($featured as $property)
+                                        <div class="swiper-slide">
+                                            <div class="single-cards-slider">
+                                                <div class="img-wraper">
+                                                    @if (!empty($property->image))
+                                                        <img src="{{ Storage::url('property/' . $property->image) }}">
+                                                    @else
+                                                        <img src="{{ asset('zameen/house.png') }}">
+                                                    @endif
                                                 </div>
-                                                <div
-                                                    class="heart-sec d-flex flex-row justify-content-between mt-3 align-items-center">
-                                                    <h3>PKR {{ $property->price }}</h3>
-                                                    <img src=" {{ asset('zameen/assets/images/favorited.png') }}">
-                                                </div>
-                                                <a href="{{ route('property.show', $property->slug) }}">
-                                                    <div class="plan-text-sec d-flex flex-column gap-1 fixed-text">
-                                                        <h3> {{ $property->title }} </h3>
-                                                        <p>{{ ucfirst($property->address) }}</p>
+                                                <div class="card-text-warrper">
+                                                    <div class="tag-img">
+                                                        <img src=" {{ asset('zameen/assets/images/featured.jpeg') }}">
                                                     </div>
-                                                </a>
-                                                <hr />
-                                                <div class="icons-section">
-                                                    <div class="d-flex flex-row justify-content-between my-2">
-                                                        <div class="d-flex flex-row gap-1 align-items-center">
-                                                            <div>
-                                                                <img
-                                                                    src=" {{ asset('zameen/assets/images/bed.png') }}" />
-                                                            </div>
-                                                            <p>{{ $property->bedroom }} Beds</p>
+                                                    <div
+                                                        class="heart-sec d-flex flex-row justify-content-between mt-3 align-items-center">
+                                                        <h3>PKR {{ $property->price }}</h3>
+                                                        <img src=" {{ asset('zameen/assets/images/favorited.png') }}">
+                                                    </div>
+                                                    <a href="{{ route('property.show', $property->slug) }}">
+                                                        <div class="plan-text-sec d-flex flex-column gap-1 fixed-text">
+                                                            <h3> {{ $property->title }} </h3>
+                                                            <p>{{ ucfirst($property->address) }}</p>
                                                         </div>
-                                                        <div class="d-flex flex-row gap-1 align-items-center">
-                                                            <div>
-                                                                <img
-                                                                    src=" {{ asset('zameen/assets/images/bath.png') }}" />
+                                                    </a>
+                                                    <hr />
+                                                    <div class="icons-section">
+                                                        <div class="d-flex flex-row justify-content-between my-2">
+                                                            <div class="d-flex flex-row gap-1 align-items-center">
+                                                                <div>
+                                                                    <img
+                                                                        src=" {{ asset('zameen/assets/images/bed.png') }}" />
+                                                                </div>
+                                                                <p>{{ $property->bedroom }} Beds</p>
                                                             </div>
-                                                            <p>{{ $property->bathroom }} Bathrooms</p>
-                                                        </div>
-                                                        <div class="d-flex flex-row gap-1 align-items-center">
-                                                            <div>
-                                                                <img
-                                                                    src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
+                                                            <div class="d-flex flex-row gap-1 align-items-center">
+                                                                <div>
+                                                                    <img
+                                                                        src=" {{ asset('zameen/assets/images/bath.png') }}" />
+                                                                </div>
+                                                                <p>{{ $property->bathroom }} Bathrooms</p>
                                                             </div>
-                                                            <p>{{ $property->area }} {{ $property->unit }}</p>
+                                                            <div class="d-flex flex-row gap-1 align-items-center">
+                                                                <div>
+                                                                    <img
+                                                                        src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
+                                                                </div>
+                                                                <p>{{ $property->area }} {{ $property->unit }}</p>
+                                                            </div>
                                                         </div>
                                                     </div>
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
-                                @endforeach
+                                    @endforeach
+
+                                </div>
 
                             </div>
 
-                        </div>
-
-                        {{-- <div class="swiper-button-next"><img src=" {{ asset('zameen/assets/images/next.png') }}"
+                            {{-- <div class="swiper-button-next"><img src=" {{ asset('zameen/assets/images/next.png') }}"
                                 height="40px"></div>
                         <div class="swiper-button-prev"><img src=" {{ asset('zameen/assets/images/pre.png') }}"
                                 height="40px"></div> --}}
+                        </div>
                     </div>
                 </div>
-            </div>
-        </section>
+            </section>
         </div>
 
     </section>
@@ -613,7 +619,7 @@
     <script src="https://code.jquery.com/jquery-3.6.1.min.js"
         integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/swiper@9/swiper-bundle.min.js"></script>
-  
+
     <script>
         var swiper = new Swiper(".mySwiperreviewsuperhot", {
             spaceBetween: 10,
@@ -674,8 +680,8 @@
             },
         });
     </script>
-      
-      <script>
+
+    <script>
         var swiper = new Swiper(".mySwiperreviewfeatured", {
             spaceBetween: 10,
             loop: true,
@@ -704,6 +710,4 @@
             },
         });
     </script>
-
-
 @endpush

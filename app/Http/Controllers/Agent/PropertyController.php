@@ -52,7 +52,7 @@ class PropertyController extends Controller
             'bathroom'  => 'required',
             'address'   => 'required',
             'area'      => 'required',
-             'image'     => 'required',
+            //  'image'     => 'required',
              'state'     => 'required',
              'unit'     => 'required',
              'city_id'     => 'required',
@@ -96,7 +96,9 @@ class PropertyController extends Controller
         $property->price    = $request->price;
         $property->purpose  = $request->purpose;
         $property->type     = $request->type;
-        $property->image    = $imagename;
+        if(!empty($request->image)){
+            $property->image    = $imagename;
+        }
         $property->bedroom  = $request->bedroom;
         $property->bathroom = $request->bathroom;
         $property->address  = $request->address;

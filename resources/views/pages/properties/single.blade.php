@@ -14,6 +14,7 @@
  
   </head>
 
+
 @endpush
 
 @section('content')
@@ -29,7 +30,7 @@
             @if(!$property->gallery->isEmpty())
             <div id="carouselExampleControls" class="carousel slide pointer-event transaction-slider" data-bs-ride="carousel">
               <div class="carousel-inner">
-            @foreach($property->gallery as $gallery)
+              @foreach($property->gallery as $gallery)
                 <div class="carousel-item active">
                   <img  src="{{Storage::url('property/gallery/'.$gallery->name)}}" />
                 </div>
@@ -46,19 +47,38 @@
                 <span class="visually-hidden">Next</span>
               </button>
             </div>
-            @else
+            @elseif(!empty( $property->location_latitude))
+            <iframe width="100%" height="500" frameborder="0"
+            scrolling="no" marginheight="0" marginwidth="0"
+            loading="lazy"
+            src="https://maps.google.com/maps?q={{ $property->address }},{{ $property->location_latitude }},{{ $property->location_longitude }}&z=15&output=embed">
+           </iframe>
+            
+            @elseif (!empty($property->image))
             <div class="lg-img">
               <img src="{{Storage::url('property/'.$property->image)}}">
+            </div>
+            @else
+            <div class="lg-img">
+              <img src="{{ asset('zameen/house.png') }}">
             </div>
              @endif
           
                     
           </div>
 
+        
+
+
+
           <div class="col-md col-lg-5">
             <div class="d-flex flex-column gap-2">
               <div class="sm-img position-relative">
+                @if (!empty($property->image))
                 <img src="{{Storage::url('property/'.$property->image)}}">
+                @else
+                <img src="{{ asset('zameen/house.png') }}">
+                @endif
                 <div class="stree-view-btn d-flex flex-row flex-lg-column flex-xl-row gap-2">
                   <button id="streetviewget">
                     <svg width="22" height="22" viewBox="0 0 22 26" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -89,6 +109,7 @@
               <!-- <div class="sm-img">
                 <img src="assets/images/prop-sm-2.png">
               </div> -->
+              @if (!empty($property->image))
               <div class="sm-img p-0 m-0 lightgallery position-relative">
                 <ul id="lightgallery" class="list-unstyled row p-0 m-0">
                   <li class="w-100 p-0 m-0 set-opacity" data-responsive="{{Storage::url('property/'.$property->image)}}"
@@ -122,12 +143,52 @@
                   <p class="seemore-text">See more images</p>
                 </div>
               </div>
+              @else
+              <div class="sm-img p-0 m-0 lightgallery position-relative">
+                <ul id="lightgallery" class="list-unstyled row p-0 m-0">
+                  <li class="w-100 p-0 m-0 set-opacity" data-responsive="{{ asset('zameen/house.png') }}"
+                    data-src="{{ asset('zameen/house.png') }}" data-sub-html="Image Description"
+                    data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                    <a href="">
+                      <img class="img-responsive" src="{{ asset('zameen/house.png') }}">
+                    </a>
+                  </li>
+                  <li class="w-100 p-0 m-0 d-none" data-responsive="{{ asset('zameen/house.png') }}"
+                    data-src="{{ asset('zameen/house.png') }}" data-sub-html="Image Description"
+                    data-pinterest-text="Pin it1" data-tweet-text="share on twitter 1">
+                    <a href="">
+                      <img class="img-responsive" src="{{ asset('zameen/house.png') }}">
+                    </a>
+                  </li>
+                
+                </ul>
+                <div class="img-overlay">
+                  <svg width="82" height="68" viewBox="0 0 82 68" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path
+                      d="M8.75378 0.510855C4.9446 1.5364 2.05109 4.10027 0.695907 7.68968C0.0366267 9.41114 0 10.7663 0 28.6401C0 47.393 0 47.7593 0.76916 49.3708C1.68483 51.2022 3.80917 52.9236 5.67714 53.2533C6.66606 53.4364 6.95907 53.6928 6.95907 54.2788C6.95907 55.4875 8.6439 58.088 9.96246 58.8938C10.6217 59.2967 11.8304 59.8094 12.6362 60.0292C13.9914 60.3955 14.1745 60.5786 14.5408 62.007C15.0902 64.0948 16.2622 65.4866 18.0936 66.329C19.522 66.9883 21.1336 67.0249 48.1641 67.0249C75.0847 67.0249 76.8061 66.9883 78.198 66.329C80.0293 65.5232 81.5676 63.7285 81.8606 62.1536C81.9705 61.4943 82.0438 51.2388 81.9705 39.3351L81.8606 17.6888L80.7985 16.3336C79.663 14.8319 77.3555 13.5866 75.7806 13.55C74.9748 13.55 74.7184 13.2569 74.169 11.8651C73.3632 9.70415 71.3121 7.76294 69.3343 7.21354C68.4553 6.99378 67.7594 6.59088 67.7594 6.3345C67.7594 4.39328 64.6827 1.02363 62.3752 0.400975C60.2509 -0.185052 10.9514 -0.111798 8.75378 0.510855ZM63.2176 4.53979C65.5984 6.92052 65.5618 6.92052 55.233 7.0304L45.9665 7.14028V8.42222V9.70415L57.4306 9.88728L68.9314 10.0704L70.1767 11.4256C70.8726 12.1948 71.422 12.9639 71.422 13.1837C71.422 13.4034 62.1555 13.55 45.1241 13.6232L18.8261 13.7331L17.3244 14.722C16.4454 15.308 15.5297 16.3336 15.0536 17.2859C14.2844 18.8608 14.2844 19.3003 14.2844 38.0532V57.209L13.2955 56.9526C12.7095 56.8427 11.7938 56.22 11.1711 55.634L10.0723 54.5718L9.96246 34.1341C9.85258 15.4912 9.8892 13.6232 10.4752 12.561C11.7572 10.107 11.8304 10.107 24.137 9.88728C34.2093 9.70415 35.3081 9.6309 35.6744 9.04487C35.9674 8.60535 35.9674 8.23908 35.6744 7.76294C35.3081 7.17691 34.3192 7.14028 23.5143 7.14028H11.7938L10.2188 8.23908C9.26655 8.89836 8.27763 10.0704 7.72823 11.1692L6.77594 12.9639L6.66606 31.5703C6.5928 46.6971 6.48292 50.1766 6.08003 50.1766C5.38412 50.1766 3.69929 48.5284 3.2964 47.4296C3.07664 46.8436 2.93013 39.5549 2.93013 28.7867C2.93013 8.93499 2.96676 8.56872 5.38412 6.07811C8.241 3.14798 6.48292 3.29448 35.8575 3.29448H61.9723L63.2176 4.53979ZM77.3189 17.2126C79.0404 18.1649 79.1136 18.8608 79.1136 33.1452C79.1136 40.5072 79.0404 46.514 78.9305 46.514C78.8206 46.514 76.9893 45.1954 74.8283 43.6205C68.9314 39.2253 68.5285 39.2619 61.4229 44.4629C59.0422 46.1843 56.9545 47.6128 56.808 47.6128C56.6248 47.6128 52.6325 43.6571 47.9077 38.7857C43.2195 33.9144 38.9342 29.7389 38.3848 29.4459C37.0296 28.75 34.4291 28.7867 33.3303 29.5558C32.8175 29.8855 29.0816 33.1086 25.016 36.698C20.9505 40.2874 17.5442 43.2176 17.3977 43.2176C17.2878 43.2176 17.2145 37.7968 17.2878 31.1674L17.3977 19.0806L18.4598 17.9818L19.5586 16.8464H48.0908C66.9536 16.8464 76.8428 16.9562 77.3189 17.2126ZM36.9563 32.2296C37.0662 32.2296 42.3771 37.6137 48.7135 44.1699C55.0499 50.726 60.5439 56.2567 60.8735 56.4398C61.7526 56.9159 62.595 56.4764 62.8514 55.4142C63.0711 54.6451 62.7415 54.1689 60.9834 52.3742L58.8957 50.2499L62.3386 47.7226C67.5762 43.8402 68.0157 43.5838 68.8215 43.5838C69.2244 43.5838 71.715 45.1954 74.3155 47.1366L79.077 50.726L79.1136 55.7805C79.1136 61.128 78.784 62.5564 77.3189 63.3622C76.8428 63.6186 66.9536 63.7285 48.1641 63.7285C16.8483 63.7285 18.4598 63.8384 17.6174 61.4576C17.3977 60.835 17.2145 57.5752 17.2145 54.0591V47.7959L25.4922 40.4706C34.3192 32.6325 35.4546 31.7534 36.1872 32.0464C36.4802 32.1563 36.8098 32.2296 36.9563 32.2296Z"
+                      fill="white" />
+                    <path
+                      d="M39.63 7.39661C38.5678 8.45878 39.5201 10.0337 41.0951 9.81397C41.791 9.74072 41.9375 9.48433 41.9375 8.42216C41.9375 7.32336 41.791 7.14022 41.0218 7.03034C40.5091 6.95709 39.8864 7.14022 39.63 7.39661Z"
+                      fill="white" />
+                    <path
+                      d="M59.3352 24.135C58.6393 24.5013 57.5772 25.417 56.9545 26.1495C55.9656 27.3948 55.8557 27.7977 55.8557 30.1784C55.8557 32.5592 55.9656 32.9987 56.9179 34.2074C61.0201 39.5915 69.7738 36.3317 69.1512 29.6657C68.675 24.9408 63.4008 21.9374 59.3352 24.135ZM63.4741 26.6989C66.0379 27.6878 66.8071 30.911 64.9391 32.669C63.6206 33.8777 62.4119 34.1341 60.9468 33.5115C59.7748 33.0353 58.6027 31.3871 58.6027 30.2151C58.6027 29.1895 59.6649 27.5047 60.7271 26.9553C61.8991 26.296 62.302 26.2594 63.4741 26.6989Z"
+                      fill="white" />
+                  </svg>
+                  <p class="seemore-text">See more images</p>
+                </div>
+              </div>
+              @endif
+
+
             </div>
           </div>
         </div>
       </div>
     </div>
   </section>
+
+  
+
 
   <!-- Grand-famlily-section -->
   <section class="px-2 px-lg-5">
@@ -344,7 +405,14 @@
                       <img src="{{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">City:&nbsp;&nbsp; <span class="feature-child">{{$property->City->city_name}}</span></p>
+                      <p class="dis-text mb-0">City:&nbsp;&nbsp; <span class="feature-child">
+                        @if (!empty($property->city_id))
+                        {{$property->City->city_name}}
+                        @else
+                          --
+                        @endif
+                       
+                      </span></p>
                     </div>
                   </div>
                 </div>
@@ -455,12 +523,11 @@
             </p>
             <p class="dis-text mb-0 pb-2">{{ $property->address }}</p>
             <div>
-              <div class="map-container">
-                <div style="width: 100%"><iframe width="100%" height="338px" frameborder="0" scrolling="no"
-                    marginheight="0" marginwidth="0"
-                    src="https://maps.google.com/maps?width=100%25&amp;height=600&amp;hl=en&amp;q=1%20Grafton%20Street,%20Dublin,%20Ireland+(My%20Business%20Name)&amp;t=&amp;z=14&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"><a
-                      href="https://www.maps.ie/distance-area-calculator.html">measure area map</a></iframe></div>
-              </div>
+              <iframe width="100%" height="400" frameborder="0"
+              scrolling="no" marginheight="0" marginwidth="0"
+              loading="lazy"
+              src="https://maps.google.com/maps?q={{ $property->address }},{{ $property->location_latitude }},{{ $property->location_longitude }}&z=15&output=embed">
+             </iframe>
             </div>
             <!-- buttons-section -->
             <div class="row">
@@ -605,6 +672,7 @@
           <div class="d-flex flex-column  gap-2 pt-3">
             <p class="small-head pb-2">
               Similar Properties
+            
             </p>
           </div>
         </div>
@@ -687,6 +755,7 @@
       
   </section>
   
+
   <div id="street-view-container">
     <button id="closehandler" class="d-flex align-items-center"><svg width="20" height="20" viewBox="0 0 20 20"
         fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -703,10 +772,7 @@
 @endsection
 
 @push('scripts')
-<script
-src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBKv7-3C5AG1MYwJ-1iSHB2Mnxeyy1HfLE&callback=initialize&v=weekly"
-defer>
-</script>
+
   <!-- Swiper JS -->
   <script src="https://cdn.jsdelivr.net/npm/swiper/swiper-bundle.min.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.1.min.js"
@@ -746,6 +812,10 @@ defer>
 <script src="{{ asset('zameen/assets/js/lightgallery.umd.js') }}"></script>
 <script src="{{ asset('zameen/assets/js/lg-autoplay.umd.js') }}"></script>
 <script src="{{ asset('zameen/assets/js/lg-thumbnail.umd.js') }}"></script>
+<script src="https://api-maps.yandex.ru/2.1/?apikey=39260d20-1d00-4a63-a31e-10bfbc19bc05&lang=en_US" type="text/javascript"></script>
+<script async defer
+src="https://maps.googleapis.com/maps/api/js?key=AIzaSyBRLaJEjRudGCuEi1_pqC4n3hpVHIyJJZA&callback=initMap">
+</script>
 <script>
 // video controls
 let video = document.querySelectorAll('.video');
@@ -905,6 +975,7 @@ seediscription.addEventListener("click", () => {
 </script>
 
 
+    
 
 
 @endpush

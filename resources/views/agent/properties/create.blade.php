@@ -270,46 +270,7 @@
                                     </div>
                                 </div>
                             </div>
-                            <div class="form-row">
-                                <div class="col-md-6 mb-2">
-                                    <label for="address">Address <span style="color: red;">*</span></label>
-                                    <div class="input-group">
-                                        <input id="address" name="address"
-                                            class="form-control @error('address')is-invalid @enderror" required />
-                                    </div>
-                                    <div class="col-md-12">
-                                        @if ($errors->has('address'))
-                                            <div class="alert-error mt-1 mb-3">
-                                                <svg width="12" height="11" viewBox="0 0 12 11" fill="none"
-                                                    xmlns="http://www.w3.org/2000/svg">
-                                                    <path fill-rule="evenodd" clip-rule="evenodd"
-                                                        d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
-                                                        fill="#CE2121" />
-                                                </svg> {{ $errors->first('address') }}
-                                            </div>
-                                        @endif
-                                    </div>
-                                </div>
-                                <div class="col-md-6 mb-3">
-                                    <div class="input-field col s6">
-                                        <div class="row">
-                                            <div class="col-6">
-                                                <label for="location_latitude">Latitude</label>
-                                                <input id="location_latitude" name="location_latitude" type="text"
-                                                    class="form-control validate" required>
-                                            </div>
-                                            <div class="col-6">
-                                                <label for="location_longitude">Longitude</label>
-                                                <input id="location_longitude" name="location_longitude" type="text"
-                                                    class="form-control validate" required>
-                                            </div>
-                                        </div>
-
-
-                                    </div>
-                                </div>
-
-                            </div>
+                           
                             <div class="form-row">
                                 <div class="col-md-12 mb-2">
                                     <label for="description">Description</label>
@@ -494,8 +455,60 @@
                             </div>
                         </div>
                     </div>
+                    <div class="form-row">
+                        <div class="col-md-12 mb-2">
+                            <label for="address">Select the Map Location <span style="color: red;">*</span></label>
+                            <div class="input-group">
+                                <input name="address" id="map_names"
+                                    class="form-control @error('address')is-invalid @enderror" required/>
+                            </div>
+                            <div class="col-md-12">
+                                @if ($errors->has('address'))
+                                    <div class="alert-error mt-1 mb-3">
+                                        <svg width="12" height="11" viewBox="0 0 12 11" fill="none"
+                                            xmlns="http://www.w3.org/2000/svg">
+                                            <path fill-rule="evenodd" clip-rule="evenodd"
+                                                d="M4.77994 1.16969C5.31517 0.218177 6.68513 0.218176 7.22035 1.16969L11.1266 8.11407C11.6515 9.04731 10.9771 10.2004 9.90636 10.2004H2.09393C1.02318 10.2004 0.348776 9.04731 0.873727 8.11407L4.77994 1.16969ZM6.70009 8.10051C6.70009 8.48711 6.38668 8.80051 6.00009 8.80051C5.61349 8.80051 5.30009 8.48711 5.30009 8.10051C5.30009 7.71391 5.61349 7.40051 6.00009 7.40051C6.38668 7.40051 6.70009 7.71391 6.70009 8.10051ZM6.00009 2.50051C5.61349 2.50051 5.30009 2.81391 5.30009 3.20051V5.30051C5.30009 5.68711 5.61349 6.00051 6.00009 6.00051C6.38668 6.00051 6.70009 5.68711 6.70009 5.30051V3.20051C6.70009 2.81391 6.38668 2.50051 6.00009 2.50051Z"
+                                                fill="#CE2121" />
+                                        </svg> {{ $errors->first('address') }}
+                                    </div>
+                                @endif
+                            </div>
+                        </div>
+                       
 
+                    </div>
+                    <div class="form-row">
+                        <input type="hidden" name="location_latitude" id="lats" >
+                        <input type="hidden" name="location_longitude" id="lngs" >
+                     
 
+                        <div class="col-12 mb-3">
+                          
+                            <div class="map-container">
+                                <div id="map-view" class="google-map" style="overflow: hidden;">
+                                    <div
+                                        style="height: 100%; width: 100%; position: absolute; top: 0px; left: 0px; background-color: rgb(229, 227, 223);">
+                                        <div class="gm-err-container">
+                                            <div class="gm-err-content">
+                                                <div class="gm-err-icon"><img
+                                                        src="https://maps.gstatic.com/mapfiles/api-3/images/icon_error.png"
+                                                        alt="" draggable="false"
+                                                        style="user-select: none;">
+                                                </div>
+                                                <div class="address-map" style="width:100%;height:200px;">
+                                                </div>
+                                                <div class="gm-err-message">This page didn't
+                                                    load Google Maps correctly. See the
+                                                    JavaScript console for technical details.
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
 
                     <button class="btn btn-warning mt-4 d-inline w-20" type="submit">Reset</button>
@@ -913,4 +926,112 @@
             // Sub-Block Code End
         });
     </script>
+ <script src="https://api-maps.yandex.ru/2.1/?apikey=39260d20-1d00-4a63-a31e-10bfbc19bc05&lang=en_US" type="text/javascript"></script>
+
+
+
+ <script>
+
+
+     ymaps.ready(init);
+
+     var current_lat = 0;
+    var current_lng = 0;
+ navigator.geolocation.getCurrentPosition(function(position) {
+  current_lat = position.coords.latitude;
+  current_lng = position.coords.longitude;
+
+       });
+
+     function init() {
+
+
+         var myPlacemark,
+             myMap = new ymaps.Map('map-view', {
+
+                 center: [current_lat,current_lng],
+                 zoom: 9
+             }, {
+                 searchControlProvider: 'yandex#search'
+             });
+
+         // Listening for a click on the map
+         myMap.events.add('click', function(e) {
+             var coords = e.get('coords');
+
+
+             // Moving the placemark if it was already created
+             if (myPlacemark) {
+                 myPlacemark.geometry.setCoordinates(coords);
+             }
+             // Otherwise, creating it.
+             else {
+
+                 myPlacemark = createPlacemark(coords);
+                 myMap.geoObjects.add(myPlacemark);
+                 // Listening for the dragging end event on the placemark.
+                 myPlacemark.events.add('dragend', function() {
+                     getAddress(myPlacemark.geometry.getCoordinates());
+                 });
+             }
+             getAddress(coords);
+         });
+
+         // Creating a placemark
+         function createPlacemark(coords) {
+             return new ymaps.Placemark(coords, {
+                 iconCaption: 'searching...'
+             }, {
+                 preset: 'islands#violetDotIconWithCaption',
+                 draggable: true
+             });
+         }
+
+
+
+         // Determining the address by coordinates (reverse geocoding).
+         function getAddress(coords) {
+             myPlacemark.properties.set('iconCaption', 'searching...');
+             ymaps.geocode(coords).then(function(res) {
+                 var firstGeoObject = res.geoObjects.get(0);
+
+                 myPlacemark.properties
+                     .set({
+                         // Forming a string with the object's data.
+                         iconCaption: [
+                             // The name of the municipality or the higher territorial-administrative formation.
+                             firstGeoObject.getLocalities().length ? firstGeoObject.getLocalities() :
+                             firstGeoObject.getAdministrativeAreas(),
+                             // Getting the path to the toponym; if the method returns null, then requesting the name of the building.
+                             firstGeoObject.getThoroughfare() || firstGeoObject.getPremise()
+                         ].filter(Boolean).join(', '),
+                         // Specifying a string with the address of the object as the balloon content.
+                         balloonContent: firstGeoObject.getAddressLine()
+                     });
+
+                 // console.log('firstGeoObject',firstGeoObject['geometry']['_coordinates']);
+                 $('#lats').val(firstGeoObject['geometry']['_coordinates']['0']);
+                 $('#lngs').val(firstGeoObject['geometry']['_coordinates']['1']);
+                 $('#map_names').val(firstGeoObject.getAddressLine());
+
+             });
+         }
+     }
+ </script>
+ <script>
+     function submit() {
+         var lat = $('#lat').val();
+         var lng = $('#lng').val();
+         var map_name = $('#map_name').val();
+         var name = $('#name').val();
+         if (lat && lng && map_name && name) {
+             $('#area-form').submit();
+         } else {
+             alert('please fill form !');
+         }
+     }
+ </script>
+
+
+
 @endpush
