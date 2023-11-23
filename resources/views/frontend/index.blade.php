@@ -203,7 +203,7 @@
                                                                     <img
                                                                         src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
                                                                 </div>
-                                                                <p>{{ $property->area }} marla</p>
+                                                                <p>{{ $property->area }} {{ $property->unit }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -277,7 +277,7 @@
                                                                     <img
                                                                         src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
                                                                 </div>
-                                                                <p>{{ $property->area }} marla</p>
+                                                                <p>{{ $property->area }} {{ $property->unit }}</p>
                                                             </div>
                                                         </div>
                                                     </div>
@@ -352,7 +352,7 @@
                                                                 <img
                                                                     src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
                                                             </div>
-                                                            <p>{{ $property->area }} marla</p>
+                                                            <p>{{ $property->area }} {{ $property->unit }}</p>
                                                         </div>
                                                     </div>
                                                 </div>

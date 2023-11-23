@@ -54,6 +54,7 @@ class PropertyController extends Controller
             'area'      => 'required',
              'image'     => 'required',
              'state'     => 'required',
+             'unit'     => 'required',
              'city_id'     => 'required',
             // 'floor_plan'=> 'image|mimes:jpeg,jpg,png',
             // 'location_latitude'  => 'required',
@@ -100,6 +101,7 @@ class PropertyController extends Controller
         $property->bathroom = $request->bathroom;
         $property->address  = $request->address;
         $property->area     = $request->area;
+        $property->unit     = $request->unit;
         $property->agent_id           = Auth::id();
         $property->video              = $request->video;
         $property->floor_plan         = $imagefloorplan;

@@ -306,7 +306,7 @@
                       <img src=" {{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">Area:&nbsp;&nbsp; <span class="feature-child">{{ $property->area}}</span>
+                      <p class="dis-text mb-0">Area:&nbsp;&nbsp; <span class="feature-child">{{ $property->area}} {{ $property->unit }}</span>
                       </p>
                     </div>
                   </div>
@@ -336,7 +336,7 @@
                       <img src="{{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">State:&nbsp;&nbsp; <span class="feature-child">{{ $property->state_id}}</span></p>
+                      <p class="dis-text mb-0">State:&nbsp;&nbsp; <span class="feature-child">{{ $property->state->state_name	}}</span></p>
                     </div>
                   </div>
                   <div class="d-flex flex-row gap-2 align-items-baseline">
@@ -344,7 +344,7 @@
                       <img src="{{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">City:&nbsp;&nbsp; <span class="feature-child">{{ $property->city_id}}</span></p>
+                      <p class="dis-text mb-0">City:&nbsp;&nbsp; <span class="feature-child">{{$property->City->city_name}}</span></p>
                     </div>
                   </div>
                 </div>
@@ -357,7 +357,12 @@
                     </div>
                     <div>
                       <p class="dis-text mb-0">Socity:&nbsp;&nbsp; <span class="feature-child">
-                        {{ $property->socity_id}}
+                        @if (!empty($property->socity_id))
+                        {{ $property->socity->socity_name}}
+                        @else
+                          --
+                        @endif
+                       
                       </span></p>
                     </div>
                   </div>
@@ -366,7 +371,28 @@
                       <img src="{{ asset('zameen/assets/images/check.png') }}">
                     </div>
                     <div>
-                      <p class="dis-text mb-0">Phase:&nbsp;&nbsp; <span class="feature-child">{{ $property->phase_id}}</span></p>
+                      <p class="dis-text mb-0">Phase:&nbsp;&nbsp; <span class="feature-child">
+                        @if (!empty($property->phase_id))
+                        {{ $property->phase->phase_name}}
+                        @else
+                          --
+                        @endif
+                       
+                      </span></p>
+                    </div>
+                  </div>
+                  <div class="d-flex flex-row gap-2 align-items-baseline">
+                    <div>
+                      <img src="{{ asset('zameen/assets/images/check.png') }}">
+                    </div>
+                    <div>
+                      <p class="dis-text mb-0">Block:&nbsp;&nbsp; <span class="feature-child">
+                        @if (!empty($property->block_id))
+                        {{ $property->block->block_name}}
+                        @else
+                          --
+                        @endif
+                      </span></p>
                     </div>
                   </div>
                   <div class="d-flex flex-row gap-2 align-items-baseline">
@@ -375,14 +401,7 @@
                     </div>
                     <div>
                       <p class="dis-text mb-0">Country:&nbsp;&nbsp; <span class="feature-child">Pakistan</span></p>
-                    </div>
-                  </div>
-                  <div class="d-flex flex-row gap-2 align-items-baseline">
-                    <div>
-                      <img src="{{ asset('zameen/assets/images/check.png') }}">
-                    </div>
-                    <div>
-                      <p class="dis-text mb-0">Selected Feature:&nbsp;&nbsp; <span class="feature-child">-</span></p>
+
                     </div>
                   </div>
                 </div>
@@ -434,7 +453,7 @@
             <p class="small-head pb-1">
               Address
             </p>
-            <p class="dis-text mb-0 pb-2">8819 Ohio St. South Gate, California</p>
+            <p class="dis-text mb-0 pb-2">{{ $property->address }}</p>
             <div>
               <div class="map-container">
                 <div style="width: 100%"><iframe width="100%" height="338px" frameborder="0" scrolling="no"
@@ -644,7 +663,7 @@
                                                               <img
                                                                   src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
                                                           </div>
-                                                          <p>{{ $property->area }} marla</p>
+                                                          <p>{{ $property->area }} {{ $property->unit }}</p>
                                                       </div>
                                                   </div>
                                               </div>
