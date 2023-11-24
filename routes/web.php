@@ -13,10 +13,10 @@ Route::get('/auth/google-callback', [SocialiteAuthController::class, 'loginWithG
 
 
 
-Route::get('/', 'FrontpageController@index')->name('home');
+// Route::get('/', 'FrontpageController@index')->name('home');
 Route::get('/slider', 'FrontpageController@slider')->name('slider.index');
 
-Route::get('/search', 'FrontpageController@search')->name('search');
+Route::get('/', 'FrontpageController@search')->name('search');
 
 Route::get('/property', 'PagesController@properties')->name('property');
 Route::get('/property/{id}', 'PagesController@propertieshow')->name('property.show');

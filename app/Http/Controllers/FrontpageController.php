@@ -81,34 +81,134 @@ class FrontpageController extends Controller
 
    
 
-    public function search()
+    public function search(Request $request)
     {
          // Retrieve two featured posts
    
 
-         $featuredPosts = Property::where('featured', true)->take(2)->get();
-         $normalPosts = Property::where('featured', false)->take(2)->get();
+        //  $featuredPosts = Property::where('featured', true)->take(2)->get();
+        //  $hot = Property::where('hot', true)->take(2)->get();
+        //  $superhot = Property::where('superhot', true)->take(2)->get();
+        //  $normalPosts = Property::where('featured', false)->take(2)->get();
          
-         $mergedPosts = $featuredPosts->merge($normalPosts);
+        //  $mergedPosts = $featuredPosts->merge($normalPosts);
          
-         $currentPage = LengthAwarePaginator::resolveCurrentPage();
-         $perPage = 4;
+        //  $currentPage = LengthAwarePaginator::resolveCurrentPage();
+        //  $perPage = 4;
          
-         // Paginate the merged collection directly
-         $currentPageItems = $mergedPosts->forPage($currentPage, $perPage)->values();
+        //  // Paginate the merged collection directly
+        //  $currentPageItems = $mergedPosts->forPage($currentPage, $perPage)->values();
          
-         $paginatedMergedItems = new LengthAwarePaginator(
-             $currentPageItems,
-             $mergedPosts->count(),
-             $perPage,
-             $currentPage,
-             ['path' => LengthAwarePaginator::resolveCurrentPath()]
-         );
-        //  dd($paginatedMergedItems);
-        return view('pages.search', compact('paginatedMergedItems'));
-    }
+        //  $paginatedMergedItems = new LengthAwarePaginator(
+        //      $currentPageItems,
+        //      $mergedPosts->count(),
+        //      $perPage,
+        //      $currentPage,
+        //      ['path' => LengthAwarePaginator::resolveCurrentPath()]
+        //  );
+        // //  dd($paginatedMergedItems);
+        // return view('pages.search', compact('paginatedMergedItems'));
+
+        $city     = strtolower($request->city);
+        $type     = $request->type;
+        $purpose  = $request->purpose;
+        $bedroom  = $request->bedroom;
+        $bathroom = $request->bathroom;
+        $minprice = $request->minprice;
+        $maxprice = $request->maxprice;
+        $minarea  = $request->minarea;
+        $maxarea  = $request->maxarea;
+        $featured = $request->featured;
+        $data = Property::latest()->when($city, function ($query, $city) {
+                                            return $query->where('city', '=', $city);
+                                        })
+                                        ->when($type, function ($query, $type) {
+                                            return $query->where('type', '=', $type);
+                                        })
+                                        ->when($purpose, function ($query, $purpose) {
+                                            return $query->where('purpose', '=', $purpose);
+                                        })
+                                        ->when($bedroom, function ($query, $bedroom) {
+                                            return $query->where('bedroom', '=', $bedroom);
+                                        })
+                                        ->when($bathroom, function ($query, $bathroom) {
+                                            return $query->where('bathroom', '=', $bathroom);
+                                        })
+                                        ->when($minprice, function ($query, $minprice) {
+                                            return $query->where('price', '>=', $minprice);
+                                        })
+                                        ->when($maxprice, function ($query, $maxprice) {
+                                            return $query->where('price', '<=', $maxprice);
+                                        })
+                                        ->when($minarea, function ($query, $minarea) {
+                                            return $query->where('area', '>=', $minarea);
+                                        })
+                                        ->when($maxarea, function ($query, $maxarea) {
+                                            return $query->where('area', '<=', $maxarea);
+                                        })
+                                        ->when($featured, function ($query, $featured) {
+                                            return $query->where('featured', '=', 1);
+                                        })->get();
+        $orderedData = [
+            'first' => [],
+            'second' => [],
+            'third' => [],
+            'fourth' => [],
+        ];
+        
+        // Organize the data by type
+        foreach ($data as $item) {
+            if ($item->superhot == 1) {
+                $orderedData['first'][] = $item;
+            }  elseif ($item->hot == 1) {
+                $orderedData['second'][] = $item;
+            } elseif ($item->featured == 1) {
+                $orderedData['third'][] = $item;
+            } elseif (($item->featured == 0 OR !empty($item->featured) ) AND ($item->superhot == 0 OR !empty($item->superhot)) AND ($item->hot == 0 OR !empty($item->hot == 0)) ) {
+                $orderedData['fourth'][] = $item;
+            }
+        }
+        // Save each type's data in blocks of 6
+        $orderedAndChunkedData = [];
+        foreach ($orderedData as $type => $data) {
+            $chunkedData = array_chunk($data, 4);
+            $orderedAndChunkedData[$type] = $chunkedData;
+        }        
+        // Merge data in the order of chunks (6 items for each type)
+        $result = [];
+        
+        $maxChunks = max(count($orderedAndChunkedData['first']), count($orderedAndChunkedData['second']), count($orderedAndChunkedData['third']), count($orderedAndChunkedData['fourth']));
+        for ($i = 0; $i < $maxChunks; $i++) {
+            if (isset($orderedAndChunkedData['first'][$i])) {
+                $result = array_merge($result, $orderedAndChunkedData['first'][$i]);
+            }
+            if (isset($orderedAndChunkedData['second'][$i])) {
+                $result = array_merge($result, $orderedAndChunkedData['second'][$i]);
+            }
+            if (isset($orderedAndChunkedData['third'][$i])) {
+                $result = array_merge($result, $orderedAndChunkedData['third'][$i]);
+            }
+            if (isset($orderedAndChunkedData['fourth'][$i])) {
+                $result = array_merge($result, $orderedAndChunkedData['fourth'][$i]);
+            }
+            // Add other types or handle differently if needed
+        }
+        
+        $combinedData = collect($result);
+        $slicedData = $this->convertArrayToCollection($combinedData);
+
+        return view('pages.search', compact('slicedData'));
+}
+
+
     
-    
+public function convertArrayToCollection($items, $perPage = 16, $page = null, $options = [])
+{
+    $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
+    $items = $items instanceof Collection ? $items : Collection::make($items);
+    return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+
+}
 // Function to merge paginated results
 private function mergePaginatedResults($featured, $normal)
 {
