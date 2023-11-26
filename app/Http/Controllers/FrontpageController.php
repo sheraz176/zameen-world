@@ -83,33 +83,9 @@ class FrontpageController extends Controller
 
     public function search(Request $request)
     {
-         // Retrieve two featured posts
-   
+        //  dd($request->all());
 
-        //  $featuredPosts = Property::where('featured', true)->take(2)->get();
-        //  $hot = Property::where('hot', true)->take(2)->get();
-        //  $superhot = Property::where('superhot', true)->take(2)->get();
-        //  $normalPosts = Property::where('featured', false)->take(2)->get();
-         
-        //  $mergedPosts = $featuredPosts->merge($normalPosts);
-         
-        //  $currentPage = LengthAwarePaginator::resolveCurrentPage();
-        //  $perPage = 4;
-         
-        //  // Paginate the merged collection directly
-        //  $currentPageItems = $mergedPosts->forPage($currentPage, $perPage)->values();
-         
-        //  $paginatedMergedItems = new LengthAwarePaginator(
-        //      $currentPageItems,
-        //      $mergedPosts->count(),
-        //      $perPage,
-        //      $currentPage,
-        //      ['path' => LengthAwarePaginator::resolveCurrentPath()]
-        //  );
-        // //  dd($paginatedMergedItems);
-        // return view('pages.search', compact('paginatedMergedItems'));
-
-        $city     = strtolower($request->city);
+        $title     = $request->title;
         $type     = $request->type;
         $purpose  = $request->purpose;
         $bedroom  = $request->bedroom;
@@ -119,8 +95,8 @@ class FrontpageController extends Controller
         $minarea  = $request->minarea;
         $maxarea  = $request->maxarea;
         $featured = $request->featured;
-        $data = Property::latest()->when($city, function ($query, $city) {
-                                            return $query->where('city', '=', $city);
+        $data = Property::latest()->when($title, function ($query, $title) {
+                                            return $query->where('title', '=', $title);
                                         })
                                         ->when($type, function ($query, $type) {
                                             return $query->where('type', '=', $type);

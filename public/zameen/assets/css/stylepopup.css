@@ -5,16 +5,16 @@
 
 .send-email{
     background-color: white;
-    border: 1px solid #33a137;
+    border: 1px solid #6CACE3;
     border-radius: 4px;
     line-height: 13px;
     padding: 6px 8px;
-    color: #33a137;
+    color: #6CACE3;
 }
 .call{
-    background-color:#33a137;
+    background-color:#6CACE3;
     color: white;
-    border: 1px solid #33a137;
+    border: 1px solid #6CACE3;
     border-radius: 4px;
     font-size: 14px;
     padding: 6px 19px;
@@ -195,7 +195,7 @@ input[type='radio']{
     display: -ms-flexbox;
     display: flex;
     font-size: 14px;
-    color: #33a137;
+    color: #6CACE3;
     width: 6rem;
     cursor: pointer;
 }
@@ -204,7 +204,7 @@ input[type='radio']{
     width: 16px;
 }
 ._709887b9 svg path {
-    fill: #33a137;
+    fill: #6CACE3;
 }
 ._16494b5b {
     display: -webkit-box;
@@ -234,14 +234,13 @@ input[type='radio']{
 }
 .f4adafa3 {
     color: #fff;
-    background-color: #33a137;
+    background-color: #6CACE3;
     border: none;
     padding: 5px 10px;
 }
 .ae7192e1{
     background-color: #fff;
-    color: #33a137;
-    border: 1px solid #33a137;
+    color: #6CACE3;
+    border: 1px solid #6CACE3;
     padding: 5px 10px;
 }
-:nth-child()

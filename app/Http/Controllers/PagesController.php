@@ -29,7 +29,7 @@ class PagesController extends Controller
         return view('pages.properties.property', compact('properties','cities'));
     }
 
-    public function propertieshow($slug)
+    public function propertieshow($slug,$random_id)
     {
         $property = Property::with('features','gallery','user','comments')
                             ->withCount('comments')

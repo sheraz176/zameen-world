@@ -703,12 +703,12 @@
                                                   <h3>PKR {{ $property->price }}</h3>
                                                   <img src=" {{ asset('zameen/assets/images/favorited.png') }}">
                                               </div>
-                                              <a href="{{ route('property.show', $property->slug) }}">
+                                              
                                                   <div class="plan-text-sec d-flex flex-column gap-1 fixed-text">
                                                       <h3> {{ $property->title }} </h3>
                                                       <p>{{ ucfirst($property->address) }}</p>
                                                   </div>
-                                              </a>
+                                            
                                               <hr />
                                               <div class="icons-section">
                                                   <div class="d-flex flex-row justify-content-between my-2">

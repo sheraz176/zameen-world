@@ -13,13 +13,16 @@ Route::get('/auth/google-callback', [SocialiteAuthController::class, 'loginWithG
 
 
 
-// Route::get('/', 'FrontpageController@index')->name('home');
+Route::get('/', 'FrontpageController@index')->name('home');
 Route::get('/slider', 'FrontpageController@slider')->name('slider.index');
 
-Route::get('/', 'FrontpageController@search')->name('search');
+Route::get('/search', 'FrontpageController@search')->name('search');
+Route::post('/searchroute', 'FrontpageController@search')->name('searchroute');
+
+
 
 Route::get('/property', 'PagesController@properties')->name('property');
-Route::get('/property/{id}', 'PagesController@propertieshow')->name('property.show');
+Route::get('/property/{id}/{random_id}', 'PagesController@propertieshow')->name('property.show');
 Route::post('/property/message', 'PagesController@messageAgent')->name('property.message');
 Route::post('/property/comment/{id}', 'PagesController@propertyComments')->name('property.comment');
 Route::post('/property/rating', 'PagesController@propertyRating')->name('property.rating');

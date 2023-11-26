@@ -111,6 +111,8 @@ class PropertyController extends Controller
         $property->location_latitude  = $request->location_latitude;
         $property->location_longitude = $request->location_longitude;
         $property->nearby             = $request->nearby;
+           $randomid = generateRandomString(6);
+        $property->random_id           = $randomid;
      
         $property->state_id            =  $request->state;
         $property->city_id            =  $request->city_id;
