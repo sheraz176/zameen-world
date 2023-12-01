@@ -14,18 +14,23 @@
               @else
                   <img src="{{ asset('zameen/house.png') }}">
               @endif
-              <div class="badge-review d-flex flex-row justify-content-between px-3 align-items-start position-absolute flex-nowrap w-100 "
-                  style="margin-top: -3%">
-                  <div><span class="badge-for-all"
-                          style="color:rgb(202, 26, 26)">{{ $property->purpose }}
-                          for {{ $property->type }}</span></div>
-              </div>
+             
           </div>
           <div class="card-text-warrper">
-              <div class="tag-img">
+            <div class="rib">
+                {{ $property->purpose }}
+                      for {{ $property->type }}
+            </div>
+              {{-- <div class="tag-img">
                   <img
                       src=" {{ asset('zameen/assets/images/hot.jpeg') }}">
+              </div> --}}
+              <div class="ribhot">
+                 Hot
+                <div class="shadhot">
+                </div>
               </div>
+
               <div
                   class="heart-sec d-flex flex-row justify-content-between mt-3 align-items-center">
 
@@ -43,49 +48,49 @@
       </a>
       <hr />
       <div class="icons-section">
-          <div class="d-flex flex-row justify-content-between my-2">
-              <div class="d-flex flex-row gap-1 align-items-center">
-                  <div>
-                      <img src=" {{ asset('zameen/assets/images/bed.png') }}" />
-                  </div>
-                  <p>
-                      @if (!empty($property->bedroom))
-                          {{ $property->bedroom }}
-                      @else
-                          --
-                      @endif
-                      Beds
-                  </p>
-              </div>
-              <div class="d-flex flex-row gap-1 align-items-center">
-                  <div>
-                      <img
-                          src=" {{ asset('zameen/assets/images/bath.png') }}" />
-                  </div>
-                  <p>
-                      @if (!empty($property->bathroom))
-                          {{ $property->bathroom }}
-                      @else
-                          --
-                      @endif
-                      Bathrooms
-                  </p>
-              </div>
-              <div class="d-flex flex-row gap-1 align-items-center">
-                  <div>
-                      <img
-                          src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
-                  </div>
-                  <p>{{ $property->area }} {{ $property->unit }}</p>
-              </div>
+        <div class="d-flex flex-row justify-content-between my-2">
+            <div class="d-flex flex-row gap-1 align-items-center">
+                <div>
+                    <img src=" {{ asset('zameen/assets/images/bed.png') }}" />
+                </div>
+                <p>
+                    @if (!empty($property->bedroom))
+                        {{ $property->bedroom }}
+                    @else
+                        --
+                    @endif
+                    Beds
+                </p>
+            </div>
+            <div class="d-flex flex-row gap-1 align-items-center">
+                <div>
+                    <img
+                        src=" {{ asset('zameen/assets/images/bath.png') }}" />
+                </div>
+                <p>
+                    @if (!empty($property->bathroom))
+                        {{ $property->bathroom }}
+                    @else
+                        --
+                    @endif
+                    Bath
+                </p>
+            </div>
+            <div class="d-flex flex-row gap-1 align-items-center">
+                <div>
+                    <img
+                        src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
+                </div>
+                <p>{{ $property->area }} {{ $property->unit }}</p>
+            </div>
 
-          </div>
-          <div class="card-body d-flex flex-row gap-2 algin-items-center">
-               @include('frontend.partials.action') 
+        </div>
+        <div class="card-body d-flex flex-row gap-2 algin-items-center">
+             @include('frontend.partials.action') 
 
-              @include('frontend.partials.whatsapp')
-          </div>
-      </div>
+            @include('frontend.partials.whatsapp')
+        </div>
+    </div>
      </div>
   </div>
 </div>

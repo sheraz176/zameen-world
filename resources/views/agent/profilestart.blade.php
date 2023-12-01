@@ -1,4 +1,4 @@
-@extends('agent.layout.app')
+@extends('agent.layout.apps')
 
 @push('styles')
 @endpush

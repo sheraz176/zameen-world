@@ -70,16 +70,13 @@
                                     @endif
                                 </li>
                                 <li>
-                                    <a href="{{ route('logout') }}"
-                                        onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
-                                       {{ __('SignOut') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" >
                                         @csrf
+                                        <button class="media fs-14 p-2"> <span><i
+                                            class="fa fa-power-off mr-2"></i> Logout</span> </button>
                                     </form>
+
+                                   
                                 </li>
                             </ul>
                         </li>

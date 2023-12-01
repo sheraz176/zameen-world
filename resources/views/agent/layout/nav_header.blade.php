@@ -5,8 +5,13 @@
         <span class="ms-toggler-bar bg-white"></span>
     </div>
     <div class="logo-sn logo-sm ms-d-block-sm">
-        <a class="pl-0 ml-0 text-center navbar-brand mr-0" href="#"><img
-                src="{{ asset('user_side/abc.png ') }}" alt="logo"> </a>
+        <a class="pl-0 ml-0 text-center navbar-brand mr-0" href="#">
+            @if (!empty(auth()->user()->image))
+               <img src="{{Storage::url('users/'.auth()->user()->image)}}">  
+            @else
+            <img src="{{ asset('user_side/abc.png ') }}" alt="logo">
+            @endif
+         </a>
     </div>
     <ul class="ms-nav-list ms-inline mb-0" id="ms-nav-options">
 
@@ -20,12 +25,13 @@
         <li class="ms-nav-item ms-nav-user dropdown">
             <a href="#" id="userDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 @if (!empty(auth()->user()->image))
-                <img class="ms-user-img ms-img-round float-right" src="{{ asset('user_side/abc.png ') }}"
-                alt="people"> </a>
-                @else
-                          
+               
                 <img class="ms-user-img ms-img-round float-right" src="{{Storage::url('users/'.auth()->user()->image)}}"
                 alt="people"> </a>
+                @else
+                <img class="ms-user-img ms-img-round float-right" src="{{ asset('user_side/abc.png ') }}"
+                alt="people"> </a>       
+               
                 @endif
                
 
@@ -39,21 +45,20 @@
                     <a class="media fs-14 p-2" href="{{ route('agent.profile') }}"> <span><i
                                 class="fa fa-user  mr-2"></i> Profile</span> </a>
                     <a class="media fs-14 p-2" href="{{ route('agent.message') }}"> <span><i
-                               class="fa fa-envelope mr-2"></i> Inbox</span> <span
-                            class="badge badge-pill badge-info">3</span> </a>
+                               class="fa fa-envelope mr-2"></i> Inbox (Messages)</span> </a>
                     <a class="media fs-14 p-2" href="{{ route('agent.profile') }}"> <span><i
                                 class="fa fa-gear mr-2"></i> Account Settings</span> </a>
+                                <a class="media fs-14 p-2" href="{{ route('agent.changepassword') }}"> <span><i
+                                    class="fa fa-lock mr-2"></i> Lock</span> </a>
                 </li>
                 <li class="dropdown-divider"></li>
-                <li class="dropdown-menu-footer">
-                    <a class="media fs-14 p-2" href="{{ route('agent.changepassword') }}"> <span><i
-                                class="fa fa-lock mr-2"></i> Lock</span> </a>
-                </li>
+                
                 <li class="dropdown-menu-footer">
                     <form id="logout-form" action="{{ route('logout') }}" method="POST" >
                         @csrf
-                        <button class="media fs-14 p-2"> <span><i
-                            class="fa fa-power-off mr-2"></i> Logout</span> </button>
+                       <button class="btn btn-primary  d-inline w-20" style="margin-left: 20%;" > <span style="color: white;"><i
+                        ></i> Logout</span>
+                       </button>
                     </form>
                  
                 </li>

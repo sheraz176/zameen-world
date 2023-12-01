@@ -17,8 +17,9 @@ Route::get('/', 'FrontpageController@index')->name('home');
 Route::get('/slider', 'FrontpageController@slider')->name('slider.index');
 
 Route::get('/search', 'FrontpageController@search')->name('search');
-Route::post('/searchroute', 'FrontpageController@search')->name('searchroute');
+Route::post('/searchroute', 'FrontpageController@searchfillter')->name('searchroute');
 
+// searchfillter
 
 
 Route::get('/property', 'PagesController@properties')->name('property');

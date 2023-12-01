@@ -14,18 +14,27 @@
               @else
                   <img src="{{ asset('zameen/house.png') }}">
               @endif
-              <div class="badge-review d-flex flex-row justify-content-between px-3 align-items-start position-absolute flex-nowrap w-100 "
-                  style="margin-top: -3%">
+              <div class="badge-review d-flex flex-row justify-content-between px-3  w-100 "
+                  >
                   <div><span class="badge-for-all"
                           style="color:rgb(202, 26, 26)">{{ $property->purpose }}
                           for {{ $property->type }}</span></div>
               </div>
           </div>
           <div class="card-text-warrper">
-              <div class="tag-img">
+            <div class="rib">
+                {{ $property->purpose }}
+                      for {{ $property->type }}
+            </div>
+              {{-- <div class="tag-img">
                   <img
                       src=" {{ asset('zameen/assets/images/featured.jpeg') }}">
-              </div>
+              </div> --}}
+              <div class="ribfeatured">
+                Featured
+               <div class="shadfeatured">
+               </div>
+             </div>
               <div
                   class="heart-sec d-flex flex-row justify-content-between mt-3 align-items-center">
 
@@ -68,7 +77,7 @@
                       @else
                           --
                       @endif
-                      Bathrooms
+                      Bath
                   </p>
               </div>
               <div class="d-flex flex-row gap-1 align-items-center">

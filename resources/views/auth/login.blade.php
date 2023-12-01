@@ -69,11 +69,14 @@
               <div>
                 <label class="no-account d-block text-center"> I forgot my password</label>
               </div>
+             
                   <span class="d-block text-center no-account">Don’t have an account?<a href="{{ route('register') }}">Sign Up</a></span> 
                 </div>
-                <a href="{{ route('auth/google') }}" class="btn btn-danger">
-                  {{ __('Login with Google') }}
-              </a>
+                <div class="mb-5">
+                  <div class="d-flex flex-column ">
+                    <a href="{{ route('auth/google') }}"  class="btn-contain-normal w-100 mt-4" > <i class="fa fa-google"></i> Login with Google</a>       
+                <div>
+             
               </div>
             </div>
           </div>

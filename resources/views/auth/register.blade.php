@@ -102,6 +102,10 @@
                 </div>
               </div>
             </div>
+            <div class="mb-5">
+              <div class="d-flex flex-column ">
+                <a href="{{ route('auth/google') }}"  class="btn-contain-normal w-100 mt-4" > <i class="fa fa-google"></i> Login with Google</a>       
+            <div>
           </div>
             </form>
         </div>

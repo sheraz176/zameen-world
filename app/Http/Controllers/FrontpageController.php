@@ -79,7 +79,11 @@ class FrontpageController extends Controller
     //     return view('pages.search', compact('properties'));
     // }
 
-   
+   public function searchfillter(Request $request){
+          dd($request->all());
+
+
+      }
 
     public function search(Request $request)
     {
@@ -93,8 +97,11 @@ class FrontpageController extends Controller
         $minprice = $request->minprice;
         $maxprice = $request->maxprice;
         $minarea  = $request->minarea;
+        $unit = $request->unit;
+        $random_id = $request->random_id;
         $maxarea  = $request->maxarea;
         $featured = $request->featured;
+        $city_id = $request->city_id;
         $data = Property::latest()->when($title, function ($query, $title) {
                                             return $query->where('title', '=', $title);
                                         })
@@ -121,6 +128,12 @@ class FrontpageController extends Controller
                                         })
                                         ->when($maxarea, function ($query, $maxarea) {
                                             return $query->where('area', '<=', $maxarea);
+                                        })
+                                        ->when($unit, function ($query, $unit) {
+                                            return $query->where('unit', '<=', $unit);
+                                        })
+                                        ->when($random_id, function ($query, $random_id) {
+                                            return $query->where('random_id', '<=', $random_id);
                                         })
                                         ->when($featured, function ($query, $featured) {
                                             return $query->where('featured', '=', 1);

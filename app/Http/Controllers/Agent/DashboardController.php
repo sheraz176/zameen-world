@@ -15,6 +15,8 @@ use App\User;
 use Auth;
 use Hash;
 use Toastr;
+use Validator;
+use App\Rules\PakistanPhoneNumber;
 
 class DashboardController extends Controller
 {
@@ -22,11 +24,12 @@ class DashboardController extends Controller
     {
         $properties    = Property::latest()->where('agent_id', Auth::id())->take(5)->get();
         $propertytotal = Property::latest()->where('agent_id', Auth::id())->count();
+        $profile = Auth::user();
 
         $messages      = Message::latest()->where('agent_id', Auth::id())->take(5)->get();
         $messagetotal  = Message::latest()->where('agent_id', Auth::id())->count();
 
-        return view('agent.dashboard',compact('properties','propertytotal','messages','messagetotal'));
+        return view('agent.dashboard',compact('profile','properties','propertytotal','messages','messagetotal'));
     }
 
     public function profile()
@@ -37,13 +40,23 @@ class DashboardController extends Controller
     }
     public function profileUpdate(Request $request)
     {
-        $request->validate([
+    //  dd($request->all());
+        $validator = Validator::make($request->all(), [
+
             'name'      => 'required',
             'username'  => 'required',
             'email'     => 'required|email',
-            'image'     => 'image|mimes:jpeg,jpg,png',
-            'about'     => 'max:250'
+            'image'     => 'required',
+            'about'     => 'required|max:250',
+            'phone_number' => ['required', new PakistanPhoneNumber],
+            'mobile_number' => ['required', new PakistanPhoneNumber]
+            // other validation rules
         ]);
+      
+        if ($validator->fails()) {
+            return redirect()->back()->withErrors($validator)->with('error','Some Thing Wrong');
+        }
+        else{
 
         $user = User::find(Auth::id());
 
@@ -67,12 +80,18 @@ class DashboardController extends Controller
         $user->name = $request->name;
         $user->username = $request->username;
         $user->email = $request->email;
-        $user->image = $imagename;
-        $user->about = $request->about;
+        $user->mobile_number = $request->mobile_number;
+        $user->phone_number = $request->phone_number;
+        if(!empty($imagename)){
+            $user->image = $imagename;
+        }
+       $user->about = $request->about;
 
         $user->save();
 
-        return back();
+        return redirect()->back()->with('success','Profile Update');
+
+    }
     }
 
 
@@ -87,13 +106,14 @@ class DashboardController extends Controller
     {
         if (!(Hash::check($request->get('currentpassword'), Auth::user()->password))) {
 
-            Toastr::error('message', 'Your current password does not matches with the password you provided! Please try again.');
-            return redirect()->back();
+            return redirect()->back()->with('error','Your current password does not matches with the password you provided! Please try again.');
+
         }
         if(strcmp($request->get('currentpassword'), $request->get('newpassword')) == 0){
 
-            Toastr::error('message', 'New Password cannot be same as your current password! Please choose a different password.');
-            return redirect()->back();
+          
+            return redirect()->back()->with('error','New Password cannot be same as your current password! Please choose a different password.');
+
         }
 
         $this->validate($request, [
@@ -105,8 +125,8 @@ class DashboardController extends Controller
         $user->password = bcrypt($request->get('newpassword'));
         $user->save();
 
-        Toastr::success('message', 'Password changed successfully.');
-        return redirect()->back();
+        return redirect()->back()->with('success','Password changed successfully.');
+
     }
 
 
