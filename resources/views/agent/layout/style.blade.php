@@ -4,7 +4,7 @@
 <title>Zameen World</title>
 
           <!-- Iconic Fonts -->
-          <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+          <link rel="icon" type="image/x-icon" href="{{asset('zameen/house.png')}}" />
           <script src="{{asset('user_side/assets/icons/icons.js')}}" ></script>
           <!-- Bootstrap core CSS -->
           <link href="{{asset('user_side/assets/css/bootstrap.min.css')}}" rel="stylesheet">

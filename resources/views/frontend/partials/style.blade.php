@@ -8,6 +8,7 @@
    <!-- toaster styles -->
    <link href="{{asset('zameen/assets/css/toastr.min.css')}}" rel="stylesheet">
    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+   <link rel="icon" type="image/x-icon" href="{{asset('zameen/house.png')}}" />
   <!-- Google Fonts   -->
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
