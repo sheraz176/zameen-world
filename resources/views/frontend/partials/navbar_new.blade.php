@@ -70,11 +70,7 @@
                                     @endif
                                 </li>
                                 <li>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" >
-                                        @csrf
-                                        <button class="media fs-14 p-2"> <span><i
-                                            class="fa fa-power-off mr-2"></i> Logout</span> </button>
-                                    </form>
+                                    
 
                                    
                                 </li>

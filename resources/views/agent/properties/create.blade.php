@@ -119,7 +119,7 @@
                                     <div class="input-group">
                                         <input id="bedroom" name="bedroom" type="number"
                                             class="form-control @error('title')is-invalid @enderror"
-                                            placeholder="Enter Bedroom" required />
+                                            placeholder="Enter Bedroom" >
 
                                     </div>
                                     <div class="col-md-12">
@@ -142,7 +142,7 @@
                                     <div class="input-group">
                                         <input id="bathroom" name="bathroom" type="number"
                                             class="form-control @error('title')is-invalid @enderror"
-                                            placeholder="Enter Bathroom" required />
+                                            placeholder="Enter Bathroom" >
 
                                     </div>
                                     <div class="col-md-12">

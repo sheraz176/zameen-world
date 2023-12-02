@@ -395,8 +395,7 @@
                     </div>
                 
                    </div>
-                   <button type="submit" class="serch-btn"><i class="fa fa-search"></i></button>
-                   </form>
+                   
                    {{-- third div --}}
                    <div class="row">
                     <div class="col-12 col-lg-12 col-xl-4">
@@ -425,8 +424,9 @@
                 
                     </div>
                    </div>
+                   <button type="submit" style="margin-left: 80%;" class="serch-btn"><i class="fa fa-search"></i>Search</button>
 
-
+                </form>
             </div>
 
  </header>

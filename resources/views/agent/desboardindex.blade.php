@@ -20,7 +20,7 @@
                                 <p class="ms-card-change">{{ $propertytotal }}</p>
                             </div>
                         </div>
-                        <i class="fas fa-stethoscope ms-icon-mr"></i>
+                        <i class="fas fa-home ms-icon-mr"></i>
                     </div>
                 </a>
             </div>
@@ -33,31 +33,11 @@
                                 <p class="ms-card-change"> {{ $messagetotal }}</p>
                             </div>
                         </div>
-                        <i class="fas fa-user-plus ms-icon-mr"></i>
+                        <i class="fas fa-envelope ms-icon-mr"></i>
                     </div>
                 </a>
             </div>
-            <div class="col-xl-3 col-md-6 col-sm-6">
-                <a href="#">
-                    <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
-                        <div class="ms-card-body media">
-                            <div class="media-body">
-                                <h6 class="bold">Recent Properties</h6>
-                             
-                                @foreach($properties as $key => $property)
-                              
-                                    {{-- <a href="{{route('property.show',$property->slug)}}" target="_blank" class="border-bottom display-block p-15  grey-text-d-2"> --}}
-                                     
-                                        <p class="ms-card-change">PKR {{ $property->price }}</p>
-                                    {{-- </a> --}}
-                              
-                                @endforeach
-                            </div>
-                        </div>
-                        <i class="fa fa-wheelchair ms-icon-mr"></i>
-                    </div>
-                </a>
-            </div>
+           
             <div class="col-xl-3 col-md-6 col-sm-6">
                 <a href="#">
                     <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
@@ -72,7 +52,25 @@
                              
                             </div>
                         </div>
-                        <i class="fas fa-briefcase-medical ms-icon-mr"></i>
+                        <i class="fas fa-gear ms-icon-mr"></i>
+                    </div>
+                </a>
+            </div>
+            <div class="col-xl-3 col-md-6 col-sm-6">
+                <a href="#">
+                    <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
+                        <div class="ms-card-body media">
+                            <div class="media-body">
+                                <h6 class="bold">Recent Package</h6>
+                              
+                                     @if (!empty($packages->name))
+                                     <p  style="color: rgb(11, 251, 159)">{{ $packages->name }}</p>
+                                     @endif
+                                    
+                                       
+                            </div>
+                        </div>
+                        <i class="fas fa-cloud ms-icon-mr"></i>
                     </div>
                 </a>
             </div>
@@ -82,12 +80,14 @@
                     <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
                         <div class="ms-card-body media">
                             <div class="media-body">
-                                <h6 class="bold">Super Hot Properties</h6>    
+                                <h6 class="bold">Super Hot </h6>    
                                        
-                                        <p class="ms-card-change">0</p>     
+                                @if (!empty($packages->superhot))
+                                <p class="ms-card-change" >{{ $packages->superhot}}</p>
+                                @endif   
                             </div>
                         </div>
-                        <i class="fas fa-briefcase-medical ms-icon-mr"></i>
+                        <i class="fas fa-cloud "></i>
                     </div>
                 </a>
             </div>
@@ -97,12 +97,14 @@
                     <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
                         <div class="ms-card-body media">
                             <div class="media-body">
-                                <h6 class="bold">Hot Properties</h6>    
+                                <h6 class="bold">Hot </h6>    
                                        
-                                        <p class="ms-card-change">0</p>     
+                                @if (!empty($packages->hot))
+                                <p class="ms-card-change" >{{ $packages->hot }}</p>
+                                @endif    
                             </div>
                         </div>
-                        <i class="fas fa-briefcase-medical ms-icon-mr"></i>
+                        <i class="fas fa-cloud ms-icon-mr"></i>
                     </div>
                 </a>
             </div>
@@ -112,12 +114,14 @@
                     <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
                         <div class="ms-card-body media">
                             <div class="media-body">
-                                <h6 class="bold">Featured Properties</h6>    
+                                <h6 class="bold">Featured </h6>    
                                        
-                                        <p class="ms-card-change">0</p>     
+                                @if (!empty($packages->featured))
+                                <p class="ms-card-change" >{{ $packages->featured}}</p>
+                                @endif     
                             </div>
                         </div>
-                        <i class="fas fa-briefcase-medical ms-icon-mr"></i>
+                        <i class="fas fa-cloud ms-icon-mr"></i>
                     </div>
                 </a>
             </div>
@@ -127,12 +131,14 @@
                     <div class="ms-card card-gradient-custom ms-widget ms-infographics-widget ms-p-relative">
                         <div class="ms-card-body media">
                             <div class="media-body">
-                                <h6 class="bold">Normal Lisiting</h6>    
+                                <h6 class="bold">Refresh </h6>    
                                        
-                                        <p class="ms-card-change">0</p>     
+                                @if (!empty($packages->refresh))
+                                <p class="ms-card-change" > {{ $packages->refresh }}</p>
+                                @endif   
                             </div>
                         </div>
-                        <i class="fas fa-briefcase-medical ms-icon-mr"></i>
+                        <i class="fas fa-cloud ms-icon-mr"></i>
                     </div>
                 </a>
             </div>

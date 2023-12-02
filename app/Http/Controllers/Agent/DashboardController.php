@@ -16,6 +16,7 @@ use Auth;
 use Hash;
 use Toastr;
 use Validator;
+use App\Packages;
 use App\Rules\PakistanPhoneNumber;
 
 class DashboardController extends Controller
@@ -28,8 +29,8 @@ class DashboardController extends Controller
 
         $messages      = Message::latest()->where('agent_id', Auth::id())->take(5)->get();
         $messagetotal  = Message::latest()->where('agent_id', Auth::id())->count();
-
-        return view('agent.dashboard',compact('profile','properties','propertytotal','messages','messagetotal'));
+        $packages   =  Packages::where('user_id',Auth::id())->latest()->first();
+        return view('agent.dashboard',compact('packages','profile','properties','propertytotal','messages','messagetotal'));
     }
 
     public function profile()

@@ -101,7 +101,12 @@ class FrontpageController extends Controller
         $random_id = $request->random_id;
         $maxarea  = $request->maxarea;
         $featured = $request->featured;
+        $state_id = $request->state;
         $city_id = $request->city_id;
+        $socity_id = $request->socity;
+        $phase_id = $request->phase;
+        $block_id = $request->block;
+        $sub_block_id = $request->sub_block;
         $data = Property::latest()->when($title, function ($query, $title) {
                                             return $query->where('title', '=', $title);
                                         })
@@ -131,6 +136,24 @@ class FrontpageController extends Controller
                                         })
                                         ->when($unit, function ($query, $unit) {
                                             return $query->where('unit', '<=', $unit);
+                                        })
+                                        ->when($state_id, function ($query, $state_id) {
+                                            return $query->where('state_id', '<=', $state_id);
+                                        })
+                                        ->when($city_id, function ($query, $city_id) {
+                                            return $query->where('city_id', '<=', $city_id);
+                                        })
+                                        ->when($socity_id, function ($query, $socity_id) {
+                                            return $query->where('socity_id', '<=', $socity_id);
+                                        })
+                                        ->when($phase_id, function ($query, $phase_id) {
+                                            return $query->where('phase_id', '<=', $phase_id);
+                                        })
+                                        ->when($block_id, function ($query, $block_id) {
+                                            return $query->where('block_id', '<=', $block_id);
+                                        })
+                                        ->when($sub_block_id, function ($query, $sub_block_id) {
+                                            return $query->where('sub_block_id', '<=', $sub_block_id);
                                         })
                                         ->when($random_id, function ($query, $random_id) {
                                             return $query->where('random_id', '<=', $random_id);

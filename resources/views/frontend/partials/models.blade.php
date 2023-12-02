@@ -34,7 +34,12 @@
                             class="_55e4cba0 fw-bold" id="emailname"></span></div>
                     <div class="fdd1da9d dd491f44 ">Zameen - <span id="emailrandom_id"></span></div>
                 </div>
-                <form action="">
+                <form action="{{ route('property.message') }}" method="post"   method="POST">
+                    @csrf
+                    <input type="hidden" name="agent_id" id="agentid">
+                    <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                    <input type="hidden" name="property_id" id="propertyid">
+
                     <div class="d-flex flex-column gap-2 px-4 py-3">
 
                         <button onclick="callhide()" class="_5b77d672 da62f2ae _8d1154ff call w-100 py-3" type="button"
@@ -48,27 +53,27 @@
                             <input type="hidden" id="emailtitle" />
                             <div class="_2b36c787 contactFormName b0f40a2e _45ca5e6b" tabindex="-1"><span
                                     class="_56bd145a">Name*</span>
-                                <div><input id="contactFormName" class="_24a2ee1a" name="name"></div>
+                                <div><input id="name" class="_24a2ee1a" name="name" required/></div>
                             </div>
                         </span>
                         <span class="_91cb2aa5">
                             <div class="_2b36c787 contactFormEmail b0f40a2e" tabindex="-1"><span
                                     class="_56bd145a">Email*</span>
-                                <div><input id="contactFormEmail" class="_24a2ee1a" name="email" value="">
+                                <div><input id="email" class="_24a2ee1a" name="email" value="" required/>
                                 </div>
                             </div>
                         </span>
                         <span class="_91cb2aa5">
                             <div class="_2b36c787 contactFormEmail b0f40a2e" tabindex="-1"><span
                                     class="_56bd145a">PHONE*</span>
-                                <div><input id="contactFormEmail" class="_24a2ee1a" name="email" value="">
+                                <div><input id="phone" class="_24a2ee1a" name="phone" value="" required/>
                                 </div>
                             </div>
                         </span>
                         <span class="_91cb2aa5">
                             <div class="_2b36c787 d144906e contactFormMessage b0f40a2e" tabindex="-1"><span
                                     class="_56bd145a">Message*</span>
-                                <textarea id="contactFormMessage" class="c9bb2bf9" name="message">I would like to inquire about your property Zameen - ID44640044. Please contact me at your earliest convenience.</textarea>
+                                <textarea id="message" class="c9bb2bf9" name="message" required/>I would like to inquire about your property Zameen World . Please contact me at your earliest convenience.</textarea>
                             </div>
                         </span>
                         <div class="b36afaa8 d-flex algin-items-center gap-2"><span class="_073aa1bb">I am a:</span>
@@ -95,7 +100,7 @@
                                     d="M28.7 5.3H3.3A3.3 3.3 0 0 0 0 8.6v14.8c0 1.8 1.4 3.3 3.3 3.3h25.4c1.8 0 3.3-1.4 3.3-3.3V8.7c0-1.9-1.4-3.3-3.3-3.4zm-17 12l-8 6.6c-.3.1-.6.1-1-.2-.2-.3 0-.7.2-1l8-6.6c.3-.3.7-.1 1 .1.2.4.1.8-.2 1zm17.5 6.4c-.3.2-.6.3-1 0l-8-6.6c-.2-.1-.2-.5 0-.8 0-.3.6-.3.8 0l8 6.6c.4.1.4.5.2.8zm0-14.5l-11 7.5c-.6.4-1.4.6-2 .7-.9 0-1.6-.3-2.2-.7L3 9.2c-.4-.2-.4-.6-.2-.9.2-.3.6-.4 1-.2l10.8 7.5c.8.5 1.9.5 2.7 0l11-7.5c.2-.3.6-.1.8 0 .3.4.3.8 0 1z">
                                 </path>
                             </svg>
-                            Send Email
+                            Send Message
                         </button>
                     </div>
                 </form>

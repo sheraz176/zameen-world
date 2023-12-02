@@ -181,7 +181,7 @@ class PagesController extends Controller
         ]);
 
         Message::create($request->all());
-        return redirect()->back()->with('success',' Successfully Send !');
+        return redirect()->back()->with('success','Message Successfully Send to Agent !');
         // if($request->ajax()){
         //     return response()->json(['message' => 'Message send successfully.']);
         // }

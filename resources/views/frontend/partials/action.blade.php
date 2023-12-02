@@ -1,6 +1,6 @@
 
 
-<button  onclick="emailwithagent('{{ $property->random_id }}','{{ $property->title }}','{{ $property->user->phone_number }}','{{ $property->user->mobile_number }}','{{ $property->user->name }}','{{ $property->user->username }}')" class="_85d9f2e2 a8197536 a8375d37 send-email"
+<button  onclick="emailwithagent('{{ $property->random_id }}','{{ $property->title }}','{{ $property->user->phone_number }}','{{ $property->user->mobile_number }}','{{ $property->user->name }}','{{ $property->user->username }}','{{ $property->agent_id }}','{{ $property->id }}')" class="_85d9f2e2 a8197536 a8375d37 send-email"
 aria-label="Send email" data-bs-toggle="modal"
 data-bs-target="#modalabcd">
 <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32"

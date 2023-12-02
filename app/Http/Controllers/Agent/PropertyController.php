@@ -48,8 +48,6 @@ class PropertyController extends Controller
             'price'     => 'required',
             'purpose'   => 'required',
             'type'      => 'required',
-            'bedroom'   => 'required',
-            'bathroom'  => 'required',
             'address'   => 'required',
             'area'      => 'required',
             //  'image'     => 'required',

@@ -23,7 +23,7 @@
 </script>
 
   <script>
-    function emailwithagent(random_id, title, phone_number,mobile_number,name, username) {
+    function emailwithagent(random_id, title, phone_number,mobile_number,name, username,agent_id,id) {
         // alert('hi');
         // alert(image);
         $('#emailrandom_id').text(random_id);
@@ -32,6 +32,9 @@
         $('#emailmobile_number').text(mobile_number);
         $('#emailname').text(name);
         $('#emailusername').text(username);
+        $('#agentid').val(agent_id);
+        $('#propertyid').val(id);
+        
 
     }
 </script>

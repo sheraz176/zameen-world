@@ -13,7 +13,7 @@
 
     </head>
 
-    @include('pages.properties.partials.stylehome');
+    @include('pages.properties.partials.stylehome')
 
 @endpush
 
@@ -26,15 +26,18 @@
             </div>
             <div class="banner-search mt-3">
                 <div class="links">
-                    <a href="#" class="active buy-opt">Buy</a>
-                    <a href="#" class="sell-opt" data-bs-toggle="modal" data-bs-target="#exampleModal">Sell</a>
+                    <a href="{{route('search')}}" class="sell-opt"  >All</a>
+                    <a href="{{route('search')}}" class="active buy-opt">Sell</a>
+                    <a href="{{route('search')}}" class="active buy-opt">Rent</a>
+                    <a href="{{route('search')}}" class="active buy-opt">Wanted</a>
+                    
                 </div>
                 <div class="search-container d-flex align-items-center flex-row position-relative">
                     <!-- <input type="text" class="form-control" list="programmingLanguages"
                                                     placeholder="City, Neighborhood, Address, School, ZIP, Agent, MLS #" > -->
                     <input type="text" id="searchtxt" class="form-control" list="programmingLanguages"
-                        placeholder="City, Neighborhood, Address, School, ZIP, Agent, MLS #">
-                    <button type="button" class="mx-2 btn-contain-normal mt-md-0 mt-2">Search</button>
+                        placeholder="City, State, Socity, Phase, Random id, Property Title #">
+                    <a href="{{route('search')}}" type="button" class="mx-2 btn-contain-normal mt-md-0 mt-2">Search</a>
                     <ul class="list-dropdown">
                         <li class="location-header"><img src="{{ asset('zameen/assets/images/loc-header.png') }}"><span>11
                                 Locations</span></li>

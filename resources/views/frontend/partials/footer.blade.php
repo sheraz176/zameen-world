@@ -5,46 +5,46 @@
              <div class="row footer-lits pt-4">
                  <div class="col-lg-6 col-xl-3">
                      <div>
-                         <p>For sale</p>
+                         <p>Company</p>
                          <ul>
-                             <li><a href="#">New homes</a></li>
-                             <li><a href="#">commercial properties for sale</a></li>
-                             <li><a href="#">find estate agents</a></li>
-                             <li><a href="#">land for sale</a></li>
+                             <li><a href="{{route('about')}}">About Us</a></li>
+                             <li><a  href="{{route('contact')}}">Contact Us</a></li>
+                             <li><a  href="{{route('contact')}}">Help & Support</a></li>
+                             <li><a href="{{route('about')}}">Terms of Use</a></li>
                          </ul>
                      </div>
                  </div>
                  <div class="col-lg-6 col-xl-3 d-flex justify-content-start justify-content-xl-center">
                      <div>
-                         <p>News and guides</p>
+                         <p>Connect</p>
                          <ul>
-                             <li><a href="#">help to buy</a></li>
-                             <li><a href="#">share ownership</a></li>
-                             <li><a href="#">Buying guide</a></li>
-                             <li><a href="#">selling guide</a></li>
-                             <li><a href="#">renting guide</a></li>
+                             <li><a href="{{route('blog')}}">Blog</a></li>
+                             <li><a href="{{route('blog')}}">News</a></li>
+                             <li><a href="{{route('agents')}}">Real Estate Agents</a></li>
+                             <li><a href="#">Add Property</a></li>
+                             <li><a href="{{route('search')}}">Browse</a></li>
                          </ul>
                      </div>
                  </div>
                  <div class="col-lg-6 col-xl-3 d-flex justify-content-start justify-content-xl-center">
                      <div>
-                         <p>Resources</p>
+                         <p>Agents</p>
                          <ul>
-                             <li><a href="#">mobiles</a></li>
-                             <li><a href="#">site map</a></li>
-                             <li><a href="#">learn </a></li>
-                             <li><a href="#">submit article</a></li>
+                             <li><a href="{{route('agents')}}">Agent Pannel</a></li>
+                             <li><a href="{{route('agents')}}">Search For Agent</a></li>
+                             <li><a href="{{route('agents')}}">Agent Blogs </a></li>
+                             <li><a href="{{route('agents')}}">News For Agent</a></li>
                          </ul>
                      </div>
                  </div>
                  <div class="col-lg-6 col-xl-3  d-flex justify-content-start justify-content-xl-end">
                      <div>
-                         <p>Explores</p>
+                         <p>Explores Properties</p>
                          <ul>
-                             <li><a href="#">cmmercial</a></li>
-                             <li><a href="#">new development</a></li>
-                             <li><a href="#">find estate agents</a></li>
-                             <li><a href="#">land for sale</a></li>
+                             <li><a href="{{route('search')}}">Cmmercial Plot</a></li>
+                             <li><a href="{{route('search')}}">new development</a></li>
+                             <li><a href="{{route('search')}}">find Flats</a></li>
+                             <li><a href="{{route('search')}}">Find land </a></li>
                          </ul>
                      </div>
                  </div>
@@ -60,8 +60,8 @@
                  <span class="copy-right">© Copyright - 2023 All Rights Reserved.</span>
              </div>
              <div class="d-flex flex-row gap-2">
-                 <div> <a href="#"><img src="{{asset('zameen/assets/images/facebook.png')}}"></a></div>
-                 <div> <a href="#"><img src="{{asset('zameen/assets/images/linkdin.png')}}"></a></div>
+                 <div> <a href="https://www.facebook.com/"><img src="{{asset('zameen/assets/images/facebook.png')}}"></a></div>
+                 <div> <a href="https://www.linkedin.com/"><img src="{{asset('zameen/assets/images/linkdin.png')}}"></a></div>
              </div>
          </div>
      </footer>
