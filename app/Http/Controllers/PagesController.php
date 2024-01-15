@@ -59,6 +59,14 @@ class PagesController extends Controller
         return view('pages.agents.index', compact('agents'));
     }
 
+
+    public function searchtwo()
+    {
+       
+        return view('frontend.searchtwo');
+    }
+
+
     public function agentshow($id)
     {
         $agent      = User::findOrFail($id);

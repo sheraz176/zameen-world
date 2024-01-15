@@ -20,6 +20,7 @@ Route::get('/search', 'FrontpageController@search')->name('search');
 Route::post('/searchroute', 'FrontpageController@search')->name('searchroute');
 
 // searchfillter
+Route::get('/searchtwo', 'PagesController@searchtwo')->name('searchtwo');
 
 
 Route::get('/property', 'PagesController@properties')->name('property');
