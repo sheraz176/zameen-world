@@ -1,4 +1,4 @@
-  <!-- navbarsection -->
+ <!-- navbarsection -->
   <header class="home-header">
     <nav class="navbar navbar-expand home-nav bg-white-nave" id="navbar">
       <div class="container-fluid">
