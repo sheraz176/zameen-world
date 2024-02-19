@@ -152,5 +152,6 @@
   transform: skewX(45deg);
   top: 50%;
 }
+
   
   </style>
