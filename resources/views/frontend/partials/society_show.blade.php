@@ -64,11 +64,7 @@
                                 <div class="col-4 col-4 col-4">
                                     <ul class="list-inner list-unstyled">
                                     <ol>
-    @foreach($slicedData as $society)
-     <li>{{$society->socity}}</li>
-    </ol>
-     @endforeach
-                                        <li class="even-li
+                          <li class="even-li
                                     <select  name="socity"  id="socity"
                                             class="form-control validate show-tick {{ $errors->has('socity') ? 'focused error' : '' }}">
 
