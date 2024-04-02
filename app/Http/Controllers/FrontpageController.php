@@ -210,7 +210,7 @@ class FrontpageController extends Controller
         $slicedData = $this->convertArrayToCollection($combinedData);
           //dd($slicedData ->all());
 
-        return view('pages.search', compact('slicedData','socity'));
+        return view('pages.search', compact('slicedData'));
 }
 
 
