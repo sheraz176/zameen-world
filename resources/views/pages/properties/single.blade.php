@@ -176,7 +176,7 @@
                                     </g>
                                 </g>
                             </svg>
-                            <span class="font-weight-500">3 Beds</span>
+                            <div class="font-weight-500">{{ $property->bedroom }} Bedrooms</div>
                         </div>
                         <div class="d-flex flex-column gap-2 align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-custom">
@@ -192,7 +192,7 @@
                                     <path d="M0 0h24v24H0z"></path>
                                 </g>
                             </svg>
-                            <span class="font-weight-500">4 Baths</span>
+                            <div class="font-weight-500"> {{ $property->bathroom }} Bathrooms</div>
                         </div>
                         <div class="d-flex flex-column gap-2 align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-custom">
@@ -232,35 +232,35 @@
                     <p class="md-text py-3">Overview</p>
                     <h3 class="sm-text ">Detail</h3>
                     <div class="row">
-                        <div class="col-12 col-lg-6">
-                            <table class="table w-100 table-striped my-3">
-                                <tbody>
-                                    <tr>
-                                        <td>Type</td>
-                                        <td>House</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Price</td>
-                                        <td>100PKR</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                        <div class="col-12 col-lg-6">
-                            <table class="table w-100 table-striped my-3">
-                                <tbody>
-                                    <tr>
-                                        <td>Type</td>
-                                        <td>House</td>
-                                    </tr>
-                                    <tr>
-                                        <td>Price</td>
-                                        <td>100PKR</td>
-                                    </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
+    <div class="col-12 col-lg-6">
+        <table class="table w-100 table-striped my-3">
+            <tbody>
+                <tr>
+                    <td>Type</td>
+                    <td>House</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>Price: {{ $property->price }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+    <div class="col-12 col-lg-6">
+        <table class="table w-100 table-striped my-3">
+            <tbody>
+                <tr>
+                    <td>Type</td>
+                    <td>House</td>
+                </tr>
+                <tr>
+                    <td>Price</td>
+                    <td>Price: {{ $property->price }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
                     <article>
                         <div class="custom-container">
                             <div class="artical-wrapper d-flex flex-column gap-2">
@@ -286,6 +286,8 @@
                         </div>
 
                     </article>
+                    @include('frontend.partials.modelsjs')
+                    @include('frontend.partials.models')
                 </div>
                 <div class="col-12 col-md-6 col-lg-4">
                     <form action="{{ route('property.message') }}" method="post" method="POST" class="detail-form">
@@ -294,67 +296,59 @@
                         <input type="hidden" name="user_id" value="{{ auth()->id() }}">
                         <input type="hidden" name="property_id" value="{{ $property->id }}">
                         <div class="detail-form-inner">
-                        <span class="create-head text-start d-inline-block pb-2">Contact with Agent</span>
+                            <span class="create-head text-start d-inline-block pb-2">Contact with Agent</span>
                             <div class="d-flex flex-row gap-2 my-4">
-                            @php
-$propertyTitle = $property->title;
-$propertyLink = route('property.show', [$property->slug, $property->random_id]);
-$agentnumber = $property->user->phone_number;
-$whatsappMessage = 'Check out this property: ' . urlencode($propertyTitle) . ' ' . urlencode($propertyLink);
-$whatsappLink = 'https://api.whatsapp.com/send?phone=' . $agentnumber . '&text=' . $whatsappMessage;
-@endphp
-<a href="{{ $whatsappLink }}" target="_blank">
-<button class="_85d9f2e2 a8197536 a8375d37 send-email">
-    <svg fill="#6CACE3" height="16px" width="15px"
-        version="1.1" id="Layer_1"
-        xmlns="http://www.w3.org/2000/svg"
-        xmlns:xlink="http://www.w3.org/1999/xlink"
-        viewBox="0 0 308 308" xml:space="preserve">
-        <g id="XMLID_468_">
-            <path id="XMLID_469_"
-                d="M227.904,176.981c-0.6-0.288-23.054-11.345-27.044-12.781c-1.629-0.585-3.374-1.156-5.23-1.156
-           c-3.032,0-5.579,1.511-7.563,4.479c-2.243,3.334-9.033,11.271-11.131,13.642c-0.274,0.313-0.648,0.687-0.872,0.687
-           c-0.201,0-3.676-1.431-4.728-1.888c-24.087-10.463-42.37-35.624-44.877-39.867c-0.358-0.61-0.373-0.887-0.376-0.887
-           c0.088-0.323,0.898-1.135,1.316-1.554c1.223-1.21,2.548-2.805,3.83-4.348c0.607-0.731,1.215-1.463,1.812-2.153
-           c1.86-2.164,2.688-3.844,3.648-5.79l0.503-1.011c2.344-4.657,0.342-8.587-0.305-9.856c-0.531-1.062-10.012-23.944-11.02-26.348
-           c-2.424-5.801-5.627-8.502-10.078-8.502c-0.413,0,0,0-1.732,0.073c-2.109,0.089-13.594,1.601-18.672,4.802
-           c-5.385,3.395-14.495,14.217-14.495,33.249c0,17.129,10.87,33.302,15.537,39.453c0.116,0.155,0.329,0.47,0.638,0.922
-           c17.873,26.102,40.154,45.446,62.741,54.469c21.745,8.686,32.042,9.69,37.896,9.69c0.001,0,0.001,0,0.001,0
-           c2.46,0,4.429-0.193,6.166-0.364l1.102-0.105c7.512-0.666,24.02-9.22,27.775-19.655c2.958-8.219,3.738-17.199,1.77-20.458
-           C233.168,179.508,230.845,178.393,227.904,176.981z" />
-            <path id="XMLID_470_"
-                d="M156.734,0C73.318,0,5.454,67.354,5.454,150.143c0,26.777,7.166,52.988,20.741,75.928L0.212,302.716
-           c-0.484,1.429-0.124,3.009,0.933,4.085C1.908,307.58,2.943,308,4,308c0.405,0,0.813-0.061,1.211-0.188l79.92-25.396
-           c21.87,11.685,46.588,17.853,71.604,17.853C240.143,300.27,308,232.923,308,150.143C308,67.354,240.143,0,156.734,0z
-            M156.734,268.994c-23.539,0-46.338-6.797-65.936-19.657c-0.659-0.433-1.424-0.655-2.194-0.655c-0.407,0-0.815,0.062-1.212,0.188
-           l-40.035,12.726l12.924-38.129c0.418-1.234,0.209-2.595-0.561-3.647c-14.924-20.392-22.813-44.485-22.813-69.677
-           c0-65.543,53.754-118.867,119.826-118.867c66.064,0,119.812,53.324,119.812,118.867
-           C276.546,215.678,222.799,268.994,156.734,268.994z" />
-        </g>
-    </svg>
-</button>
+                                
 
-</a>
-<button onclick="callwithagent('{{ $property->random_id }}','{{ $property->title }}','{{ $property->user->phone_number }}','{{ $property->user->mobile_number }}','{{ $property->user->name }}','{{ $property->user->username }}')" class="_5b77d672 da62f2ae _8d1154ff call" type="button"
-aria-label="Call" data-bs-toggle="modal"
-data-bs-target="#callexampleModal"><svg
-    xmlns="http://www.w3.org/2000/svg" width="16"
-    height="16" viewBox="0 0 16 16" fill="#fff"
-    class="_40c10793" aria-label="Send email">
-    <path
-        d="M13.3 10.3A7.6 7.6 0 0 1 11 10a.7.7 0 0 0-.7.1l-1 1.4a10.1 10.1 0 0 1-4.6-4.6L6 5.7A.7.7 0 0 0 6 5a7.4 7.4 0 0 1-.3-2.3A.7.7 0 0 0 5 2H2.8c-.4 0-.8.2-.8.7A11.4 11.4 0 0 0 13.3 14a.7.7 0 0 0 .7-.8V11a.7.7 0 0 0-.7-.6z">
-    </path>
-</svg>&nbsp;Call With Agent</button>
-                  <button
-                    class="call-btn d-flex flex-row align-items-center gap-md-2 gap-1 w-50 justify-content-center py-3">
-                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="#fff"
-                      class="_40c10793">
-                      <path
-                        d="M13.3 10.3A7.6 7.6 0 0 1 11 10a.7.7 0 0 0-.7.1l-1 1.4a10.1 10.1 0 0 1-4.6-4.6L6 5.7A.7.7 0 0 0 6 5a7.4 7.4 0 0 1-.3-2.3A.7.7 0 0 0 5 2H2.8c-.4 0-.8.2-.8.7A11.4 11.4 0 0 0 13.3 14a.7.7 0 0 0 .7-.8V11a.7.7 0 0 0-.7-.6z">
-                      </path>
-                    </svg>
-                    <span>CALL</span>
-                </div>
+
+                                <button
+                                    onclick="callwithagent('{{ $property->random_id }}','{{ $property->title }}','{{ $property->user->phone_number }}','{{ $property->user->mobile_number }}','{{ $property->user->name }}','{{ $property->user->username }}')"
+                                    class="_5b77d672 da62f2ae _8d1154ff call btn" type="button" aria-label="Call"
+                                    data-bs-toggle="modal" data-bs-target="#callexampleModal"
+                                    style="background-color: #041E42; color: white;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                        fill="#fff" class="_40c10793" aria-label="Send email">
+                                        <path
+                                            d="M13.3 10.3A7.6 7.6 0 0 1 11 10a.7.7 0 0 0-.7.1l-1 1.4a10.1 10.1 0 0 1-4.6-4.6L6 5.7A.7.7 0 0 0 6 5a7.4 7.4 0 0 1-.3-2.3A.7.7 0 0 0 5 2H2.8c-.4 0-.8.2-.8.7A11.4 11.4 0 0 0 13.3 14a.7.7 0 0 0 .7-.8V11a.7.7 0 0 0-.7-.6z">
+                                        </path>
+                                    </svg>&nbsp;CALL
+                                </button>
+
+                                <button
+                                    onclick="emailwithagent('{{ $property->random_id }}','{{ $property->title }}','{{ $property->user->phone_number }}','{{ $property->user->mobile_number }}','{{ $property->user->name }}','{{ $property->user->username }}','{{ $property->agent_id }}','{{ $property->id }}')"
+                                    class="_85d9f2e2 a8197536 a8375d37 send-email" aria-label="Send email"
+                                    data-bs-toggle="modal" data-bs-target="#modalabcd"
+                                    style="background-color: #041E42;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="e6b01fef">
+                                        <path fill="#6CACE3"
+                                            d="M28.7 5.3H3.3A3.3 3.3 0 0 0 0 8.6v14.8c0 1.8 1.4 3.3 3.3 3.3h25.4c1.8 0 3.3-1.4 3.3-3.3V8.7c0-1.9-1.4-3.3-3.3-3.4zm-17 12l-8 6.6c-.3.1-.6.1-1-.2-.2-.3 0-.7.2-1l8-6.6c.3-.3.7-.1 1 .1.2.4.1.8-.2 1zm17.5 6.4c-.3.2-.6.3-1 0l-8-6.6c-.2-.1-.2-.5 0-.8 0-.3.6-.3.8 0l8 6.6c.4.1.4.5.2.8zm0-14.5l-11 7.5c-.6.4-1.4.6-2 .7-.9 0-1.6-.3-2.2-.7L3 9.2c-.4-.2-.4-.6-.2-.9.2-.3.6-.4 1-.2l10.8 7.5c.8.5 1.9.5 2.7 0l11-7.5c.2-.3.6-.1.8 0 .3.4.3.8 0 1z">
+                                        </path>
+                                    </svg>
+                                </button>
+                                <!-- whatsapp backend Api -->
+                                @php
+                                $propertyTitle = $property->title;
+                                $propertyLink = route('property.show', [$property->slug, $property->random_id]);
+                                $agentnumber = $property->user->phone_number;
+                                $whatsappMessage = 'Check out this property: ' . urlencode($propertyTitle) . ' ' .
+                                urlencode($propertyLink);
+                                $whatsappLink = 'https://api.whatsapp.com/send?phone=' . $agentnumber . '&text=' .
+                                $whatsappMessage;
+                                @endphp
+                                <button class="_5b77d672 da62f2ae _8d1154ff call btn" type="button"
+                                    style="background-color: #041E42; color: white;">
+                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
+                                        fill="#fff" class="_40c10793">
+                                        <path
+                                            d="M13.3 10.3A7.6 7.6 0 0 1 11 10a.7.7 0 0 0-.7.1l-1 1.4a10.1 10.1 0 0 1-4.6-4.6L6 5.7A.7.7 0 0 0 6 5a7.4 7.4 0 0 1-.3-2.3A.7.7 0 0 0 5 2H2.8c-.4 0-.8.2-.8.7A11.4 11.4 0 0 0 13.3 14a.7.7 0 0 0 .7-.8V11a.7.7 0 0 0-.7-.6z">
+                                        </path>
+                                    </svg>
+                                    <a href="{{ $whatsappLink }}" class="whatsapp-link">
+                                        <span>Whatsapp</span>
+                                    </a>
+                              
+
+                            </div>
                             <div class="d-flex flex-column gap-2">
                                 <div class="_2b36c787 contactFormName _45ca5e6b" tabindex="-1"><span
                                         class="_56bd145a">NAME*</span>
@@ -490,7 +484,7 @@ data-bs-target="#callexampleModal"><svg
                 <div class="carousel-item">
                     <div class="image-wrapper position-relative">
                         <figure class="m-0">
-                          
+
                             <img src=" {{ asset('zameen/assets/images/signup-bg.png') }}" />
                         </figure>
                         <div class="top-data d-flex flex-row justify-content-between align-items-center">
@@ -658,6 +652,7 @@ data-bs-target="#callexampleModal"><svg
                         </g>
                     </svg>
                     <span class="font-weight-500">3</span>
+                
                 </div>
                 <div class="d-flex flex-row gap-1 align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-custom">
