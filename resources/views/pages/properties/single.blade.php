@@ -17,149 +17,186 @@
 @section('content')
 <!-- Banner-section -->
 
-<section>
+
     <div class="wrapper-for-all mb-md-4 mb-3">
         <div class="custom-container">
             <div class="d-flex flex-row gap-2 py-4 justify-content-between align-items-center">
                 <div class="d-flex flex-column gap-2  justify-content-between ">
-                    <p class="md-text">Locations of Houses For Sale in Lahore</p>
-                    <span class="prop-count">New Lahore City - Phase 2, New Lahore City, Lahore, Punjab</span>
+                    <p class="md-text">{{ $property->title }}</p>
+                    <a href="#">
+                        <img src="{{ asset('zameen/assets/images/location.png ') }}" width="17px" height="22px">
+                        <span class="show-on-map">Show on map</span>
+                    </a>
                 </div>
-                <a href="#" class="Save-search-button d-flex align-items-center gap-2">
-                    Home Loan</a>
+                <a href="#" class="Save-search-button d-flex align-items-center gap-2"
+                    style="text-decoration: underline;">
+                    Home Loan
+                </a>
             </div>
+<section>
             <div class="row">
                 <div class="col-12 col-md-6 col-lg-8">
-
-                    <div id="carouselExample" class="carousel slide prop-detail-slider">
+                    @if(!$property->gallery->isEmpty())
+                    <div id="carouselExampleControls" class="carousel slide pointer-event transaction-slider"
+                        data-bs-ride="carousel">
                         <div class="carousel-inner">
-
-                            <div class="carousel-item active ">
-                                <img src=" {{ asset('zameen/assets/images/signup-bg.png') }}" />
-                                <div class="bottom-data d-flex flex-row justify-content-between align-items-center">
-                                    <div class="bg-light-black d-flex flex-row gap-1 align-items-center">
-                                        <span class="view-count-white">11</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="white-svg">
-                                            <path fill="none" d="M0 0h16v16H0z"></path>
-                                            <g fill="#fff" data-name="Icon ionic-ios-camera">
-                                                <path d="M9.8 8.24a2.08 2.08 0 1 1-2.08-2.09 2.08 2.08 0 0 1 2.08 2.1z">
-                                                </path>
-                                                <path
-                                                    d="M13.57 4.06H11.6a.59.59 0 0 1-.44-.2c-1.03-1.15-1.4-1.54-1.83-1.54h-3.1c-.43 0-.84.4-1.88 1.55a.58.58 0 0 1-.43.2h-.14v-.3a.3.3 0 0 0-.29-.29h-.94c-.16 0-.3.13-.3.58H2A1.18 1.18 0 0 0 .77 5.18v6.37a1.25 1.25 0 0 0 1.21 1.2h11.6a1.16 1.16 0 0 0 1.1-1.2V5.17a1.08 1.08 0 0 0-1.1-1.1zm-5.7 7.26a3.1 3.1 0 1 1 2.95-2.95 3.1 3.1 0 0 1-2.95 2.95zm3.33-5.16a.47.47 0 1 1 .47-.47.47.47 0 0 1-.47.47z">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <div class="bg-light-black d-flex flex-row gap-1 align-items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="white-svg" viewBox="0 0 9 13"
-                                            style="width: 0.9rem; height: 0.8rem">
-                                            <path fill="#FFF"
-                                                d="M4.5 0C2 0 0 2 0 4.4 0 7.8 4.5 13 4.5 13S9 7.8 9 4.4C9 2 7 0 4.5 0zm0 6.3c-1.1 0-1.9-.9-1.9-1.9a2 2 0 0 1 1.9-1.9c1.1 0 1.9.8 1.9 1.9 0 1-.8 1.9-1.9 1.9z">
-                                            </path>
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="white-svg" viewBox="0 0 13 12"
-                                            style="width: 0.9rem; height: 1.2rem">
-                                            <path fill="#FFF"
-                                                d="M9.7 2V0L13 3.3 9.7 6.6V4.3c-3.9.5-5.8 4.8-5.8 4.8 0-3.6 2.5-6.7 5.8-7.1zm1.2 9.2H.8V2.5H7a12 12 0 0 1 2-.8H.4c-.2 0-.4.2-.4.4v9.5c0 .3.2.4.4.4h10.9c.2 0 .4-.2.4-.4V5.2l-.8.8v5.2z">
-                                            </path>
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" overflow="visible" viewBox="0 0 20 18.4"
-                                            class="white-svg" style="width: 0.9rem; height: 0.8rem">
-                                            <path
-                                                d="M10 18.4L8.6 17C3.4 12.4 0 9.3 0 5.5A5.5 5.5 0 0 1 5.5 0 6 6 0 0 1 10 2a6 6 0 0 1 4.5-2A5.5 5.5 0 0 1 20 5.5c0 3.8-3.4 6.9-8.6 11.5z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                </div>
+                            @foreach($property->gallery as $gallery)
+                            <div class="carousel-item active">
+                                <img src="{{Storage::url('property/gallery/'.$gallery->name)}}" />
                             </div>
-                            <div class="carousel-item">
-
-                                <img src="zameen/assets/images/signup-bg.png" class="d-block w-100" alt="...">
-                                <div class="bottom-data d-flex flex-row justify-content-between align-items-center">
-                                    <div class="bg-light-black d-flex flex-row gap-1 align-items-center">
-                                        <span class="view-count-white">11</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="white-svg">
-                                            <path fill="none" d="M0 0h16v16H0z"></path>
-                                            <g fill="#fff" data-name="Icon ionic-ios-camera">
-                                                <path d="M9.8 8.24a2.08 2.08 0 1 1-2.08-2.09 2.08 2.08 0 0 1 2.08 2.1z">
-                                                </path>
-                                                <path
-                                                    d="M13.57 4.06H11.6a.59.59 0 0 1-.44-.2c-1.03-1.15-1.4-1.54-1.83-1.54h-3.1c-.43 0-.84.4-1.88 1.55a.58.58 0 0 1-.43.2h-.14v-.3a.3.3 0 0 0-.29-.29h-.94c-.16 0-.3.13-.3.58H2A1.18 1.18 0 0 0 .77 5.18v6.37a1.25 1.25 0 0 0 1.21 1.2h11.6a1.16 1.16 0 0 0 1.1-1.2V5.17a1.08 1.08 0 0 0-1.1-1.1zm-5.7 7.26a3.1 3.1 0 1 1 2.95-2.95 3.1 3.1 0 0 1-2.95 2.95zm3.33-5.16a.47.47 0 1 1 .47-.47.47.47 0 0 1-.47.47z">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <div class="bg-light-black d-flex flex-row gap-1 align-items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="white-svg" viewBox="0 0 9 13"
-                                            style="width: 0.9rem; height: 0.8rem">
-                                            <path fill="#FFF"
-                                                d="M4.5 0C2 0 0 2 0 4.4 0 7.8 4.5 13 4.5 13S9 7.8 9 4.4C9 2 7 0 4.5 0zm0 6.3c-1.1 0-1.9-.9-1.9-1.9a2 2 0 0 1 1.9-1.9c1.1 0 1.9.8 1.9 1.9 0 1-.8 1.9-1.9 1.9z">
-                                            </path>
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="white-svg" viewBox="0 0 13 12"
-                                            style="width: 0.9rem; height: 1.2rem">
-                                            <path fill="#FFF"
-                                                d="M9.7 2V0L13 3.3 9.7 6.6V4.3c-3.9.5-5.8 4.8-5.8 4.8 0-3.6 2.5-6.7 5.8-7.1zm1.2 9.2H.8V2.5H7a12 12 0 0 1 2-.8H.4c-.2 0-.4.2-.4.4v9.5c0 .3.2.4.4.4h10.9c.2 0 .4-.2.4-.4V5.2l-.8.8v5.2z">
-                                            </path>
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" overflow="visible" viewBox="0 0 20 18.4"
-                                            class="white-svg" style="width: 0.9rem; height: 0.8rem">
-                                            <path
-                                                d="M10 18.4L8.6 17C3.4 12.4 0 9.3 0 5.5A5.5 5.5 0 0 1 5.5 0 6 6 0 0 1 10 2a6 6 0 0 1 4.5-2A5.5 5.5 0 0 1 20 5.5c0 3.8-3.4 6.9-8.6 11.5z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
-                            <div class="carousel-item">
-                                <img src="zameen/assets/images/properties.jpg" class="d-block w-100" alt="...">
-                                <div class="bottom-data d-flex flex-row justify-content-between align-items-center">
-                                    <div class="bg-light-black d-flex flex-row gap-1 align-items-center">
-                                        <span class="view-count-white">11</span>
-                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" class="white-svg">
-                                            <path fill="none" d="M0 0h16v16H0z"></path>
-                                            <g fill="#fff" data-name="Icon ionic-ios-camera">
-                                                <path d="M9.8 8.24a2.08 2.08 0 1 1-2.08-2.09 2.08 2.08 0 0 1 2.08 2.1z">
-                                                </path>
-                                                <path
-                                                    d="M13.57 4.06H11.6a.59.59 0 0 1-.44-.2c-1.03-1.15-1.4-1.54-1.83-1.54h-3.1c-.43 0-.84.4-1.88 1.55a.58.58 0 0 1-.43.2h-.14v-.3a.3.3 0 0 0-.29-.29h-.94c-.16 0-.3.13-.3.58H2A1.18 1.18 0 0 0 .77 5.18v6.37a1.25 1.25 0 0 0 1.21 1.2h11.6a1.16 1.16 0 0 0 1.1-1.2V5.17a1.08 1.08 0 0 0-1.1-1.1zm-5.7 7.26a3.1 3.1 0 1 1 2.95-2.95 3.1 3.1 0 0 1-2.95 2.95zm3.33-5.16a.47.47 0 1 1 .47-.47.47.47 0 0 1-.47.47z">
-                                                </path>
-                                            </g>
-                                        </svg>
-                                    </div>
-                                    <div class="bg-light-black d-flex flex-row gap-1 align-items-center">
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="white-svg" viewBox="0 0 9 13"
-                                            style="width: 0.9rem; height: 0.8rem">
-                                            <path fill="#FFF"
-                                                d="M4.5 0C2 0 0 2 0 4.4 0 7.8 4.5 13 4.5 13S9 7.8 9 4.4C9 2 7 0 4.5 0zm0 6.3c-1.1 0-1.9-.9-1.9-1.9a2 2 0 0 1 1.9-1.9c1.1 0 1.9.8 1.9 1.9 0 1-.8 1.9-1.9 1.9z">
-                                            </path>
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" class="white-svg" viewBox="0 0 13 12"
-                                            style="width: 0.9rem; height: 1.2rem">
-                                            <path fill="#FFF"
-                                                d="M9.7 2V0L13 3.3 9.7 6.6V4.3c-3.9.5-5.8 4.8-5.8 4.8 0-3.6 2.5-6.7 5.8-7.1zm1.2 9.2H.8V2.5H7a12 12 0 0 1 2-.8H.4c-.2 0-.4.2-.4.4v9.5c0 .3.2.4.4.4h10.9c.2 0 .4-.2.4-.4V5.2l-.8.8v5.2z">
-                                            </path>
-                                        </svg>
-                                        <svg xmlns="http://www.w3.org/2000/svg" overflow="visible" viewBox="0 0 20 18.4"
-                                            class="white-svg" style="width: 0.9rem; height: 0.8rem">
-                                            <path
-                                                d="M10 18.4L8.6 17C3.4 12.4 0 9.3 0 5.5A5.5 5.5 0 0 1 5.5 0 6 6 0 0 1 10 2a6 6 0 0 1 4.5-2A5.5 5.5 0 0 1 20 5.5c0 3.8-3.4 6.9-8.6 11.5z">
-                                            </path>
-                                        </svg>
-                                    </div>
-                                </div>
-                            </div>
+                            @endforeach
                         </div>
-                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExample"
+
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls"
                             data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
-                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExample"
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls"
                             data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
+
+
+                        @elseif(!empty( $property->location_latitude))
+                        <iframe width="100%" height="500" frameborder="0" scrolling="no" marginheight="0"
+                            marginwidth="0" loading="lazy"
+                            src="https://maps.google.com/maps?q={{ $property->address }},{{ $property->location_latitude }},{{ $property->location_longitude }}&z=15&output=embed">
+                        </iframe>
+
+                        @elseif (!empty($property->image))
+                        <div class="lg-img">
+                            <img src="{{Storage::url('property/'.$property->image)}}">
+                        </div>
+                        @else
+                        <div class="lg-img">
+                            <img src="{{ asset('zameen/house.png') }}">
+                        </div>
+                        @endif
+
+                    </div>
+                    <div class="col-12 col-md-6 col-lg-4">
+                        <form action="{{ route('property.message') }}" method="post" method="POST" class="detail-form">
+                            @csrf
+                            <input type="hidden" name="agent_id" value="{{ $property->user->id }}">
+                            <input type="hidden" name="user_id" value="{{ auth()->id() }}">
+                            <input type="hidden" name="property_id" value="{{ $property->id }}">
+                            <div class="detail-form-inner">
+                                <span class="create-head text-start d-inline-block pb-2">Contact with Agent</span>
+                                <div class="d-flex flex-row gap-2 my-4">
+                                    <button
+                                        onclick="callwithagent('{{ $property->random_id }}','{{ $property->title }}','{{ $property->user->phone_number }}','{{ $property->user->mobile_number }}','{{ $property->user->name }}','{{ $property->user->username }}')"
+                                        class="_5b77d672 da62f2ae _8d1154ff call btn" type="button" aria-label="Call"
+                                        data-bs-toggle="modal" data-bs-target="#callexampleModal"
+                                        style="background-color: #041E42; color: white;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 16 16" fill="#fff" class="_40c10793" aria-label="Send email">
+                                            <path
+                                                d="M13.3 10.3A7.6 7.6 0 0 1 11 10a.7.7 0 0 0-.7.1l-1 1.4a10.1 10.1 0 0 1-4.6-4.6L6 5.7A.7.7 0 0 0 6 5a7.4 7.4 0 0 1-.3-2.3A.7.7 0 0 0 5 2H2.8c-.4 0-.8.2-.8.7A11.4 11.4 0 0 0 13.3 14a.7.7 0 0 0 .7-.8V11a.7.7 0 0 0-.7-.6z">
+                                            </path>
+                                        </svg>&nbsp;CALL
+                                    </button>
+
+                                    <button
+                                        onclick="emailwithagent('{{ $property->random_id }}','{{ $property->title }}','{{ $property->user->phone_number }}','{{ $property->user->mobile_number }}','{{ $property->user->name }}','{{ $property->user->username }}','{{ $property->agent_id }}','{{ $property->id }}')"
+                                        class="_85d9f2e2 a8197536 a8375d37 send-email" aria-label="Send email"
+                                        data-bs-toggle="modal" data-bs-target="#modalabcd"
+                                        style="background-color: #041E42;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="e6b01fef">
+                                            <path fill="#6CACE3"
+                                                d="M28.7 5.3H3.3A3.3 3.3 0 0 0 0 8.6v14.8c0 1.8 1.4 3.3 3.3 3.3h25.4c1.8 0 3.3-1.4 3.3-3.3V8.7c0-1.9-1.4-3.3-3.3-3.4zm-17 12l-8 6.6c-.3.1-.6.1-1-.2-.2-.3 0-.7.2-1l8-6.6c.3-.3.7-.1 1 .1.2.4.1.8-.2 1zm17.5 6.4c-.3.2-.6.3-1 0l-8-6.6c-.2-.1-.2-.5 0-.8 0-.3.6-.3.8 0l8 6.6c.4.1.4.5.2.8zm0-14.5l-11 7.5c-.6.4-1.4.6-2 .7-.9 0-1.6-.3-2.2-.7L3 9.2c-.4-.2-.4-.6-.2-.9.2-.3.6-.4 1-.2l10.8 7.5c.8.5 1.9.5 2.7 0l11-7.5c.2-.3.6-.1.8 0 .3.4.3.8 0 1z">
+                                            </path>
+                                        </svg>
+                                    </button>
+                                    <!-- whatsapp backend Api -->
+                                    @php
+                                    $propertyTitle = $property->title;
+                                    $propertyLink = route('property.show', [$property->slug, $property->random_id]);
+                                    $agentnumber = $property->user->phone_number;
+                                    $whatsappMessage = 'Check out this property: ' . urlencode($propertyTitle) . ' ' .
+                                    urlencode($propertyLink);
+                                    $whatsappLink = 'https://api.whatsapp.com/send?phone=' . $agentnumber . '&text=' .
+                                    $whatsappMessage;
+                                    @endphp
+                                    <button class="_5b77d672 da62f2ae _8d1154ff call btn" type="button"
+                                        style="background-color: #041E42; color: white;">
+                                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                            viewBox="0 0 16 16" fill="#fff" class="_40c10793">
+                                            <path
+                                                d="M13.3 10.3A7.6 7.6 0 0 1 11 10a.7.7 0 0 0-.7.1l-1 1.4a10.1 10.1 0 0 1-4.6-4.6L6 5.7A.7.7 0 0 0 6 5a7.4 7.4 0 0 1-.3-2.3A.7.7 0 0 0 5 2H2.8c-.4 0-.8.2-.8.7A11.4 11.4 0 0 0 13.3 14a.7.7 0 0 0 .7-.8V11a.7.7 0 0 0-.7-.6z">
+                                            </path>
+                                        </svg>
+                                        <a href="{{ $whatsappLink }}" class="whatsapp-link">
+                                            <span>Whatsapp</span>
+                                        </a>
+                                </div>
+                                <div class="d-flex flex-column gap-2">
+                                    <div class="_2b36c787 contactFormName _45ca5e6b" tabindex="-1"><span
+                                            class="_56bd145a">NAME*</span>
+                                        <div><input id="" class="_24a2ee1a" name="name" value="" type="h"
+                                                placeholder="Enter your Name here"></div>
+                                    </div>
+                                    <div class="_2b36c787 contactFormName _45ca5e6b" tabindex="-1"><span
+                                            class="_56bd145a">EMAIL*</span>
+                                        <div><input id="contactFormName" class="_24a2ee1a" name="name" value=""
+                                                type="email" placeholder="Enter your Email here"></div>
+                                    </div>
+                                    <div class="_2b36c787 contactFormName _45ca5e6b" tabindex="-1"><span
+                                            class="_56bd145a">PHONE*</span>
+                                        <div><input id="contactFormName" class="_24a2ee1a" name="name" value=""
+                                                type="number" placeholder="Enter your Phone Number here"></div>
+                                    </div>
+                                    <div class="_2b36c787 contactFormName _45ca5e6b" tabindex="-1"><span
+                                            class="_56bd145a">MESSAGE*</span>
+                                        <div><textarea id="contactFormName" class="_24a2ee1a" name="name" value=""
+                                                type="text" cols="3" placeholder="Your Message"></textarea></div>
+                                    </div>
+                                </div>
+                                <div class="d-flex flex-row gap-2 align-items-center my-3">
+                                    <span class="prop-count">
+                                        I'm a :
+                                    </span>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                            id="exampleRadios1" value="option1" checked>
+                                        <label class="form-check-label prop-count" for="exampleRadios1">
+                                            Default radio
+                                        </label>
+                                    </div>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="exampleRadios"
+                                            id="exampleRadios2" value="option1" checked>
+                                        <label class="form-check-label prop-count" for="exampleRadios2">
+                                            Default radio
+                                        </label>
+                                    </div>
+                                </div>
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
+                                    <label class="form-check-label prop-count" for="flexCheckDefault">
+                                        Keep me informed about similar properties.
+                                    </label>
+                                </div>
+                                <input type="submit" name="" id="" value="SEND MESSAGE"
+                                    class="submmit m-0 rounded-2 mt-3">
+                            </div>
+
+                        </form>
+                        <article class="mt-5">
+                            <div class="artical-wrapper d-flex flex-column gap-2">
+                                <h3>USEFUL LINKS</h3>
+                                <div class="d-flex flex-column gap-2 usefull-links">
+                                    <a href="#">Property for sale in Lahore</a>
+                                    <a href="#">1 Kanal Houses for sale in DHA Defence</a>
+                                    <a href="#">Property for sale in Lahore</a>
+                                    <a href="#">1 Kanal Houses for sale in DHA Defence</a>
+                                    <a href="#">Property for sale in Lahore</a>
+                                    <a href="#">1 Kanal Houses for sale in DHA Defence</a>
+                                </div>
+
+                            </div>
+                        </article>
                     </div>
                     <div class="d-flex flex-row gap-5 my-4">
                         <div class="d-flex flex-column gap-2 align-items-center">
@@ -176,7 +213,7 @@
                                     </g>
                                 </g>
                             </svg>
-                            <div class="font-weight-500">{{ $property->bedroom }} Bedrooms</div>
+                            <span class="font-weight-500">{{ $property->bedroom }} Bedrooms</span>
                         </div>
                         <div class="d-flex flex-column gap-2 align-items-center">
                             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-custom">
@@ -203,230 +240,88 @@
                             <span class="font-weight-500">702 sqft</span>
                         </div>
                     </div>
-                    <!-- sticky-navbar -->
-                    <div class="ba2c32de">
-                        <div class="">
-                            <div class="_23b128fb d-flex flex-row gap-2 flex-wrap" aria-label="Nav bar"><button
-                                    class="_147317c5 active">Overview</button><button class="_147317c5">Location &amp;
-                                    Nearby</button><button class="_147317c5">Home
-                                    Finance</button><button class="_147317c5">Price Index</button><button
-                                    class="_147317c5">Trends</button>
-                                <div class="_846c3783" style="display: none;">
-                                    <div class="f16e6e5e"><button class="efdddcd4"><svg
-                                                xmlns="http://www.w3.org/2000/svg" overflow="visible"
-                                                viewBox="0 0 20 18.4" class="_51b1c3d3">
-                                                <path
-                                                    d="M10 18.4L8.6 17C3.4 12.4 0 9.3 0 5.5A5.5 5.5 0 0 1 5.5 0 6 6 0 0 1 10 2a6 6 0 0 1 4.5-2A5.5 5.5 0 0 1 20 5.5c0 3.8-3.4 6.9-8.6 11.5z">
-                                                </path>
-                                            </svg></button></div><button class="_5b77d672 da62f2ae _147a2131"
-                                        type="button" aria-label="Call"><svg xmlns="http://www.w3.org/2000/svg"
-                                            width="16" height="16" viewBox="0 0 16 16" fill="#fff" class="_40c10793">
+                </div>
+                <!-- sticky-navbar -->
+                <div class="ba2c32de">
+                    <div class="">
+                        <div class="_23b128fb d-flex flex-row gap-2 flex-wrap" aria-label="Nav bar"><button
+                                class="_147317c5 active">Overview</button><button class="_147317c5">Location &amp;
+                                Nearby</button><button class="_147317c5">Home
+                                Finance</button><button class="_147317c5">Price Index</button><button
+                                class="_147317c5">Trends</button>
+                            <div class="_846c3783" style="display: none;">
+                                <div class="f16e6e5e"><button class="efdddcd4"><svg xmlns="http://www.w3.org/2000/svg"
+                                            overflow="visible" viewBox="0 0 20 18.4" class="_51b1c3d3">
                                             <path
-                                                d="M13.3 10.3A7.6 7.6 0 0 1 11 10a.7.7 0 0 0-.7.1l-1 1.4a10.1 10.1 0 0 1-4.6-4.6L6 5.7A.7.7 0 0 0 6 5a7.4 7.4 0 0 1-.3-2.3A.7.7 0 0 0 5 2H2.8c-.4 0-.8.2-.8.7A11.4 11.4 0 0 0 13.3 14a.7.7 0 0 0 .7-.8V11a.7.7 0 0 0-.7-.6z">
+                                                d="M10 18.4L8.6 17C3.4 12.4 0 9.3 0 5.5A5.5 5.5 0 0 1 5.5 0 6 6 0 0 1 10 2a6 6 0 0 1 4.5-2A5.5 5.5 0 0 1 20 5.5c0 3.8-3.4 6.9-8.6 11.5z">
                                             </path>
-                                        </svg>Call</button>
-                                </div>
+                                        </svg></button></div><button class="_5b77d672 da62f2ae _147a2131" type="button"
+                                    aria-label="Call"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16"
+                                        viewBox="0 0 16 16" fill="#fff" class="_40c10793">
+                                        <path
+                                            d="M13.3 10.3A7.6 7.6 0 0 1 11 10a.7.7 0 0 0-.7.1l-1 1.4a10.1 10.1 0 0 1-4.6-4.6L6 5.7A.7.7 0 0 0 6 5a7.4 7.4 0 0 1-.3-2.3A.7.7 0 0 0 5 2H2.8c-.4 0-.8.2-.8.7A11.4 11.4 0 0 0 13.3 14a.7.7 0 0 0 .7-.8V11a.7.7 0 0 0-.7-.6z">
+                                        </path>
+                                    </svg>Call</button>
                             </div>
                         </div>
                     </div>
-                    <p class="md-text py-3">Overview</p>
-                    <h3 class="sm-text ">Detail</h3>
-                    <div class="row">
-    <div class="col-12 col-lg-6">
-        <table class="table w-100 table-striped my-3">
-            <tbody>
-                <tr>
-                    <td>Type</td>
-                    <td>House</td>
-                </tr>
-                <tr>
-                    <td>Price</td>
-                    <td>Price: {{ $property->price }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-    <div class="col-12 col-lg-6">
-        <table class="table w-100 table-striped my-3">
-            <tbody>
-                <tr>
-                    <td>Type</td>
-                    <td>House</td>
-                </tr>
-                <tr>
-                    <td>Price</td>
-                    <td>Price: {{ $property->price }}</td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-</div>
-                    <article>
-                        <div class="custom-container">
-                            <div class="artical-wrapper d-flex flex-column gap-2">
-                                <h3>Description</h3>
-                                <p>
-                                    Lahore is a rapidly growing metropolitan area and is the
-                                    second-largest city in Pakistan. It hosts several prominent
-                                    multinationals, business centers, and industrial estates. People
-                                    from across the country have moved to Lahore in search of
-                                    well-paid jobs and better living standards. Besides, Lahore is
-                                    also recognized as a tourist destination which has significantly
-                                    increased the tourist activities and retail foot traffic. Renting
-                                    out an office in Lahore allows you to enjoy the top-notch
-                                    infrastructural development and transportation services, making
-                                    Lahore a desirable place to establish a corporate space. Some of
-                                    the top business centers to look for an office for rent in Lahore
-                                    include Gulberg, Bahria Town, Bahria Orchard, Jail Road, Upper
-                                    Mall Road, Raiwind Road, and the Defence Housing Authority
-                                    (DHA)
-                                </p>
-
-                            </div>
-                        </div>
-
-                    </article>
-                    @include('frontend.partials.modelsjs')
-                    @include('frontend.partials.models')
                 </div>
-                <div class="col-12 col-md-6 col-lg-4">
-                    <form action="{{ route('property.message') }}" method="post" method="POST" class="detail-form">
-                        @csrf
-                        <input type="hidden" name="agent_id" value="{{ $property->user->id }}">
-                        <input type="hidden" name="user_id" value="{{ auth()->id() }}">
-                        <input type="hidden" name="property_id" value="{{ $property->id }}">
-                        <div class="detail-form-inner">
-                            <span class="create-head text-start d-inline-block pb-2">Contact with Agent</span>
-                            <div class="d-flex flex-row gap-2 my-4">
-                                
 
-
-                                <button
-                                    onclick="callwithagent('{{ $property->random_id }}','{{ $property->title }}','{{ $property->user->phone_number }}','{{ $property->user->mobile_number }}','{{ $property->user->name }}','{{ $property->user->username }}')"
-                                    class="_5b77d672 da62f2ae _8d1154ff call btn" type="button" aria-label="Call"
-                                    data-bs-toggle="modal" data-bs-target="#callexampleModal"
-                                    style="background-color: #041E42; color: white;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                                        fill="#fff" class="_40c10793" aria-label="Send email">
-                                        <path
-                                            d="M13.3 10.3A7.6 7.6 0 0 1 11 10a.7.7 0 0 0-.7.1l-1 1.4a10.1 10.1 0 0 1-4.6-4.6L6 5.7A.7.7 0 0 0 6 5a7.4 7.4 0 0 1-.3-2.3A.7.7 0 0 0 5 2H2.8c-.4 0-.8.2-.8.7A11.4 11.4 0 0 0 13.3 14a.7.7 0 0 0 .7-.8V11a.7.7 0 0 0-.7-.6z">
-                                        </path>
-                                    </svg>&nbsp;CALL
-                                </button>
-
-                                <button
-                                    onclick="emailwithagent('{{ $property->random_id }}','{{ $property->title }}','{{ $property->user->phone_number }}','{{ $property->user->mobile_number }}','{{ $property->user->name }}','{{ $property->user->username }}','{{ $property->agent_id }}','{{ $property->id }}')"
-                                    class="_85d9f2e2 a8197536 a8375d37 send-email" aria-label="Send email"
-                                    data-bs-toggle="modal" data-bs-target="#modalabcd"
-                                    style="background-color: #041E42;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" class="e6b01fef">
-                                        <path fill="#6CACE3"
-                                            d="M28.7 5.3H3.3A3.3 3.3 0 0 0 0 8.6v14.8c0 1.8 1.4 3.3 3.3 3.3h25.4c1.8 0 3.3-1.4 3.3-3.3V8.7c0-1.9-1.4-3.3-3.3-3.4zm-17 12l-8 6.6c-.3.1-.6.1-1-.2-.2-.3 0-.7.2-1l8-6.6c.3-.3.7-.1 1 .1.2.4.1.8-.2 1zm17.5 6.4c-.3.2-.6.3-1 0l-8-6.6c-.2-.1-.2-.5 0-.8 0-.3.6-.3.8 0l8 6.6c.4.1.4.5.2.8zm0-14.5l-11 7.5c-.6.4-1.4.6-2 .7-.9 0-1.6-.3-2.2-.7L3 9.2c-.4-.2-.4-.6-.2-.9.2-.3.6-.4 1-.2l10.8 7.5c.8.5 1.9.5 2.7 0l11-7.5c.2-.3.6-.1.8 0 .3.4.3.8 0 1z">
-                                        </path>
-                                    </svg>
-                                </button>
-                                <!-- whatsapp backend Api -->
-                                @php
-                                $propertyTitle = $property->title;
-                                $propertyLink = route('property.show', [$property->slug, $property->random_id]);
-                                $agentnumber = $property->user->phone_number;
-                                $whatsappMessage = 'Check out this property: ' . urlencode($propertyTitle) . ' ' .
-                                urlencode($propertyLink);
-                                $whatsappLink = 'https://api.whatsapp.com/send?phone=' . $agentnumber . '&text=' .
-                                $whatsappMessage;
-                                @endphp
-                                <button class="_5b77d672 da62f2ae _8d1154ff call btn" type="button"
-                                    style="background-color: #041E42; color: white;">
-                                    <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16"
-                                        fill="#fff" class="_40c10793">
-                                        <path
-                                            d="M13.3 10.3A7.6 7.6 0 0 1 11 10a.7.7 0 0 0-.7.1l-1 1.4a10.1 10.1 0 0 1-4.6-4.6L6 5.7A.7.7 0 0 0 6 5a7.4 7.4 0 0 1-.3-2.3A.7.7 0 0 0 5 2H2.8c-.4 0-.8.2-.8.7A11.4 11.4 0 0 0 13.3 14a.7.7 0 0 0 .7-.8V11a.7.7 0 0 0-.7-.6z">
-                                        </path>
-                                    </svg>
-                                    <a href="{{ $whatsappLink }}" class="whatsapp-link">
-                                        <span>Whatsapp</span>
-                                    </a>
-                              
-
-                            </div>
-                            <div class="d-flex flex-column gap-2">
-                                <div class="_2b36c787 contactFormName _45ca5e6b" tabindex="-1"><span
-                                        class="_56bd145a">NAME*</span>
-                                    <div><input id="" class="_24a2ee1a" name="name" value="" type="h"
-                                            placeholder="Enter your Name here"></div>
-                                </div>
-                                <div class="_2b36c787 contactFormName _45ca5e6b" tabindex="-1"><span
-                                        class="_56bd145a">EMAIL*</span>
-                                    <div><input id="contactFormName" class="_24a2ee1a" name="name" value="" type="email"
-                                            placeholder="Enter your Email here"></div>
-                                </div>
-                                <div class="_2b36c787 contactFormName _45ca5e6b" tabindex="-1"><span
-                                        class="_56bd145a">PHONE*</span>
-                                    <div><input id="contactFormName" class="_24a2ee1a" name="name" value=""
-                                            type="number" placeholder="Enter your Phone Number here"></div>
-                                </div>
-                                <div class="_2b36c787 contactFormName _45ca5e6b" tabindex="-1"><span
-                                        class="_56bd145a">MESSAGE*</span>
-                                    <div><textarea id="contactFormName" class="_24a2ee1a" name="name" value=""
-                                            type="text" cols="3" placeholder="Your Message"></textarea></div>
-                                </div>
-                            </div>
-                            <div class="d-flex flex-row gap-2 align-items-center my-3">
-                                <span class="prop-count">
-                                    I'm a :
-                                </span>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios"
-                                        id="exampleRadios1" value="option1" checked>
-                                    <label class="form-check-label prop-count" for="exampleRadios1">
-                                        Default radio
-                                    </label>
-                                </div>
-                                <div class="form-check">
-                                    <input class="form-check-input" type="radio" name="exampleRadios"
-                                        id="exampleRadios2" value="option1" checked>
-                                    <label class="form-check-label prop-count" for="exampleRadios2">
-                                        Default radio
-                                    </label>
-                                </div>
-                            </div>
-                            <div class="form-check">
-                                <input class="form-check-input" type="checkbox" value="" id="flexCheckDefault">
-                                <label class="form-check-label prop-count" for="flexCheckDefault">
-                                    Keep me informed about similar properties.
-                                </label>
-                            </div>
-                            <input type="submit" name="" id="" value="SEND MESSAGE" class="submmit m-0 rounded-2 mt-3">
-                        </div>
-                    </form>
-                    <article class="mt-5">
+                <p class="md-text py-3">Overview</p>
+                <h3 class="sm-text ">Detail</h3>
+                <div class="row">
+                    <div class="col-12 col-lg-6">
+                        <table class="table w-100 table-striped my-3">
+                            <tbody>
+                                <tr>
+                                    <td>Type</td>
+                                    <td>House</td>
+                                </tr>
+                                <tr>
+                                    <td>Price</td>
+                                    <td>Price: {{ $property->price }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-12 col-lg-6">
+                        <table class="table w-100 table-striped my-3">
+                            <tbody>
+                                <tr>
+                                    <td>Type</td>
+                                    <td>House</td>
+                                </tr>
+                                <tr>
+                                    <td>Price</td>
+                                    <td>Price: {{ $property->price }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <article>
+                    <div class="custom-container">
                         <div class="artical-wrapper d-flex flex-column gap-2">
-                            <h3>USEFUL LINKS</h3>
-                            <div class="d-flex flex-column gap-2 usefull-links">
-                                <a href="#">Property for sale in Lahore</a>
-                                <a href="#">1 Kanal Houses for sale in DHA Defence</a>
-                                <a href="#">Property for sale in Lahore</a>
-                                <a href="#">1 Kanal Houses for sale in DHA Defence</a>
-                                <a href="#">Property for sale in Lahore</a>
-                                <a href="#">1 Kanal Houses for sale in DHA Defence</a>
-                            </div>
+                            <h3>Description</h3>
+                            <p>
+                                {!! $property->description !!}
+                            </p>
 
                         </div>
-                    </article>
-                    <!-- <div class="sm-img">
-                <img src="assets/images/prop-sm-2.png">
-              </div> -->
+                    </div>
 
-
-
-
-
-                </div>
             </div>
         </div>
     </div>
     </div>
-</section>
+    </div>
+    </article>
+  
+@include('frontend.partials.modelsjs')
+@include('frontend.partials.models')
+
+</div>
+  </section>
 <div class="my-4">
     <p class="md-text">Similar Houses by Home Real Estate & Builders</p>
 </div>
@@ -438,7 +333,7 @@
                 <div class="carousel-item">
                     <div class="image-wrapper position-relative">
                         <figure class="m-0">
-                            <img src=" {{ asset('zameen/assets/images/blog-placeholder.png') }}" />
+                            <img src=" {{ asset('zameen/assets/images/cover-photo.png') }}" />
                         </figure>
                         <div class="top-data d-flex flex-row justify-content-between align-items-center">
                             <label class="super-hot-label">super hot</label>
@@ -652,7 +547,7 @@
                         </g>
                     </svg>
                     <span class="font-weight-500">3</span>
-                
+
                 </div>
                 <div class="d-flex flex-row gap-1 align-items-center">
                     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" class="svg-custom">
@@ -742,7 +637,7 @@
     <li class="prop-card-child hot">
         <div class="image-wrapper position-relative">
             <figure class="m-0">
-                <img src="assets/images/properties.jpg" alt="" srcset="">
+                <img src=" {{ asset('zameen/assets/images/cover-photo.png') }}" alt="" srcset="">
             </figure>
             <div class="top-data d-flex flex-row justify-content-between align-items-center">
                 <label class="hot-label">hot</label>
@@ -917,7 +812,7 @@
     <li class="prop-card-child hot">
         <div class="image-wrapper position-relative">
             <figure class="m-0">
-                <img src="assets/images/properties.jpg" alt="" srcset="">
+                <img src=" {{ asset('zameen/assets/images/signup-bg.png') }}" alt="" srcset="">
             </figure>
             <div class="top-data d-flex flex-row justify-content-between align-items-center">
                 <label class="hot-label">hot</label>
@@ -1844,94 +1739,6 @@
 
 <!-- Grand-famlily-section -->
 
-<section class="px-2 px-lg-5">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-12">
-                <!-- Similar Properties -->
-                <div class="d-flex flex-column  gap-2 pt-3">
-                    <p class="small-head pb-2">
-                        Similar Properties
-
-                    </p>
-                </div>
-            </div>
-        </div>
-        <!-- Cards Section -->
-        <section class="all-p">
-            <div class="container-fluid">
-                <div class="row">
-                    <div class="col-md-12 position-relative rewslider">
-                        <div class="swiper mySwiperreviewsim mt-3">
-                            <div class="swiper-wrapper">
-                                @foreach($relatedproperty as $property)
-                                <div class="swiper-slide">
-                                    <div class="single-cards-slider">
-                                        <div class="img-wraper">
-                                            @if (!empty($property->image))
-                                            <img src="{{ Storage::url('property/' . $property->image) }}">
-                                            @else
-                                            <img src="{{ asset('zameen/house.png') }}">
-                                            @endif
-                                        </div>
-                                        <div class="card-text-warrper">
-                                            {{-- <div class="tag-img">
-                                                  <img src=" {{ asset('zameen/assets/images/featured.jpeg') }}">
-                                        </div> --}}
-                                        <div
-                                            class="heart-sec d-flex flex-row justify-content-between mt-3 align-items-center">
-                                            <h3>PKR {{ $property->price }}</h3>
-                                            <img src=" {{ asset('zameen/assets/images/favorited.png') }}">
-                                        </div>
-
-                                        <div class="plan-text-sec d-flex flex-column gap-1 fixed-text">
-                                            <h3> {{ $property->title }} </h3>
-                                            <p>{{ ucfirst($property->address) }}</p>
-                                        </div>
-
-                                        <hr />
-                                        <div class="icons-section">
-                                            <div class="d-flex flex-row justify-content-between my-2">
-                                                <div class="d-flex flex-row gap-1 align-items-center">
-                                                    <div>
-                                                        <img src=" {{ asset('zameen/assets/images/bed.png') }}" />
-                                                    </div>
-                                                    <p>{{ $property->bedroom }} Beds</p>
-                                                </div>
-                                                <div class="d-flex flex-row gap-1 align-items-center">
-                                                    <div>
-                                                        <img src=" {{ asset('zameen/assets/images/bath.png') }}" />
-                                                    </div>
-                                                    <p>{{ $property->bathroom }} Bathrooms</p>
-                                                </div>
-                                                <div class="d-flex flex-row gap-1 align-items-center">
-                                                    <div>
-                                                        <img
-                                                            src=" {{ asset('zameen/assets/images/SquareMeters.png') }}" />
-                                                    </div>
-                                                    <p>{{ $property->area }} {{ $property->unit }}</p>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                            @endforeach
-
-                        </div>
-
-                    </div>
-
-                    <div class="swiper-button-next"><img src=" {{ asset('zameen/assets/images/next.png') }}"
-                            height="40px"></div>
-                    <div class="swiper-button-prev"><img src=" {{ asset('zameen/assets/images/pre.png') }}"
-                            height="40px"></div>
-                </div>
-            </div>
-    </div>
-</section>
-
-</section>
 
 
 <div id="street-view-container">
