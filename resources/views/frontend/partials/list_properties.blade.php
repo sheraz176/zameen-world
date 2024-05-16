@@ -1,6 +1,5 @@
-@include('frontend.partials.modelsjs')
-@include('pages.properties.partials.style');
-<section>
+ 
+ <section>
     <div class="wrapper-for-all">
       <div class="custom-container">
         <div class="inner-container">
@@ -37,8 +36,7 @@
                     <div class="image-wrapper position-relative">
                       <figure class="m-0">
                         <img
-                          src="zameen/assets/images/screencapture-file-C-Users-Touch-Desktop-zameen-index-html-2023-12-23-19_31_15.png"
-                          alt="" srcset="" />
+                         src="zameen/assets/images/sampeHome.png" alt="" />
                       </figure>
                       <div class="top-data d-flex flex-row justify-content-between align-items-center">
                         <label class="super-hot-label">super hot</label>
@@ -84,9 +82,7 @@
                   <div class="carousel-item">
                     <div class="image-wrapper position-relative">
                       <figure class="m-0">
-                        <img
-                          src="zameen/assets/images/screencapture-file-C-Users-Touch-Desktop-zameen-index-html-2023-12-23-19_31_15.png"
-                          alt="" srcset="" />
+                      <img src="zameen/assets/images/signup-bg.png" alt="" />
                       </figure>
                       <div class="top-data d-flex flex-row justify-content-between align-items-center">
                         <label class="super-hot-label">super hot</label>
@@ -132,7 +128,9 @@
                   <div class="carousel-item">
                     <div class="image-wrapper position-relative">
                       <figure class="m-0">
-                        <img src="zameen/assets/images/download (12).webp" alt="" srcset="" />
+                     
+                  
+                      <img src="zameen/assets/images/popular-blogs.png" alt="" />
                       </figure>
                       <div class="top-data d-flex flex-row justify-content-between align-items-center">
                         <label class="super-hot-label">super hot</label>
@@ -293,6 +291,7 @@
                 </div>
                 <div class="d-flex justify-content-between gap-1">
                   <div class="card-btns d-flex flex-row gap-2 align-items-end mt-1">
+                
                     <button class="email-msg-btn">
                       <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 32 32" style="height: 1.1rem; width: 1rem">
                         <path fill="#041E42"
@@ -322,10 +321,10 @@
                     </button>
                   </div>
                   <div class="hover-prop">
-                    <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
+                    <img src="assets/images/real-estate-small.jpg" class="before-hover" />
                     <div class="after-hover">
                       <div class="d-flex flex-column gap-1">
-                        <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
+                        <img src="assets/images/real-estate-small.jpg" class="before-hover" />
                         <span class="muted-text">Registerd Since : 2023</span>
                         <p class="font-weight-500 line-clamp-one">
                           2024 Propeties for sale
@@ -343,7 +342,7 @@
             <li class="prop-card-child hot">
               <div class="image-wrapper position-relative">
                 <figure class="m-0">
-                  <img src="zameen/assets/images/blog-placeholder.png" alt="" srcset="" />
+                <img src="zameen/assets/images/Feature.jpg" alt="" />
                 </figure>
                 <div class="top-data d-flex flex-row justify-content-between align-items-center">
                   <label class="hot-label">hot</label>
@@ -497,10 +496,10 @@
                     </button>
                   </div>
                   <div class="hover-prop">
-                    <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
+                    <img src="assets/images/real-estate-small.jpg" class="before-hover" />
                     <div class="after-hover">
                       <div class="d-flex flex-column gap-1">
-                        <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
+                        <img src="assets/images/real-estate-small.jpg" class="before-hover" />
                         <span class="muted-text">Registerd Since : 2023</span>
                         <p class="font-weight-500 line-clamp-one">
                           2024 Propeties for sale
@@ -518,7 +517,7 @@
             <li class="prop-card-child hot">
               <div class="image-wrapper position-relative">
                 <figure class="m-0">
-                  <img src="zameen/assets/images/agent-bg.png" alt="" srcset="" />
+                <img src="zameen/assets/images/home-board-img.png" alt="" />
                 </figure>
                 <div class="top-data d-flex flex-row justify-content-between align-items-center">
                   <label class="hot-label">hot</label>
@@ -672,10 +671,10 @@
                     </button>
                   </div>
                   <div class="hover-prop">
-                    <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
+                    <img src="assets/images/real-estate-small.jpg" class="before-hover" />
                     <div class="after-hover">
                       <div class="d-flex flex-column gap-1">
-                        <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
+                        <img src="assets/images/real-estate-small.jpg" class="before-hover" />
                         <span class="muted-text">Registerd Since : 2023</span>
                         <p class="font-weight-500 line-clamp-one">
                           2024 Propeties for sale
@@ -693,7 +692,7 @@
             <li class="prop-card-child featured">
               <div class="image-wrapper position-relative">
                 <figure class="m-0">
-                  <img src="zameen/assets/images/Feature.jpg" alt="" srcset="" />
+                <img src="zameen/assets/images/agent-bg.png" alt="" />
                 </figure>
                 <div class="top-data d-flex flex-row justify-content-between align-items-center">
                   <label class="feature-label">Feature</label>
@@ -944,10 +943,10 @@
                     </button>
                   </div>
                   <div class="hover-prop">
-                    <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
+                    <img src="assets/images/real-estate-small.jpg" class="before-hover" />
                     <div class="after-hover">
                       <div class="d-flex flex-column gap-1">
-                        <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
+                        <img src="assets/images/real-estate-small.jpg" class="before-hover" />
                         <span class="muted-text">Registerd Since : 2023</span>
                         <p class="font-weight-500 line-clamp-one">
                           2024 Propeties for sale
@@ -965,7 +964,7 @@
             <li class="prop-card-child normal">
               <div class="image-wrapper position-relative">
                 <figure class="m-0">
-                  <img src="zameen/assets/images/signup-bg.png" alt="" srcset="" />
+                <img src="zameen/assets/images/blog-detail.png" alt="" />
                 </figure>
                 <div class="top-data d-flex flex-row justify-content-end">
                   <label class="titanium">Titanium</label>
@@ -1112,10 +1111,10 @@
                     </button>
                   </div>
                   <div class="hover-prop">
-                    <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
+                    <img src="assets/images/real-estate-small.jpg" class="before-hover" />
                     <div class="after-hover">
                       <div class="d-flex flex-column gap-1">
-                        <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
+                        <img src="assets/images/real-estate-small.jpg" class="before-hover" />
                         <span class="muted-text">Registerd Since : 2023</span>
                         <p class="font-weight-500 line-clamp-one">
                           2024 Propeties for sale
@@ -1137,8 +1136,7 @@
                     <div class="image-wrapper position-relative">
                       <figure class="m-0">
                         <img
-                          src="zameen/assets/images/sampeHome.png"
-                          alt="" srcset="" />
+                        src="zameen/assets/images/Feature.jpg" alt="" />
                       </figure>
                       <div class="top-data d-flex flex-row justify-content-between align-items-center">
                         <label class="super-hot-label">super hot</label>
@@ -1184,9 +1182,7 @@
                   <div class="carousel-item">
                     <div class="image-wrapper position-relative">
                       <figure class="m-0">
-                        <img
-                          src="zameen/assets/images/signup-bg.png"
-                          alt="" srcset="" />
+                      <img src="zameen/assets/images/proper-sm.png" alt="" />
                       </figure>
                       <div class="top-data d-flex flex-row justify-content-between align-items-center">
                         <label class="super-hot-label">super hot</label>
@@ -1232,9 +1228,7 @@
                   <div class="carousel-item">
                     <div class="image-wrapper position-relative">
                       <figure class="m-0">
-                        <img
-                          src="zameen/assets/images/blog-detail.png"
-                          alt="" srcset="" />
+                      <img src="zameen/assets/images/sampeHome.png" alt="" />
                       </figure>
                       <div class="top-data d-flex flex-row justify-content-between align-items-center">
                         <label class="super-hot-label">super hot</label>
@@ -1424,10 +1418,10 @@
                     </button>
                   </div>
                   <div class="hover-prop">
-                    <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
+                    <img src="assets/images/real-estate-small.jpg" class="before-hover" />
                     <div class="after-hover">
                       <div class="d-flex flex-column gap-1">
-                        <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
+                        <img src="assets/images/real-estate-small.jpg" class="before-hover" />
                         <span class="muted-text">Registerd Since : 2023</span>
                         <p class="font-weight-500 line-clamp-one">
                           2024 Propeties for sale
@@ -1443,9 +1437,8 @@
             </li>
           </ul>
 
-         <!-- pagination -->
-         
-         <div class="d-flex justify-content-center align-items-center">
+           <!-- pagination -->
+           <div class="d-flex justify-content-center align-items-center">
             <nav aria-label="...">
               <ul class="pagination">
                 <li class="page-item disabled">
@@ -1466,4 +1459,3 @@
       </div>
     </div>
   </section>
-  

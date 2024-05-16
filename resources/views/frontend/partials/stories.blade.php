@@ -112,7 +112,7 @@
               </div>
             </div>
           </div>
-          <!-- <div class="swiper-pagination"></div> -->
+           <div class="swiper-pagination"></div>
           <div class="swiper-button-next">
             <svg xmlns="http://www.w3.org/2000/svg" class="slider-svg" viewBox="0 0 32 32">
               <path
@@ -131,4 +131,7 @@
       </div>
     </div>
   </section>
+   <!-- list-grid-view-properties -->
+
+  
   

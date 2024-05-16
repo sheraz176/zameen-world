@@ -80,7 +80,7 @@ class FrontpageController extends Controller
     // }
 
    public function searchfillter(Request $request){
-          dd($request->all());
+         // dd($request->all());
 
 
       }

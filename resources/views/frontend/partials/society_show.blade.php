@@ -1,6 +1,3 @@
-
-
-
 <section>
     <div class="wrapper-for-all">
         <div class="custom-container">
@@ -59,21 +56,14 @@
                         <div class="d-flex flex-row justify-content-between gap-2 py-4">
                             <p class="md-text">Locations of Houses For Sale in Lahore</p>
                         </div>
-                        <div class="row">
-                            <div class="column">
-                                <div class="col-4 col-4 col-4">
-                                    <ul class="list-inner list-unstyled">
-                                    <ol>
-                          <li class="even-li
-                                    <select  name="socity"  id="socity"
-                                            class="form-control validate show-tick {{ $errors->has('socity') ? 'focused error' : '' }}">
-
-                                            </select>
-                                        </li>
-                                </div>
-                            </div>
+                        <div class="row" name="socity" id="socity">
                         </div>
-                        @include('frontend.partials.ajax')
+                    </div>
+                    <div class="d-flex justify-content-center mb-3">
+            <a href="/all_locations/Lahore-1-1-9.html" class="primary-anchor">View All Locations in Lahore</a>
+          </div>
+                    </select>
 
+                  
 
 </section>

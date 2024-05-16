@@ -61,6 +61,7 @@ $(document).ready(function () {
  function redirect3() {
    location.replace('{{ route('user.dashboard') }}');
  }
+ 
  </script>
 
 @stack('scripts')
