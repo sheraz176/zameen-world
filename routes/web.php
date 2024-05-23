@@ -5,8 +5,9 @@ use App\Http\Controllers\SocialiteAuthController;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Agent\packageController;
+use App\Http\Controllers\StoryController;
 // FRONT-END ROUTES
-
+Route::resource('stories', 'StoryController');
 
 Route::get('google', [SocialiteAuthController::class, 'googleRedirect'])->name('auth/google');
 Route::get('/auth/google-callback', [SocialiteAuthController::class, 'loginWithGoogle']);
@@ -145,3 +146,5 @@ Route::group(['prefix' => 'user', 'namespace' => 'User', 'middleware' => ['auth'
     Route::post('message/readunread', 'DashboardController@messageReadUnread')->name('message.readunread');
     Route::delete('message/delete/{id}', 'DashboardController@messageDelete')->name('messages.destroy');
 });
+
+

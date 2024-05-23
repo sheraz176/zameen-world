@@ -76,12 +76,16 @@
                         </div>
                     </div>
                 </div>
+                 <!--Home type -->
           <div class="col-12 col-md-6 col-lg-2 mb-2">
             <div class="d-flex flex-column fliters-min-wrapper">
               <label class="filters-label">Location</label>
               <input type="text" name="" id="" class="filters-input w-100" />
             </div>
           </div>
+
+          <!--property type -->
+
           <div class="col-12 col-md-6 col-lg-3 mb-lg-0 mb-2">
           <form action="{{ route('searchroute') }}" method="post">
                                                         @csrf
@@ -131,58 +135,136 @@
                                                     </form>
 </div>
 </div>
-          <div class="col-12 col-md-6 col-lg-3 mb-2">
-            <div class="d-flex flex-column fliters-min-wrapper roll-wrapper position-relative">
-              <label class="filters-label">AREA (MARLA)</label>
-              <div class="rol-btn">
-                <span>0</span>
-                <span>Any</span>
-                <span class="custom-arrow"></span>
-              </div>
-              <div class="roll-dropdown custom-radio-btns active">
-                <div class="row">
-                  <div class="col-12">
-                    <span class="_35e12ee5" data-bs-toggle="modal" data-bs-target="#changeareaModal">Change area unit
-                      (Marla)</span>
+   <!--end property type -->
 
-
-                  </div>
-                  <div class="col-6">
-                    <p class="sm-text text-center">Min:</p>
-                    <input type="text" class="form-control mb-2" placeholder="0">
-                    <ul class="list-unstyled p-0 m-0 d-flex flex-column gap-2 roll-list">
-                      <li>
-                        <input type="radio" class="btn-check" name="AREA" id="roll-0" autocomplete="off">
-                        <label class="btn btn-secondary" for="roll-0">0</label>
-                      </li>
-                    </ul>
-                  </div>
-                  <div class="col-6">
-                    <p class="sm-text text-center">Max:</p>
-                    <input type="text" class="form-control mb-2" placeholder="Any">
-                    <ul class="list-unstyled p-0 m-0 d-flex flex-column gap-2 roll-list">
-                      <li>
-                        <input type="radio" class="btn-check" name="any" id="roll-any" autocomplete="off">
-                        <label class="btn btn-secondary" for="roll-any">Any</label>
-                      </li>
-
-                    </ul>
-                  </div>
-                </div>
-
-                <div class="d-flex justify-content-end">
-                  <button class="close-roll-dropdwon">
-                    close
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
+   <div class="col-12 col-md-6 col-lg-3 mb-lg-0 mb-2">
+          <form action="{{ route('searchroute') }}" method="post">
+                                                        @csrf
+            <div class="d-flex flex-column fliters-min-wrapper position-relative">
+      
+            <div class="position-relative">
+                                                            <div class="select-wrapper position-relative" data-id="4">
+                                                            <label class="filters-label">Home Type</label>   
+                                                           
+                                                            </div>
+                                                            <div class="select-dropdown show-drop-id-4">
+                                                                <ul class="list-unstyled d-flex flex-column gap-3">
+                                                                    <form action="{{ route('searchroute') }}" method="post">
+                                                                        @csrf
+                                                                        <li>
+                                                                            <div class="d-flex flex-column gap-2">
+                                                                                <span class="filters-sub-head d-block py-2">Homes</span>
+                                                                                <select name="purpose" class="form-select filter-select">
+                                                                                    <option value="">-- Please select --</option>
+                                                                                    <option value="Room">Room</option>
+                                                                                    <option value="House">House </option>
+                                                                                    <option value="FarmHouse">Farm House</option>
+                                                                                    <option value="LowerPortion">Lower Portion
+                                                                                    </option>
+                                                                                    <option value="UpperPortion">UpperPortion
+                                                                                    </option>
+                                                                                    <option value="Flat">Flat
+                                                                                    </option>
+                
+                                                                                </select>
+                
+                                                                            </div>
+                                                                            <button type="submit"
+                                                                                class="btn-contain-normal w-100 mt-3"><i
+                                                                                    class="fa fa-search"></i></button>
+                                                                        </li>
+                                                                    </form>
+                                                                    <form action="{{ route('searchroute') }}" method="post">
+                                                                        @csrf
+                                                                        <li>
+                                                                            <div class="d-flex flex-column gap-2">
+                                                                                <span class="filters-sub-head d-block py-2">Plots</span>
+                                                                                <select name="purpose" class="form-select filter-select"
+                                                                                    aria-label="Default select example">
+                                                                                    <option value="">-- Please select --</option>
+                                                                                    <option value="PlotForm">Plot Form
+                                                                                    </option>
+                                                                                    <option value="PlotFile">Plot File
+                                                                                    </option>
+                                                                                    <option value="IndustrialLand">IndustrialLand
+                                                                                    </option>
+                                                                                    <option value="AgriculturalLand">Agricultural Land
+                                                                                    </option>
+                                                                                    <option value="CommercialPlot">Commercial Plot
+                                                                                    </option>
+                                                                                    <option value="ResidentialPlot">Residential Plot
+                                                                                    </option>
+                
+                                                                                </select>
+                
+                                                                            </div>
+                                                                            <button type="submit"
+                                                                                class="btn-contain-normal w-100 mt-3"><i
+                                                                                    class="fa fa-search"></i></button>
+                
+                                                                        </li>
+                                                                    </form>
+                                                                    <form action="{{ route('searchroute') }}" method="post">
+                                                                        @csrf
+                                                                        <li>
+                                                                            <div class="d-flex flex-column gap-2">
+                                                                                <span
+                                                                                    class="filters-sub-head d-block py-2">Commercial</span>
+                                                                                <select name="purpose" class="form-select filter-select"
+                                                                                    aria-label="Default select example">
+                                                                                    <option value="">-- Please select --</option>
+                                                                                    <option value="Commercialproperty">Commercial property
+                                                                                    </option>
+                                                                                    <option value="Land">Land
+                                                                                    </option>
+                                                                                    <option value="Condo">Condo
+                                                                                    </option>
+                                                                                    <option value="Villa">Villa
+                                                                                    </option>
+                                                                                    <option value="Apartment">Apartment
+                                                                                    </option>
+                                                                                    <option value="Penthouse">Penthouse
+                                                                                    </option>
+                                                                                    <option value="Office">Office
+                                                                                    </option>
+                                                                                    <option value="Shop">Shop
+                                                                                    </option>
+                                                                                    <option value="Warehouse">Warehouse
+                                                                                    </option>
+                                                                                    <option value="Factory">Factory
+                                                                                    </option>
+                                                                                    <option value="Building">Building
+                                                                                    </option>
+                                                                                    <option value="Banglow">Banglow
+                                                                                    </option>
+                                                                                    <option value="Miscellaneous">Miscellaneous
+                                                                                    </option>
+                                                                                    <option value="Other">Other
+                                                                                    </option>
+                                                                                </select>
+                
+                                                                            </div>
+                                                                            <button type="submit"
+                                                                                class="btn-contain-normal w-100 mt-3"><i
+                                                                                    class="fa fa-search"></i></button>
+                
+                                                                        </li>
+                
+                                                                    </form>
+                
+                                                                </ul>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+                                                    </div>
+                                                        </div>
+</div>
         <div class="row hide-on-scroll d-md-flex d-none">
           <div class="col-12 col-md-6 col-lg-4 mb-lg-0 mb-2">
             <div class="d-flex flex-column fliters-min-wrapper roll-wrapper position-relative">
               <label class="filters-label">PRICE (PKR)</label>
+              <form action="{{ route('searchroute') }}" method="post">
+               @csrf
               <div class="rol-btn">
                 <span>0</span>
                 <span>Any</span>
@@ -198,21 +280,21 @@
                   </div>
                   <div class="col-6">
                     <p class="sm-text text-center">Min:</p>
-                    <input type="text" class="form-control mb-2" placeholder="0">
+                    <input type="number" class="form-control mb-2" placeholder="Enter min Price">
                     <ul class="list-unstyled p-0 m-0 d-flex flex-column gap-2 roll-list">
                       <li>
-                        <input type="radio" class="btn-check" name="price" id="price-0" autocomplete="off">
-                        <label class="btn btn-secondary" for="price-0">0</label>
+                        <input type="number" class="btn-check" name="minprice" id="price-0" autocomplete="off"  >
+                        <button type="submit"  class="btn-contain-normal w-100 mt-3">Done</button>
                       </li>
                     </ul>
                   </div>
                   <div class="col-6">
                     <p class="sm-text text-center">Max:</p>
-                    <input type="text" class="form-control mb-2" placeholder="Any">
+                    <input type="number" class="form-control mb-2" placeholder="Enter max Price" >
                     <ul class="list-unstyled p-0 m-0 d-flex flex-column gap-2 roll-list">
                       <li>
-                        <input type="radio" class="btn-check" name="any" id="price-any" autocomplete="off">
-                        <label class="btn btn-secondary" for="price-any">Any</label>
+                        <input type="maxprice" class="btn-check" name="" id="price-any" autocomplete="off">
+                        <button type="submit" class="btn-contain-normal w-100 mt-3">Done</button>
                       </li>
 
                     </ul>
@@ -223,62 +305,99 @@
                   <button class="close-roll-dropdwon">
                     close
                   </button>
+</form>
                 </div>
               </div>
             </div>
           </div>
           <div class="col-6 col-md-6 col-lg-2 mb-2">
             <div class="d-flex flex-column fliters-min-wrapper roll-wrapper position-relative">
-              <label class="filters-label">BEDS</label>
-              <div class="rol-btn">
-                <span>Beds</span>
-                <span class="custom-arrow"></span>
-              </div>
-              <div class="roll-dropdown custom-radio-btns active">
-                <ul class="list-unstyled p-0 m-0 d-flex flex-column gap-2">
-                  <li>
-                    <input type="radio" class="btn-check" name="purpose" id="roll-rent" autocomplete="off">
-                    <label class="btn btn-secondary" for="roll-rent">Rent</label>
-                  </li>
-                  <li>
-                    <input type="radio" class="btn-check" name="purpose" id="roll-buy" autocomplete="off">
-                    <label class="btn btn-secondary" for="roll-buy">Buy</label>
-                  </li>
-                </ul>
-                <div class="d-flex justify-content-end">
-                  <button class="close-roll-dropdwon">
-                    close
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
-          <div class="col-6 col-md-6 col-lg-2 mb-2">
-            <div class="d-flex flex-column fliters-min-wrapper roll-wrapper position-relative">
-              <label class="filters-label">BATH</label>
-              <div class="rol-btn">
-                <span>Bath</span>
-                <span class="custom-arrow"></span>
-              </div>
-              <div class="roll-dropdown custom-radio-btns active">
-                <ul class="list-unstyled p-0 m-0 d-flex flex-column gap-2">
-                  <li>
-                    <input type="radio" class="btn-check" name="purpose" id="roll-rent" autocomplete="off">
-                    <label class="btn btn-secondary" for="roll-rent">Rent</label>
-                  </li>
-                  <li>
-                    <input type="radio" class="btn-check" name="purpose" id="roll-buy" autocomplete="off">
-                    <label class="btn btn-secondary" for="roll-buy">Buy</label>
-                  </li>
-                </ul>
-                <div class="d-flex justify-content-end">
-                  <button class="close-roll-dropdwon">
-                    close
-                  </button>
-                </div>
-              </div>
-            </div>
-          </div>
+              
+              <div class="position-relative">
+                                                            <div class="select-wrapper position-relative" data-id="3">
+                                                            <label class="filters-label">Beds & Bath</label>
+                                                            </div>
+                                                            <div class="select-dropdown show-drop-id-3">
+                                                                <form action="{{ route('searchroute') }}" method="post">
+                                                                    @csrf
+                                                                    <ul class="list-unstyled d-flex flex-column gap-2 dropdown-inputs">
+                                                                        <li>
+                                                                            <div class="d-flex flex-column gap-2">
+                                                                                <span class="filters-sub-head d-block py-2">Bath</span>
+                                                                                <input type="number" name="bathroom"
+                                                                                    placeholder="Enter Beds" class="w-100">
+                
+                                                                            </div>
+                                                                        </li>
+                                                                        <li>
+                                                                            <div class="d-flex flex-column gap-2">
+                                                                                <span class="filters-sub-head d-block py-2">Beds</span>
+                                                                                <input type="number" name="bedroom"
+                                                                                    placeholder="Enter Beds" class="w-100">
+                
+                                                                            </div>
+                                                                        </li>
+                                                                        <li><button class="btn-contain-normal w-100 mt-3">Done</button>
+                                                                        </li>
+                                                                    </ul>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                    </li>
+</div>
+</div>
+<div class="col-6 col-md-6 col-lg-2 mb-2">
+          <form action="{{ route('searchroute') }}" method="post">
+                                                        @csrf
+            <div class="d-flex flex-column fliters-min-wrapper position-relative">
+      
+            <div class="position-relative">
+            
+                                                            <div class="select-wrapper position-relative" data-id="5">
+                                                                <span>More Filters</span>
+                                                            </div>
+                                                            <div class="select-dropdown show-drop-id-5">
+                                                                <form action="{{ route('searchroute') }}" method="post">
+                                                                    @csrf
+                                                                    <ul class="list-unstyled d-flex flex-column gap-2 dropdown-inputs">
+                                                                        <li>
+                                                                            <label class="filters-sub-head d-block py-2">Property ID:
+                                                                            </label>
+                                                                            <input type="text" name="random_id"
+                                                                                placeholder="Enter Property ID" class="w-100">
+                
+                                                                        </li>
+                                                                        <li>
+                                                                            <label class="filters-sub-head d-block py-2">State: </label>
+                                                                            <input type="text" placeholder="Enter your city name here"
+                                                                                class="w-100">
+                                                                        </li>
+                                                                        <li>
+                                                                            <label class="filters-sub-head d-block py-2">City:</label>
+                                                                            <input type="text"
+                                                                                placeholder="Enter your country name here "
+                                                                                class="w-100">
+                                                                        </li>
+                                                                        <li>
+                                                                            <label class="filters-sub-head d-block py-2">Phases:</label>
+                                                                            <input type="text"
+                                                                                placeholder="Enter your country name here "
+                                                                                class="w-100">
+                                                                        </li>
+                                                                        <li>
+                                                                            <button type="submit"
+                                                                                class="btn-contain-normal w-100 mt-3">Search</button>
+                                                                        </li>
+                                                                    </ul>
+                                                                </form>
+                                                            </div>
+                                                        </div>
+                                                  
+</div>
+</div>
+                                                        
+                                                  
+
           <div class="col-12 col-md-6 col-lg-4 mb-2">
             <div class="d-flex flex-column fliters-min-wrapper">
               <label class="filters-label">KEYWORD</label>
