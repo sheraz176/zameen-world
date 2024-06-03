@@ -974,7 +974,7 @@
                         if (response != 'no data') {
                     response.forEach(socity => {
                         $('#socity').append(
-                            '<div class = " col-md-4 "> <a href="/Houses_Property/Lahore_DHA_Defence-9-1.html" style= "text-decoration: none !important; color:inherit;" class="odd-li">' +
+                            '<div class = " col-md-4 "> <a href="" style= "text-decoration: none !important; color:inherit;" class="odd-li">' +
                             socity.socity_name +
                             '</a></div> '
                         );
