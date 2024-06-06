@@ -25,7 +25,7 @@ class PagesController extends Controller
     {
         $cities     = Property::select('city','city_slug')->distinct('city_slug')->get();
         $properties = Property::latest()->with('rating')->withCount('comments')->paginate(12);
-
+        
         return view('pages.properties.property', compact('properties','cities'));
     }
 

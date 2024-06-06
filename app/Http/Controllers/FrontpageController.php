@@ -25,7 +25,7 @@ class FrontpageController extends Controller
         $hot     = Property::latest()->where('hot',1)->with('rating')->withCount('comments')->take(6)->get();
         $featured     = Property::latest()->where('featured',1)->with('rating')->withCount('comments')->take(6)->get();
 
-
+       
         return view('frontend.index', compact('superhot','hot','featured'));
     }
 
