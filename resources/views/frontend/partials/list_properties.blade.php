@@ -1,3 +1,4 @@
+
 <div class="wrapper-for-all">
     <div class="custom-container">
       <div class="inner-container">
@@ -25,73 +26,54 @@
             </svg>
           </div>
         </div>
-<ul class="properties-cards active">
-    @php
-        $datas = [];
-        foreach ($slicedData as $key => $data) {
-            if ($data->superhot == '1') {
-                array_push($datas, $data);
-            }
-        }
-        foreach ($slicedData as $key => $data) {
-            if ($data->hot == '1') {
-                array_push($datas, $data);
-            }
-        }
-        foreach ($slicedData as $key => $data) {
-            if ($data->featured == '1') {
-                array_push($datas, $data);
-            }
-        }
-        foreach ($slicedData as $key => $data) {
-            if ($data->featured == '0' and $data->hot == '0' and $data->superhot == '0') {
-                array_push($datas, $data);
-            }
-        }
-
-    @endphp
-
-  
-        @foreach ($datas as $property)
-            {{-- Display Super Hot --}}
-            @if ($property->superhot == '1')
-                @include('pages.properties.partials.superhot')
-            @endif
-            {{-- Display  Hot --}}
-            @if ($property->hot == '1')
-                @include('pages.properties.partials.hot')
-            @endif
-            {{-- Display  Featured --}}
-            @if ($property->featured == '1')
-                @include('pages.properties.partials.featured')
-            @endif
-            {{-- Display  Normal --}}
-            @if ($property->featured == '0' and $property->hot == '0' and $property->superhot == '0')
-                @include('pages.properties.partials.normal')
-            @endif
-        @endforeach
-
-    
-
-
-
+        <ul class="properties-cards active">
+          @php
+              $datas = [];
+              foreach ($slicedData as $key => $data) {
+                  if ($data->superhot == '1') {
+                      array_push($datas, $data);
+                  }
+              }
+              foreach ($slicedData as $key => $data) {
+                  if ($data->hot == '1') {
+                      array_push($datas, $data);
+                  }
+              }
+              foreach ($slicedData as $key => $data) {
+                  if ($data->featured == '1') {
+                      array_push($datas, $data);
+                  }
+              }
+              foreach ($slicedData as $key => $data) {
+                  if ($data->featured == '0' and $data->hot == '0' and $data->superhot == '0') {
+                      array_push($datas, $data);
+                  }
+              }
+      
             
-                
+          @endphp
+      
+          @foreach ($datas as $property)
+              {{-- Display Super Hot --}}
+              @if ($property->superhot == '1')
+                  @include('pages.properties.partials.superhot')
+              @endif
+              {{-- Display Hot --}}
+              @if ($property->hot == '1')
+                  @include('pages.properties.partials.hot')
+              @endif
+              {{-- Display Featured --}}
+              @if ($property->featured == '1')
+                  @include('pages.properties.partials.featured')
+              @endif
+              {{-- Display Normal --}}
+              @if ($property->featured == '0' and $property->hot == '0' and $property->superhot == '0')
+                  @include('pages.properties.partials.normal')
+              @endif
+          @endforeach
+      
+      </ul>
+       <!-- pagination -->
 
-
-
-                    <div class="d-flex flex-row justify-content-between px-3 pb-3">
-                        {{-- <a href="#" class="btn-next">Previous</a>
-          <a href="#" class="btn-pre">Next</a> --}}
-                        {{ $slicedData->links() }}
-                    </div>
-                    <!-- footer-section -->
-                
-                </div>
-            </div>
-        </div>
-    </div>
-</section>
-</div>
-
-@include('frontend.partials.models')
+      {{ $slicedData->links() }}
+   

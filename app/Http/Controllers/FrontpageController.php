@@ -215,11 +215,14 @@ class FrontpageController extends Controller
 
 
     
-public function convertArrayToCollection($items, $perPage = 16, $page = null, $options = [])
+public function convertArrayToCollection($items, $perPage = 6, $page = null, $options = [])
 {
     $page = $page ?: (Paginator::resolveCurrentPage() ?: 1);
     $items = $items instanceof Collection ? $items : Collection::make($items);
-    return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    // return new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    $paginated = new LengthAwarePaginator($items->forPage($page, $perPage), $items->count(), $perPage, $page, $options);
+    // dd(request()->getBasePath());
+    return $paginated->withPath('/search');
 
 }
 // Function to merge paginated results

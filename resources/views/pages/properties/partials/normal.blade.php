@@ -186,10 +186,10 @@ $whatsappMessage;
 </button>
 </div>
             <div class="hover-prop">
-              <img src="assets/images/real-estate-small.jpg" class="before-hover" />
+              <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
               <div class="after-hover">
                 <div class="d-flex flex-column gap-1">
-                  <img src="assets/images/real-estate-small.jpg" class="before-hover" />
+                  <img src="zameen/assets/images/real-estate-small.jpg" class="before-hover" />
                   <span class="muted-text">Registerd Since : 2023</span>
                   <p class="font-weight-500 line-clamp-one">
                     2024 Propeties for sale
@@ -203,10 +203,7 @@ $whatsappMessage;
           </div>
         </div>
       </li>
-
-
-
-
+     
 
 
 
