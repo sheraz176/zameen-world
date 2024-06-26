@@ -1372,7 +1372,7 @@
             </div>
           </div>
           <div class="d-flex justify-content-center mb-3">
-            <a href="/all_locations/Lahore-1-1-9.html" class="primary-anchor"
+            <a href="" class="primary-anchor"
               >View All Locations in Lahore</a
             >
           </div>

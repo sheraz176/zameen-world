@@ -45,7 +45,7 @@
                         </li>
                     </ul>
                     <div>
-                        <a href="/Rentals_Flats_Apartments/Lahore-1-1.html" title="Lahore Flats For Rent"
+                        <a href="" title="Lahore Flats For Rent"
                             class="k-anchor" aria-label="Switch purpose">Lahore Flats For Rent</a>
                     </div>
                 </div>
@@ -60,7 +60,7 @@
                         </div>
                     </div>
                     <div class="d-flex justify-content-center mb-3">
-            <a href="/all_locations/Lahore-1-1-9.html" class="primary-anchor">View All Locations in Lahore</a>
+            <a href="" class="primary-anchor">View All Locations in Lahore</a>
           </div>
                     </select>
 
